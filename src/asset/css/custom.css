@@ -1,0 +1,37 @@
+.banner {
+    background-image: url("https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80");
+    min-height: 500px;
+    width: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 5rem;
+}
+
+.topContentMargin{
+    margin-top: 8rem;
+}
+.title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 38px;
+}
+.subTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 28px;
+}
+.cardTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    color: #292929;
+    font-size: 32px;
+}
+.cardSubTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #292929;
+    font-size: 18px;
+}

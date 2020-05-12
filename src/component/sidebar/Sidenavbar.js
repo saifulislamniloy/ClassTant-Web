@@ -3,6 +3,13 @@ import Sidebar from "react-sidebar";
 import '../../asset/css/custom.css';
 import '../../asset/css/bootstrap.min.css';
 import {NavLink} from "react-router-dom";
+import {Container} from "react-bootstrap";
+import dashBoard from "../../asset/icon/dashboard.svg"
+import menu from "../../asset/icon/menu.svg"
+import profile from "../../asset/icon/profile.svg"
+import notification from "../../asset/icon/notification.svg"
+import createCourse from "../../asset/icon/create.svg"
+import logout from "../../asset/icon/exit.svg"
 
 class Sidenavbar extends Component {
     constructor(props) {
@@ -21,20 +28,20 @@ class Sidenavbar extends Component {
         return (
             <Sidebar
                 sidebar={
-                    <b>Sidebar content
-                        <br/><NavLink to="/dash">DashBoard</NavLink>
-                        <br/><NavLink to="/profile">Profile</NavLink>
-                        <br/><NavLink to="/notification">Notification</NavLink>
-                        <br/><NavLink to="/create-course">Create Course</NavLink>
-                        <br/><NavLink to="/logout">Log Out</NavLink>
+                    <b>
+                        <br/><Container><img src={dashBoard} width="20px" height="20px"/><NavLink className="sideMenuTitle" to="/">DashBoard</NavLink></Container>
+                        <br/><Container><img src={profile} width="20px" height="30px"/><NavLink className="sideMenuTitle" to="/profile">Profile</NavLink></Container>
+                        <br/><Container><img src={notification} width="20px" height="20px"/><NavLink className="sideMenuTitle" to="/notification">Notification</NavLink></Container>
+                        <br/><Container><img src={createCourse} width="20px" height="20px"/><NavLink className="sideMenuTitle" to="/create-course">Create Course</NavLink></Container>
+                        <br/><Container><img src={logout} width="20px" height="20px"/><NavLink className="sideMenuTitle" to="/logout">Log Out</NavLink></Container>
                     </b>
                 }
                 open={this.state.sidebarOpen}
                 onSetOpen={this.onSetSidebarOpen}
                 styles={{ sidebar: { background: "white" } }}
             >
-                <button onClick={() => this.onSetSidebarOpen(true)}>
-                    MENU
+                <button className="m-3" onClick={() => this.onSetSidebarOpen(true)}>
+                    <img src={menu} width="25px" height="25px"/>
                 </button>
             </Sidebar>
         );

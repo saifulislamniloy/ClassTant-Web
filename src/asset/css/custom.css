@@ -35,3 +35,10 @@
     color: #292929;
     font-size: 18px;
 }
+.sideMenuTitle{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    color: #292929;
+    font-size: 18px;
+    padding: 5px;
+}

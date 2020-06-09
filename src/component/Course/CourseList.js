@@ -1,50 +1,47 @@
+/* eslint-disable react/jsx-key */
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
-import Url from "../../url/url";
+import Url from '../../Url.js';
 import {Card, Col, Container, Row} from "react-bootstrap";
 
 class CourseList extends Component {
     constructor() {
         super();
         this.state={
-            courseData:[]
+            courseData:[],
+            courseListView:""
         }
     }
     componentDidMount() {
-        alert("Inside ComponentDidMount")
-        axios.get(Url.courses)
-            .then(result=>{
-                this.setState({courseData:result})
-                console.log(result);
-                alert("Inside Getting Result")
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        axios.get(Url.courseList)
+        .then(res => {
+          this.setState({ courseData:res });
+          const courseList = res.data;
+          const view = courseList.map(courseList=>{
+              return  (<Col sm={12} md={6} lg={4} className="p-2">
+                  <div>
+                      <Card className="card">
+                          <Card.Body>
+                              <Card.Title className="cardTitle">{courseList.CourseTitle}</Card.Title>
+                              <Card.Text className="subtitle">
+                                  {courseList.CourseTeacher}
+                              </Card.Text>
+  
+                          </Card.Body>
+                      </Card>
+                  </div>
+              </Col>)
+          })
+          this.setState({courseListView:view})
+        })
     }
 
     render() {
-        const courseList = this.state.courseData;
-        const view = courseList.map(courseList=>{
-            return  (<Col sm={12} md={6} lg={4} className="p-2">
-                <div>
-                    <Card className="card">
-                        <Card.Body>
-                            <Card.Title className="title">{courseList.CourseTitle}</Card.Title>
-                            <Card.Text className="subtitle">
-                                {courseList.CourseId}
-                            </Card.Text>
-
-                        </Card.Body>
-                    </Card>
-                </div>
-            </Col>)
-        })
         return (
             <Fragment>
                 <Container>
                     <Row>
-                        {view}
+                        {this.state.courseListView}
                     </Row>
                 </Container>
             </Fragment>

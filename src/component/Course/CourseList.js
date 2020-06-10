@@ -26,7 +26,9 @@ class CourseList extends Component {
                               <Card.Text className="subtitle">
                                   {courseList.CourseTeacher}
                               </Card.Text>
-  
+                              <Card.Text className="subtitle">
+                                  {courseList.GuestTeacher}
+                              </Card.Text>
                           </Card.Body>
                       </Card>
                   </div>

@@ -1,12 +1,10 @@
 import React, {Component, Fragment} from 'react';
-import Sidenavbar from "../component/sidebar/Sidenavbar";
-import CreateCourse from "../component/Course/CreateCourse";
+import CreateCourse from "../component/Course/CreateCourse.js";
 
 class CreateCoursePage extends Component {
     render() {
         return (
             <Fragment>
-                <Sidenavbar/>
                 <CreateCourse/>
             </Fragment>
         );

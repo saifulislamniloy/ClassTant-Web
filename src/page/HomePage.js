@@ -1,18 +1,19 @@
 import React, {Component, Fragment} from 'react';
-import Sidenavbar from "../component/sidebar/Sidenavbar";
 import TopBanner from "../component/topbanner/TopBanner";
 import CourseList from "../component/Course/CourseList";
+import TopNavigation from '../component/topContent/TopNavigation';
 
 class HomePage extends Component {
     render() {
         return (
             <Fragment>
+                <TopNavigation/>
                 <TopBanner/>
                 <CourseList/>
-                <Sidenavbar/>
             </Fragment>
         );
     }
 }
 
 export default HomePage;
+

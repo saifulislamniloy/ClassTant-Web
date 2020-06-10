@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import TopBanner from "../component/topbanner/TopBanner";
+import TopBanner from "../component/topContent/TopBanner";
 import CourseList from "../component/Course/CourseList";
 import TopNavigation from '../component/topContent/TopNavigation';
 

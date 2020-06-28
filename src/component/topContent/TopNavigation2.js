@@ -3,11 +3,6 @@ import '../../asset/css/custom.css';
 import '../../asset/css/bootstrap.min.css';
 import { Container, Navbar, Nav} from 'react-bootstrap'
 import {NavLink} from "react-router-dom";
-import dashBoard from "../../asset/icon/dashboard.svg"
-import profile from "../../asset/icon/profile.svg"
-import notification from "../../asset/icon/notification.svg"
-import createCourse from "../../asset/icon/create.svg"
-import logout from "../../asset/icon/exit.svg"
 
 export default class TopNavigation2 extends Component {
     render() {
@@ -21,14 +16,14 @@ export default class TopNavigation2 extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/"><img src={dashBoard} width="20px" height="20px" alt="Smiley face"/> DashBoard  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/profile"><img src={profile} width="20px" height="20px" alt="Smiley face"/> Attendance  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/notification"><img src={notification} width="20px" height="20px" alt="Smiley face"/> Students  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/create-course"><img src={createCourse} width="20px" height="20px" alt="Smiley face"/> Marks  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/logout"><img src={logout} width="20px" height="20px" alt="Smiley face"/> Assignment  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/notification"><img src={notification} width="20px" height="20px" alt="Smiley face"/> Resourse  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/create-course"><img src={createCourse} width="20px" height="20px" alt="Smiley face"/> GroupChat  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/logout"><img src={logout} width="20px" height="20px" alt="Smiley face"/> Report  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/"> DashBoard  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/attendance"> Attendance  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/student"> Students  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/marks"> Marks  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/assignment"> Assignment  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/resource">Resourse  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/group-chat"> GroupChat  </NavLink>
+                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/report"> Report  </NavLink>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

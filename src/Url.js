@@ -1,6 +1,11 @@
 class Url {
-    static baseUrl = "https://4c24e686-7615-4dfc-938e-c3c6f60e7707.mock.pstmn.io";
+    static baseUrl = " http://localhost:3010";
 
     static courseList = this.baseUrl+"/course-list";
+    static student = this.baseUrl+"/student";
+    static attendance = this.baseUrl+"/attendance";
+    static marks = this.baseUrl+"/marks";
+    static assignment = this.baseUrl+"/assignment";
+    static resource = this.baseUrl+"/resource";
 }
 export default Url;

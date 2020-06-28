@@ -5,15 +5,13 @@ export default class SignIn extends Component {
     render() {
         return (
             <Fragment>
-                <Container>
-                    <Form>
+                <Container fluid={true} className="banner-auth p-0">
+                    <Form className="login-form">
                         <Form.Group>
-                            <Form.Label>User Name</Form.Label>
-                            <Form.Control></Form.Control>
+                            <Form.Control id="user-name" type="text" placeholder="User Name" className="text-center"></Form.Control>
                         </Form.Group>
                         <Form.Group>
-                            <Form.Label>Password</Form.Label>
-                            <Form.Control></Form.Control>
+                            <Form.Control id="password" type="password" placeholder="Password" className="text-center"></Form.Control>
                         </Form.Group>
                         <Button>Sign In</Button>
                     </Form>

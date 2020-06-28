@@ -6,7 +6,7 @@ export default class AuthPage extends Component {
     render() {
         return (
             <Fragment>
-                <Container>
+                <Container fluid={true} className="p-0">
                     <Auth/>
                 </Container>
             </Fragment>

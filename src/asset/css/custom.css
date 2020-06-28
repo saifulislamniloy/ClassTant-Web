@@ -9,6 +9,22 @@
     margin-top: 4rem;
 }
 
+.banner-auth {
+    background-image: url("https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80");
+    min-height: 800px;
+    width: 100%;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.login-form{
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 10rem;
+    text-align: center;
+}
+
 .topContentMargin{
     margin-top: 8rem;
 }

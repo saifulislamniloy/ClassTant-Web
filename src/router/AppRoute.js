@@ -11,6 +11,7 @@ import AssignmentPage from '../page/AssignmentPage';
 import ResourcePage from '../page/ResourcePage';
 import GroupChatPage from '../page/GroupChatPage';
 import ReportPage from '../page/ReportPage';
+import NotificationPage from '../page/NotificationPage';
 
 class AppRoute extends Component {
     render() {
@@ -20,6 +21,7 @@ class AppRoute extends Component {
                     <Route exact path="/" component={HomePage}/>
                     <Route exact path="/auth" component={AuthPage}/>
                     <Route exact path="/create-course" component={CreateCoursePage}/>
+                    <Route exact path="/notification" component={NotificationPage}/>
                     <Route exact path="/inside-course" component={InsideCourse}/>
                     <Route exact path="/attendance" component={AttendancePage}/>
                     <Route exact path="/student" component={StudentPage}/>

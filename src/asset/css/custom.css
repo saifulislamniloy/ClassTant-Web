@@ -59,3 +59,9 @@
     font-size: 18px;
     padding: 5px;
 }
+
+.noticeCard{
+    height: auto;
+    padding: 1rem;
+    margin: 1rem;
+}

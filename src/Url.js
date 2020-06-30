@@ -2,6 +2,7 @@ class Url {
     static baseUrl = " http://localhost:3010";
 
     static courseList = this.baseUrl+"/course-list";
+    static notification = this.baseUrl+"/notification";
     static student = this.baseUrl+"/student";
     static attendance = this.baseUrl+"/attendance";
     static marks = this.baseUrl+"/marks";

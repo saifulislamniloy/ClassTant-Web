@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import CreateCourse from "../component/course/CreateCourse.js";
+import CreateCourse from "../component/outsideCourse/CreateCourse.js";
 import TopNavigation from '../component/topContent/TopNavigation.js';
 import TopBanner from '../component/topContent/TopBanner.js';
 

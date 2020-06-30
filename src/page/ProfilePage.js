@@ -1,19 +1,16 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react'
 import TopBanner from "../component/topContent/TopBanner";
-import CourseList from "../component/outsideCourse/CourseList";
 import TopNavigation from '../component/topContent/TopNavigation';
+import Profile from '../component/outsideCourse/Profile';
 
-class HomePage extends Component {
+export default class ProfilePage extends Component {
     render() {
         return (
             <Fragment>
                 <TopNavigation/>
                 <TopBanner/>
-                <CourseList/>
+                <Profile/>
             </Fragment>
-        );
+        )
     }
 }
-
-export default HomePage;
-

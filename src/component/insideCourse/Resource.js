@@ -4,52 +4,53 @@ import Authorization from '../auth/Authorization';
 import axios from 'axios';
 import Url from '../../Url.js';
 
-export default class Notification extends Component {
+export default class Resource extends Component {
     constructor() {
         super();
         this.state = {
-            noticeView: ""
+            resourceView: ""
         }
     }
 
     componentDidMount() {
-        this.getNotificationList();
+        this.getResourceList();
     }
 
-    getNotificationList(){
-        axios.get(Url.notification + "/" + Authorization.getCourseId())
+    getResourceList(){
+        axios.get(Url.resource + "/" + Authorization.getCourseId())
         .then(res => {
             const data = res.data;
             const view = data.map(data => {
                 return (
                     <Card className="noticeCard">
                         <Card.Title className="text-center">{data.header}</Card.Title>
-                        <Card.Text className="text-center">{data.description}</Card.Text>
+                        <Card.Text className="text-center">{data.link}</Card.Text>
                     </Card>
                 )
             })
-            this.setState({ noticeView: view })
+            this.setState({ resourceView: view })
         })
     }
 
-    postNotification(){
+    postResource(){
 
         let header = document.getElementById("header").value;
-        let description = document.getElementById("des").value;
-        let JsonObject = { header: header, description: description}
+        let link = document.getElementById("link").value;
+        let JsonObject = { header: header, link: link}
 
-        axios.post(Url.notification+"/"+Authorization.getCourseId(), JsonObject, {
+        axios.post(Url.resource+"/"+Authorization.getCourseId(), JsonObject, {
             firstName: 'Fred',
             lastName: 'Flintstone'
           })
           .then(function (response) {
-              this.getNotificationList();
+              this.getResourceList();
             console.log(response);
           })
           .catch(function (error) {
             console.log(error);
           });
     }
+
     render() {
         return (
             <Fragment>
@@ -62,16 +63,16 @@ export default class Notification extends Component {
                                         <Form.Control id="header" type="text" placeholder="Header" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Desccription" />
+                                        <Form.Control id="link" type="text" placeholder="Link" />
                                     </Form.Group>
                                 </Form>
-                                <Button onClick={() => this.postNotification()} variant="primary">
+                                <Button onClick={() => this.postResource()} variant="primary">
                                     Post
                                 </Button>
                             </Card>
                         </Col>
                         <Col lg={12} md={12} sm={12}>
-                            {this.state.noticeView}
+                            {this.state.resourceView}
                         </Col>
                     </Row>
                 </Container>

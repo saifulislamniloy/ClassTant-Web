@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form } from 'react-bootstrap'
 import axios from 'axios';
 import Url from '../../Url.js';
 import Authorization from '../auth/Authorization.js';

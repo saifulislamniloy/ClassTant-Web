@@ -1,23 +1,23 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Row, Col, Button, Card, Form } from 'react-bootstrap'
+import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap'
 import Authorization from '../auth/Authorization';
 import axios from 'axios';
 import Url from '../../Url.js';
 
-export default class Notification extends Component {
+export default class Assignment extends Component {
     constructor() {
         super();
         this.state = {
-            noticeView: ""
+            assignmentView: ""
         }
     }
 
     componentDidMount() {
-        this.getNotificationList();
+        this.getAssignmentList();
     }
 
-    getNotificationList(){
-        axios.get(Url.notification + "/" + Authorization.getCourseId())
+    getAssignmentList(){
+        axios.get(Url.assignment + "/" + Authorization.getCourseId())
         .then(res => {
             const data = res.data;
             const view = data.map(data => {
@@ -28,28 +28,28 @@ export default class Notification extends Component {
                     </Card>
                 )
             })
-            this.setState({ noticeView: view })
+            this.setState({ assignmentView: view })
         })
     }
 
-    postNotification(){
-
+    postAssignment(){
         let header = document.getElementById("header").value;
         let description = document.getElementById("des").value;
         let JsonObject = { header: header, description: description}
 
-        axios.post(Url.notification+"/"+Authorization.getCourseId(), JsonObject, {
+        axios.post(Url.assignment+"/"+Authorization.getCourseId(), JsonObject, {
             firstName: 'Fred',
             lastName: 'Flintstone'
           })
           .then(function (response) {
-              this.getNotificationList();
+              this.getAssignmentList();
             console.log(response);
           })
           .catch(function (error) {
             console.log(error);
           });
     }
+
     render() {
         return (
             <Fragment>
@@ -65,13 +65,13 @@ export default class Notification extends Component {
                                         <Form.Control id="des" type="text" placeholder="Desccription" />
                                     </Form.Group>
                                 </Form>
-                                <Button onClick={() => this.postNotification()} variant="primary">
+                                <Button onClick={() => this.postAssignment()} variant="primary">
                                     Post
                                 </Button>
                             </Card>
                         </Col>
                         <Col lg={12} md={12} sm={12}>
-                            {this.state.noticeView}
+                            {this.state.assignmentView}
                         </Col>
                     </Row>
                 </Container>

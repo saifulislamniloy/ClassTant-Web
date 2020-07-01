@@ -24,7 +24,7 @@ export default class Resource extends Component {
                 return (
                     <Card className="noticeCard">
                         <Card.Title className="text-center">{data.header}</Card.Title>
-                        <Card.Text className="text-center">{data.link}</Card.Text>
+                        <a href={""+data.link} target="#"><Card.Text className="text-center">{data.link}</Card.Text></a>
                     </Card>
                 )
             })

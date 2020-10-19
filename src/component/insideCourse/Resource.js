@@ -63,6 +63,9 @@ export default class Resource extends Component {
                                         <Form.Control id="header" type="text" placeholder="Header" />
                                     </Form.Group>
                                     <Form.Group>
+                                        <Form.Control id="desc" type="text" placeholder="Description" />
+                                    </Form.Group>
+                                    <Form.Group>
                                         <Form.Control id="link" type="text" placeholder="Link" />
                                     </Form.Group>
                                 </Form>

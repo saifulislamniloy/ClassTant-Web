@@ -24,7 +24,7 @@ class AppRoute extends Component {
                     <Route exact path="/create-course" component={CreateCoursePage}/>
                     <Route exact path="/notification" component={NotificationPage}/>
                     <Route exact path="/profile" component={ProfilePage}/>
-                    <Route exact path="/inside-course" component={InsideCourse}/>
+                    <Route exact path="/inside-course" component={AssignmentPage}/>
                     <Route exact path="/attendance" component={AttendancePage}/>
                     <Route exact path="/student" component={StudentPage}/>
                     <Route exact path="/marks" component={MarksPage}/>

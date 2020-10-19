@@ -16,14 +16,15 @@ export default class TopNavigation2 extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/"> DashBoard  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/attendance"> Attendance  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/student"> Students  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/marks"> Marks  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/assignment"> Assignment  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/resource">Resourse  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/group-chat"> GroupChat  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/report"> Report  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/"> Home  </NavLink>
+                                {/* <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/attendance"> Attendance  </NavLink> */}
+                                {/* <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/student"> Students  </NavLink> */}
+                                {/* <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/marks"> Marks  </NavLink> */}
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/assignment"> Assignment  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/resource">Announcment  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/class-schedule"> Class Schedule  </NavLink>
+                                {/* <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/group-chat"> GroupChat  </NavLink> */}
+                                {/* <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/report"> Report  </NavLink> */}
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

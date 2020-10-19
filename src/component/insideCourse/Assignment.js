@@ -62,7 +62,10 @@ export default class Assignment extends Component {
                                         <Form.Control id="header" type="text" placeholder="Header" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Desccription" />
+                                        <Form.Control id="des" type="text" placeholder="Description" />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Control id="link" type="text" placeholder="Link (Optional)" />
                                     </Form.Group>
                                 </Form>
                                 <Button onClick={() => this.postAssignment()} variant="primary">

@@ -1,0 +1,11 @@
+{
+  "name": "fakebackend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mock": "json-server --watch ./mock/db.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

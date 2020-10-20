@@ -13,13 +13,14 @@ import GroupChatPage from '../page/GroupChatPage';
 import ReportPage from '../page/ReportPage';
 import NotificationPage from '../page/NotificationPage';
 import ProfilePage from '../page/ProfilePage';
+import PrivateRoute from '../PrivateRoute';
 
 class AppRoute extends Component {
     render() {
         return (
             <Fragment>
                 <Switch>
-                    <Route exact path="/" component={HomePage}/>
+                    <PrivateRoute exact path="/" component={HomePage}/>
                     <Route exact path="/auth" component={AuthPage}/>
                     <Route exact path="/create-course" component={CreateCoursePage}/>
                     <Route exact path="/notification" component={NotificationPage}/>

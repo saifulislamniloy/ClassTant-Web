@@ -1,14 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import CreateCourse from "../component/outsideCourse/CreateCourse.js";
-import TopNavigation from '../component/topContent/TopNavigation.js';
-import TopBanner from '../component/topContent/TopBanner.js';
+import TopNavigation2 from '../component/topContent/TopNavigation2.js';
 
 class CreateCoursePage extends Component {
     render() {
         return (
             <Fragment>
-                <TopNavigation/>
-                <TopBanner/>
+                <TopNavigation2/>
                 <CreateCourse/>
             </Fragment>
         );

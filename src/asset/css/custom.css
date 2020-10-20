@@ -65,3 +65,9 @@
     padding: 1rem;
     margin: 1rem;
 }
+
+.topContentCard{
+    color:"white";
+    background-color: "blue";
+    margin: 2rem;
+}

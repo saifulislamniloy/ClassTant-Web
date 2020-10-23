@@ -1,10 +1,14 @@
 import React, { Component, Fragment } from 'react'
 import '../../asset/css/custom.css';
 import '../../asset/css/bootstrap.min.css';
-import { Container, Navbar, Nav} from 'react-bootstrap'
+import {Container, Navbar, Nav, Button} from 'react-bootstrap'
 import {NavLink} from "react-router-dom";
+import {auth} from "../../firebase";
 
 export default class TopNavigation2 extends Component {
+    logout(){
+        auth.signOut()
+    }
     render() {
         return (
             <Fragment>
@@ -17,7 +21,7 @@ export default class TopNavigation2 extends Component {
                             </Nav>
                             <Nav >
                                 <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/profile"> Profile  </NavLink>
-                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/auth"> Log Out  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/" ><Button onClick={()=>{this.logout()}}>Log Out </Button>  </NavLink>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

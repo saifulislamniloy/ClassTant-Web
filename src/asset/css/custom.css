@@ -1,23 +1,37 @@
-.banner {
-    background-image: url("https://images.unsplash.com/photo-1497633762265-9d179a990aa6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1052&q=80");
-    min-height: 300px;
-    width: 100%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin-bottom: 5rem;
-    margin-top: 4rem;
+
+.loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid blue;
+    border-right: 6px solid green;
+    border-bottom: 6px solid red;
+    width: 40px;
+    height: 40px;
+    -webkit-animation: spin 1s linear infinite;
+    /* Safari */
+    animation: spin 1s linear infinite;
 }
 
-.banner-auth {
-    background-image: url("https://images.unsplash.com/photo-1505909182942-e2f09aee3e89?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=752&q=80");
-    min-height: 800px;
-    width: 100%;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover;
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
 .login-form{
     padding-left: 5rem;
     padding-right: 5rem;

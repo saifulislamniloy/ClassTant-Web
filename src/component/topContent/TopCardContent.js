@@ -13,7 +13,9 @@ export default class TopCardContent extends Component {
             selectedCourseName:"Course Name",
             selectedCourseCode:"Course Code",
             selectedCourseId:"",
-            courseListView:""
+            courseListView:"",
+
+            classLink:""
         }
     }
     componentDidMount() {
@@ -37,6 +39,7 @@ export default class TopCardContent extends Component {
                     return (
                         <Dropdown.Item
                             onClick={()=>{
+                                this.getClassLink()
                                 this.setState(
                                     {isCourseSelected:true,
                                         selectedCourse: courses[courseId]["courseName"],
@@ -49,6 +52,19 @@ export default class TopCardContent extends Component {
                 })
                 this.setState({courseListView:view})
         })
+    }
+
+    getClassLink(){
+        const db = firebase.database();
+        db.ref("Test/classLink").once("value" )
+            .then(snapshot =>{
+                this.setState({classLink:snapshot.val()})
+            })
+    }
+
+    postClassLink(){
+        const db = firebase.database();
+        db.ref("test/classLink").update({"link":document.getElementById("classLink").value})
     }
 
     render() {
@@ -89,18 +105,19 @@ export default class TopCardContent extends Component {
                                         <Col sm={2} md={3} lg={4}>
                                             <Card.Title>Class Link</Card.Title>
                                         </Col>
-                                        <Col sm={10} md={9} lg={8}>
+                                        <Col sm={8} md={7} lg={6}>
                                             <Form>
                                                 <Form.Group>
-                                                    <Form.Control id="header" type="text" placeholder="Enter Class link" />
+                                                    <Form.Control id="classLink" type="text" placeholder="Enter Class link" />
                                                 </Form.Group>
                                             </Form>
                                         </Col>
+                                        <Col sm={2} md={2} lg={2}>
+                                            <Button onClick={() => this.postClassLink()} variant="primary">
+                                                Save
+                                            </Button>
+                                        </Col>
                                     </Row>
-
-                                    <Button onClick={() => alert("link will be saved")} variant="primary">
-                                        Save
-                                    </Button>
                                 </Card>
                             </div>
                         </Col>
@@ -110,10 +127,10 @@ export default class TopCardContent extends Component {
                         {/* Annoucnement */}
                         <Col sm={6} md={6} lg={4}>
                             <div style={{margin: 20}}>
-                                <Link to="/announcement">
+                                <Link to={"/announcement/"+this.state.selectedCourseId}>
                                     <Card style={{padding: 10, textAlign: "center", color: "white", background: "blue"}}>
                                         <Card.Title>
-                                            Annoucement
+                                            Announcement
                                         </Card.Title>
                                         <Card.Body>
                                             A declaration you want to share among the class

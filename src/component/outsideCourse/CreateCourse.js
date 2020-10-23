@@ -3,6 +3,8 @@ import { Button, Container, Row, Col, Form } from "react-bootstrap";
 import axios from 'axios';
 import Url from '../../Url.js';
 import Authorization from '../auth/Authorization.js';
+import {FirebaseDatabaseMutation, FirebaseDatabaseProvider} from "@react-firebase/database";
+import firebase from "../../firebase";
 
 class CreateCourse extends Component {
     constructor() {
@@ -85,9 +87,37 @@ class CreateCourse extends Component {
                                         <Form.Label>Guest Teacher</Form.Label>
                                         <Form.Control id="guest" type="text" />
                                     </Form.Group>
-                                    <Button onClick={() => this.addCourse()} variant="primary">
-                                        Create Course
-                                </Button>
+                                    <FirebaseDatabaseProvider firebase={firebase}>
+                                        <FirebaseDatabaseMutation type="update" path={"test/"}>
+                                            {({runMutation}) => {
+                                                return (
+                                                    <div>
+                                                        <button
+                                                            data-testid="test-push"
+                                                            variant="primary"
+                                                            onClick={async () => {
+
+                                                                let id = document.getElementById("id").value;
+                                                                let title = document.getElementById("title").value;
+                                                                let hour = document.getElementById("hour").value;
+                                                                let code = document.getElementById("code").value;
+                                                                let guest = document.getElementById("guest").value;
+
+                                                                const {key} = await runMutation({
+                                                                    TEST: "DATA",
+                                                                    ID: id,
+                                                                    TITLE: title
+                                                                });
+                                                                console.log(key);
+                                                            }}
+                                                        >
+                                                            Add
+                                                        </button>
+                                                    </div>
+                                                );
+                                            }}
+                                        </FirebaseDatabaseMutation>
+                                    </FirebaseDatabaseProvider>
                                 </Form>
                             </Col>
                             <br/>

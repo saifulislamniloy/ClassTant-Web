@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import TopNavigation2 from '../component/topContent/TopNavigation2';
-import Assignment from '../component/insideCourse/Assignment';
+import Announcement from "../component/insideCourse/Announcement";
 
-export default class AssignmentPage extends Component {
+export default class AnnouncementPage extends Component {
     render() {
         return (
             <Fragment>
-            <TopNavigation2 />
+                <TopNavigation2 />
                 <br/> <br/> <br/>
-            <Assignment />
-        </Fragment>
+                <Announcement />
+            </Fragment>
         )
     }
 }

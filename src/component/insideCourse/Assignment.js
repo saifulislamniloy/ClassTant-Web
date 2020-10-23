@@ -57,6 +57,7 @@ export default class Assignment extends Component {
                     <Row>
                         <Col lg={12} md={12} sm={12}>
                             <Card className="noticeCard">
+                                <Card.Title style={{textAlign:"center", fontWeight:600, fontSize:32}}>Assignment Section</Card.Title>
                                 <Form>
                                     <Form.Group>
                                         <Form.Control id="header" type="text" placeholder="Header" />

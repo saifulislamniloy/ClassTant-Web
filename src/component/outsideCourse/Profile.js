@@ -1,7 +1,36 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Row, Col, Card } from 'react-bootstrap'
+import {Container, Row, Col, Card, Dropdown} from 'react-bootstrap'
+import firebase from "firebase";
 
 export default class Profile extends Component {
+    constructor() {
+        super();
+        this.state={
+            name:"null",
+            photoUrl:"",
+            email:""
+        }
+    }
+
+    componentDidMount() {
+        this.getInfo()
+    }
+
+    getInfo(){
+        const db = firebase.database();
+        db.ref("Teachers/" + firebase.auth().currentUser.uid + "/teacherInfo").once("value")
+            .then(snapshot => {
+
+                const info = snapshot.val();
+
+                this.setState({
+                    name:info["name"],
+                    photoUrl:info["photoUrl"],
+                    email:info["email"]
+                })
+            })
+    }
+
     render() {
         return (
             <Fragment>
@@ -9,9 +38,11 @@ export default class Profile extends Component {
                     <Row>
                         <Col>
                             <Card className="noticeCard">
-                                <Card.Title className="cardTitle text-center">Ridwan Kabir</Card.Title>
-                                <Card.Text className="cardSubTitle text-center">Assitant Professor</Card.Text>
-                                <Card.Text className="cardSubTitle text-center">Dept. of Computer Science & Engineering</Card.Text>
+                                <Card.Img src={this.state.photoUrl} height="150" width="150"/>
+                                <Card.Header>
+                                    <Card.Title className="cardTitle text-center">{this.state.name}</Card.Title>
+                                    <Card.Title className="cardTitle text-center">{this.state.email}</Card.Title>
+                                </Card.Header>
                             </Card>
                         </Col>
                     </Row>

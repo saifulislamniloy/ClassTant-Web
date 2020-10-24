@@ -12,13 +12,14 @@ export default class Profile extends Component {
         }
     }
 
-    componentDidMount() {
-        this.getInfo()
+    async componentDidMount() {
+        const user = await sessionStorage.getItem("classtantUser")
+        this.getInfo(JSON.parse(user).uid)
     }
 
-    getInfo(){
+    getInfo(uid){
         const db = firebase.database();
-        db.ref("Teachers/" + firebase.auth().currentUser.uid + "/teacherInfo").once("value")
+        db.ref("Users/" + uid).once("value")
             .then(snapshot => {
 
                 const info = snapshot.val();

@@ -19,17 +19,23 @@ export default class TopCardContent extends Component {
             courseListView: "",
 
             classLink: "",
-            editMode: false
+            editMode: false,
+
+            uid:""
         }
     }
 
-    componentDidMount() {
-        this.getCourseList()
+    async componentDidMount() {
+        let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
+        if(user !== null){
+            this.setState({uid: user.uid})
+            this.getCourseList()
+        }
     }
 
     getCourseList() {
         const db = firebase.database();
-        db.ref("Teachers/" + this.props.uid + "/courseList").once("value")
+        db.ref("Teachers/" + this.state.uid + "/courseList").once("value")
             .then(snapshot => {
 
                 const courses = snapshot.val();
@@ -82,8 +88,8 @@ export default class TopCardContent extends Component {
                     function (error) {
                         if (error)
                             alert("failed")
-                        else
-                            alert("success")
+                        // else
+                        //     alert("success")
                     })
         else
             alert("Select a course!")
@@ -98,8 +104,8 @@ export default class TopCardContent extends Component {
                         <Col sm={12} md={12} lg={12}>
                             <div>
                                 <Card className="topCardDesign">
-                                    <Row>
-                                        <Col sm={12} md={6} lg={6}>
+                                    <Row >
+                                        <Col sm={12} md={12} lg={12} className="mb-5">
                                             <p className="moto">Bring Your Academics in One App </p>
                                             <Dropdown>
                                                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
@@ -111,7 +117,7 @@ export default class TopCardContent extends Component {
                                             </Dropdown>
 
                                         </Col>
-                                        <Col sm={12} md={6} lg={6}>
+                                        <Col sm={12} md={12} lg={12}>
                                             {
                                                 this.state.isCourseSelected ?
 

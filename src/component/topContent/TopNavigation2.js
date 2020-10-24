@@ -9,9 +9,22 @@ import profile from"../../asset/icon/profile.svg";
 import Image from "react-bootstrap/Image";
 
 export default class TopNavigation2 extends Component {
+    constructor() {
+        super();
+        this.state={
+            imageUrl:""
+        }
+    }
     logout(){
+        sessionStorage.clear()
         auth.signOut()
     }
+    async componentDidMount() {
+        let user = JSON.parse(await sessionStorage.getItem("classtantUser"));
+        if (user !== null)
+            this.setState({imageUrl: user.photoUrl})
+    }
+
     render() {
         return (
             <Fragment>
@@ -23,9 +36,9 @@ export default class TopNavigation2 extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/profile"> <Image src={profile} height="40"/>  </NavLink>
                                 <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/create-course" ><Button> Create Course </Button>  </NavLink>
                                 <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/" ><Button onClick={()=>{this.logout()}}>Log Out </Button>  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/profile"> <Image src={this.state.imageUrl} height="40"/>  </NavLink>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

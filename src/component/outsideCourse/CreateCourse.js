@@ -1,139 +1,159 @@
-import React, { Component, Fragment } from 'react';
-import { Button, Container, Row, Col, Form } from "react-bootstrap";
-import axios from 'axios';
-import Url from '../../Url.js';
-import Authorization from '../auth/Authorization.js';
-import {FirebaseDatabaseMutation, FirebaseDatabaseProvider} from "@react-firebase/database";
-import firebase from "../../firebase";
+import React, {Component, Fragment} from 'react';
+import {Button, Container, Row, Col, Form, Card, Image} from "react-bootstrap";
+import firebase from "firebase";
+import {auth} from "../../firebase";
+import editIcon from "../../asset/icon/edit.svg";
+import deleteIcon from "../../asset/icon/delete.svg";
 
 class CreateCourse extends Component {
     constructor() {
         super();
         this.state = {
-            courseView: ""
+            loading:true,
+            courseView: "",
+            email:"",
+            uid:"",
+            name:"",
+            photoUrl:"",
         }
     }
-    componentDidMount() {
-        this.getcoursetList();
+
+    async componentDidMount() {
+        let user = JSON.parse(await sessionStorage.getItem("classtantUser"));
+        if(user !== null){
+            this.setState({email:user.email, uid:user.uid, name:user.name, photoUrl:user.photoUrl})
+        }
+
+        this.getCourseList();
     }
 
-    getcoursetList() {
-        axios.get(Url.courseList + "/" + Authorization.getId())
-            .then(res => {
-                const data = res.data;
-                const view = data.map(data => {
+    getCourseList() {
+        const db = firebase.database();
+        db.ref("Courses/" + this.state.uid + "/courseList").once("value")
+            .then(snapshot => {
+
+                const courses = snapshot.val();
+                const courseId = []
+                for (var key in courses) {
+                    courseId.push(key)
+                }
+
+                const view = courseId.map(courseId => {
                     return (
-                        <tr>
-                            <td>{data.id}</td>
-                            <td>{data.title}</td>
-                            <td>{data.creditHour}</td>
-                            <td>{data.courseCode}</td>
-                            <td>{data.courseTeacher}</td>
-                            <td>{data.geustTeacher}</td>
-                        </tr>
+                        <Card className="topCardDesign">
+                            <Card.Header>
+                                <Row>
+                                    <Col sm={10} md={10} lg={10} className="a_title">
+                                        {courses[courseId]["courseName"]}
+                                    </Col>
+                                    <Col sm={1} md={1} lg={1}>
+                                        <Image src={editIcon} height="40" width="40"/>
+                                    </Col>
+                                    <Col sm={1} md={1} lg={1}>
+                                        <Image src={deleteIcon} height="40" width="40"/>
+                                    </Col>
+
+                                </Row>
+                            </Card.Header>
+                            <Card.Body>
+                                {courses[courseId]["courseCode"]}
+                                {courses[courseId]["department"]}
+                            </Card.Body>
+                        </Card>
                     )
                 })
-                this.setState({ courseView: view })
+                this.setState({courseView: view, loading: false})
             })
     }
 
-    addCourse(){
-        let id = document.getElementById("id").value;
-        let title = document.getElementById("title").value;
-        let hour = document.getElementById("hour").value;
-        let code = document.getElementById("code").value;
-        let guest = document.getElementById("guest").value;
+    addCourse() {
+        const courseKey = firebase.database().ref("Courses/").push().key
+        let courseName = document.getElementById("title").value;
+        let courseCode = document.getElementById("code").value;
+        let courseID = courseKey;
+        let department = document.getElementById("dept").value;
+        let enrollMode = true;
+        let teacherEmail = this.state.email;
+        let teacherID = this.state.uid;
+        let teacherName = this.state.name;
+        let teacherUrl = this.state.photoUrl;
 
-        let JsonObject = { id: id, title: title, creditHour: hour, courseCode:code, courseTeacher:Authorization.getTeacherName() ,geustTeacher: guest}
+        let JsonObject = {
+            courseName,
+            courseCode,
+            courseID,
+            department,
+            enrollMode,
+            teacherEmail,
+            teacherID,
+            teacherName,
+            teacherUrl
+        }
 
-        axios.post(Url.courseList+"/"+Authorization.getCourseId(), JsonObject, {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-          })
-          .then(function (response) {
-              this.getStudentList();
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+        let validationResult = this.validation(courseKey, courseName, courseCode, department, teacherID);
+
+        if(validationResult){
+            firebase.database().ref("Courses").child(courseKey).child("courseInfo").update(JsonObject);
+            firebase.database().ref("Teachers").child(teacherID).child("courseList").child(courseKey).update(JsonObject).then(onerror=>{
+                if(onerror)
+                    alert("Course Creation Failed!")
+                else
+                    alert("Course Created Successfully")
+            });
+        }
     }
+    validation(courseKey, courseName, courseCode, department, teacherID){
+        let result = true;
+        if(courseKey == null)
+            result = false
+        if(courseName.length < 1){
+            alert("Course name can not be empty!")
+            result = false
+        }
+        if(courseCode.length < 1){
+            alert("Course code can not be empty!")
+            result = false
+        }
+        if(department.length < 1){
+            alert("Department name can not be Empty")
+            result = false
+        }
+        if(teacherID == null){
+            alert("Session timed out! Login again")
+            result = false
+        }
+        return result;
+    }
+
     render() {
         return (
             <Fragment>
                 <Container>
                     <Row>
                         <Col lg={12} md={12} sm={12}>
-                            <Col lg={12} md={12} sm={12}>
-                                <h1>Add New Course</h1>
-                                <Form>
-                                    <Form.Group>
-                                        <Form.Label>ID</Form.Label>
-                                        <Form.Control id="id" type="text" />
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label>Course Title</Form.Label>
-                                        <Form.Control id="title" type="text" />
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label>Credit Hour</Form.Label>
-                                        <Form.Control id="hour" type="text" />
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label>Course Code</Form.Label>
-                                        <Form.Control id="code" type="text" />
-                                    </Form.Group>
-                                    <Form.Group>
-                                        <Form.Label>Guest Teacher</Form.Label>
-                                        <Form.Control id="guest" type="text" />
-                                    </Form.Group>
-                                    <FirebaseDatabaseProvider firebase={firebase}>
-                                        <FirebaseDatabaseMutation type="update" path={"test/"}>
-                                            {({runMutation}) => {
-                                                return (
-                                                    <div>
-                                                        <button
-                                                            data-testid="test-push"
-                                                            variant="primary"
-                                                            onClick={async () => {
-
-                                                                let id = document.getElementById("id").value;
-                                                                let title = document.getElementById("title").value;
-                                                                let hour = document.getElementById("hour").value;
-                                                                let code = document.getElementById("code").value;
-                                                                let guest = document.getElementById("guest").value;
-
-                                                                const {key} = await runMutation({
-                                                                    TEST: "DATA",
-                                                                    ID: id,
-                                                                    TITLE: title
-                                                                });
-                                                                console.log(key);
-                                                            }}
-                                                        >
-                                                            Add
-                                                        </button>
-                                                    </div>
-                                                );
-                                            }}
-                                        </FirebaseDatabaseMutation>
-                                    </FirebaseDatabaseProvider>
-                                </Form>
-                            </Col>
-                            <br/>
-                            <Col lg={12} md={12} sm={12}>
-                                <div className="table-wrapper-scroll-y my-custom-scrollbar">
-                                    <table className="table table-bordered table-striped mb-0">
-                                        <th>ID</th>
-                                        <th>Course Title</th>
-                                        <th>Credit Hour</th>
-                                        <th>Course Code</th>
-                                        <th>Course Teacher</th>
-                                        <th>Guest Teacher</th>
-                                        {this.state.courseView}
-                                    </table>
-                                </div>
-                            </Col>
+                            <Card className="topCardDesign">
+                                <Card.Header>
+                                    <h1 className="moto">Add New Course</h1>
+                                </Card.Header>
+                                <Card.Body>
+                                    <Form>
+                                        <Form.Group>
+                                            <Form.Control id="title" type="text" placeholder="Course Name"/>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control id="code" type="text" placeholder="Course Code"/>
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control id="dept" type="text" placeholder="Department"/>
+                                        </Form.Group>
+                                    </Form>
+                                    <Button onClick={()=>this.addCourse()}>ADD</Button>
+                                </Card.Body>
+                            </Card>
+                        </Col>
+                        <br/>
+                        <Col lg={12} md={12} sm={12}>
+                            {this.state.courseView}
                         </Col>
                     </Row>
                 </Container>

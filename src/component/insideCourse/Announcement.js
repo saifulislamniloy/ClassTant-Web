@@ -40,10 +40,10 @@ class Announcement extends Component {
                                         {announcements[announcementId]["title"]}
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Image src={editIcon} height="40" width="40"/>
+                                        <Button>Edit</Button>
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Image src={deleteIcon} height="40" width="40"/>
+                                        <Button>Delete</Button>
                                     </Col>
 
                                 </Row>
@@ -107,7 +107,7 @@ class Announcement extends Component {
                                     Section</Card.Title>
                                 <Form>
                                     <Form.Group>
-                                        <Form.Control id="header" type="text" placeholder="Header"/>
+                                        <Form.Control id="header" type="text" placeholder="Title"/>
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Control id="des" type="text" placeholder="Description"/>

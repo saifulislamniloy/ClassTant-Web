@@ -7,6 +7,7 @@ class CreateCoursePage extends Component {
         return (
             <Fragment>
                 <TopNavigation2/>
+                <br/><br/><br/>
                 <CreateCourse/>
             </Fragment>
         );

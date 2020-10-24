@@ -69,7 +69,8 @@ export default class TopCardContent extends Component {
             .then(snapshot => {
                 let link = snapshot.val().classLink
                 console.log(snapshot.val())
-                this.setState({classLink: link})
+                if(link !== undefined)
+                    this.setState({classLink: link})
             })
     }
 
@@ -165,7 +166,7 @@ export default class TopCardContent extends Component {
                                                                         <Row>
                                                                             <Col sm={10} md={10} lg={10}>
                                                                                 <Card.Title
-                                                                                    className="classLink">
+                                                                                    className="classLink pt-2">
                                                                                     Class Link: <a href={this.state.classLink}
                                                                                                    target="#">{this.state.classLink}</a>
                                                                                 </Card.Title>

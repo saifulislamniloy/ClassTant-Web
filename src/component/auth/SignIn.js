@@ -35,6 +35,46 @@ class SignIn extends Component {
         }
     };
 
+    componentWillUnmount() {
+        this.storeCredential()
+    }
+
+    async storeCredential() {
+        let user = {
+            email: auth.currentUser.email,
+            name: auth.currentUser.displayName,
+            photoUrl: auth.currentUser.photoURL,
+            uid: auth.currentUser.uid
+        }
+        await sessionStorage.setItem("classtantUser", JSON.stringify(user));
+
+        if (this.validation()) {
+            firebase.database().ref("Users/" + auth.currentUser.uid).update({
+                email: auth.currentUser.email,
+                name: auth.currentUser.displayName,
+                photoUrl: auth.currentUser.photoURL,
+                uid: auth.currentUser.uid
+            }).then(onerror => {
+
+                }
+            )
+        }
+    }
+
+    validation() {
+        if(auth.currentUser.uid === null){
+            alert("Something went wrong! Log out and Sign In again.")
+            return false;
+        }
+        else if(auth.currentUser.uid === undefined){
+            alert("Something went wrong! Log out and Sign In again.")
+            return false;
+        }
+        else
+            return true
+    }
+
+
     componentDidMount = () => {
         auth.onAuthStateChanged(user => {
             this.setState({isSignedIn: !!user});

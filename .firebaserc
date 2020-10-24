@@ -1,0 +1,20 @@
+{
+  "projects": {
+    "default": "spl2-4b5b7"
+  },
+  "targets": {
+    "spl2-4b5b7": {
+      "hosting": {
+        "pro": [
+          "spl2-4b5b7"
+        ],
+        "classtantapp": [
+          "classtantapp"
+        ],
+        "myclasstant": [
+          "myclasstant"
+        ]
+      }
+    }
+  }
+}

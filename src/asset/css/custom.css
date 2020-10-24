@@ -32,6 +32,10 @@
         transform: rotate(360deg);
     }
 }
+/*button #4396F8  #3871E1*/
+.cardDesign{
+    background: #4396F8
+}
 .login-form{
     padding-left: 5rem;
     padding-right: 5rem;

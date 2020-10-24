@@ -66,7 +66,7 @@ class Announcement extends Component {
 
     postAnnouncement() {
         const db = firebase.database();
-        const time = new Date().getTime();
+        const time = new Date().getTime().toString();
         if (this.validation()) {
             db.ref("Courses/" + this.props.courseId + "/announcements/" + time)
                 .update(

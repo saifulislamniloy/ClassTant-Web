@@ -109,63 +109,83 @@ export default class TopCardContent extends Component {
                                                 </Dropdown.Menu>
                                             </Dropdown>
 
-                                            {/*<Card.Text>{this.state.selectedCourseName}</Card.Text>*/}
                                         </Col>
                                         <Col sm={12} md={6} lg={6}>
-                                            <Card>
-                                                <Card.Header>
-                                                    <Card.Title
-                                                        className="courseName">{this.state.selectedCourseName}</Card.Title>
-                                                    <Card.Title
-                                                        className="courseCode">{this.state.selectedCourseCode}</Card.Title>
-                                                </Card.Header>
-                                                <Card.Body>
-                                                    {
-                                                        this.state.editMode ?
-                                                            <Row className="classLink">
-                                                                <Col sm={10} md={10} lg={10}>
-                                                                    <Form>
-                                                                        <Form.Group>
-                                                                            <Form.Control id="classLink" type="text"
-                                                                                          placeholder="Enter Class link (Complete URL)"/>
-                                                                        </Form.Group>
-                                                                    </Form>
-                                                                </Col>
-                                                                <Col sm={2} md={2} lg={2}>
-                                                                    <Button onClick={() => {
-                                                                        this.postClassLink();
-                                                                        this.getClassLink(this.state.selectedCourseId)
-                                                                        this.setState({editMode: false})
-                                                                    }}>
-                                                                        Save
-                                                                    </Button>
-                                                                </Col>
-                                                            </Row>
+                                            {
+                                                this.state.isCourseSelected ?
 
-                                                            :
-                                                            this.state.isCourseSelected ?
-                                                                <Row>
-                                                                    <Col sm={10} md={10} lg={10}>
-                                                                        <Card.Title
-                                                                            className="classLink">
-                                                                            Class Link: <a href={this.state.classLink}
-                                                                                           target="#">{this.state.classLink}</a>
-                                                                        </Card.Title>
-                                                                    </Col>
-                                                                    <Col sm={2} md={2} lg={2}>
-                                                                        <Image src={edit}
-                                                                               height="20"
-                                                                               onClick={() => {
-                                                                                   this.setState({editMode: true})
-                                                                               }}/>
-                                                                    </Col>
-                                                                </Row>
-                                                                :
-                                                                <h1></h1>
-                                                    }
-                                                </Card.Body>
-                                            </Card>
-                                            {/*<Card.Text>{this.state.selectedCourseCode}</Card.Text>*/}
+                                                    <Card>
+                                                        <Card.Header>
+                                                            <Card.Title
+                                                                className="courseName">{this.state.selectedCourseName}</Card.Title>
+                                                            <Card.Title
+                                                                className="courseCode">{this.state.selectedCourseCode}</Card.Title>
+                                                        </Card.Header>
+                                                        <Card.Body>
+                                                            {
+                                                                this.state.editMode ?
+                                                                    <Row className="classLink">
+                                                                        <Col sm={8} md={8} lg={8}>
+                                                                            <Form>
+                                                                                <Form.Group>
+                                                                                    {
+                                                                                        this.state.classLink.length > 0 ?
+                                                                                            <Form.Control id="classLink" type="text"
+                                                                                                          value={this.state.classLink}
+                                                                                                          onChange={(text)=>
+                                                                                                              this.setState({classLink:text})}/>
+                                                                                            :
+                                                                                            <Form.Control id="classLink" type="text"
+                                                                                                          placeholder="Enter Class link (Complete URL)"/>
+                                                                                    }
+                                                                                </Form.Group>
+                                                                            </Form>
+                                                                        </Col>
+                                                                        <Col sm={2} md={2} lg={2}>
+                                                                            <Button onClick={() => {
+                                                                                this.setState({editMode: false, classLink:""})
+                                                                                this.getClassLink(this.state.selectedCourseId)
+                                                                            }}>
+                                                                                Cancel
+                                                                            </Button>
+                                                                        </Col>
+                                                                        <Col sm={2} md={2} lg={2}>
+                                                                            <Button onClick={() => {
+                                                                                this.postClassLink();
+                                                                                this.setState({editMode: false, classLink:""})
+                                                                                this.getClassLink(this.state.selectedCourseId)
+                                                                            }}>
+                                                                                Save
+                                                                            </Button>
+                                                                        </Col>
+                                                                    </Row>
+
+                                                                    :
+                                                                    this.state.isCourseSelected ?
+                                                                        <Row>
+                                                                            <Col sm={10} md={10} lg={10}>
+                                                                                <Card.Title
+                                                                                    className="classLink">
+                                                                                    Class Link: <a href={this.state.classLink}
+                                                                                                   target="#">{this.state.classLink}</a>
+                                                                                </Card.Title>
+                                                                            </Col>
+                                                                            <Col sm={2} md={2} lg={2}>
+                                                                                <Button onClick={() => {
+                                                                                           this.setState({editMode: true})
+                                                                                       }}>
+                                                                                    Edit
+                                                                                </Button>
+                                                                            </Col>
+                                                                        </Row>
+                                                                        :
+                                                                        <h1></h1>
+                                                            }
+                                                        </Card.Body>
+                                                    </Card>
+                                                    :
+                                                    <h1></h1>
+                                            }
                                         </Col>
                                     </Row>
                                     <br/>
@@ -198,8 +218,8 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* Assignments */}
                             <Col sm={6} md={6} lg={4}>
-                                <div>
-                                    <Link to="/assignment" className="link">
+                                <div  onClick={()=> alert("Comming soon :)")}>
+                                    {/*<Link to="/assignment" className="link">*/}
                                         <Card className="primaryCardDesign">
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
@@ -210,7 +230,7 @@ export default class TopCardContent extends Component {
                                                 A declaration you want to share among the class
                                             </Card.Body>
                                         </Card>
-                                    </Link>
+                                    {/*</Link>*/}
                                 </div>
                             </Col>
                             {/* DIscussion */}

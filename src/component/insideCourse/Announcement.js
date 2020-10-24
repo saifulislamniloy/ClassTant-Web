@@ -9,9 +9,9 @@ import {auth} from "../../firebase";
 class Announcement extends Component {
     constructor({}) {
         super();
-        this.state={
-            loading:true,
-            announcementView:""
+        this.state = {
+            loading: true,
+            announcementView: ""
         }
     }
 
@@ -19,15 +19,15 @@ class Announcement extends Component {
         this.getAnnouncementList()
     }
 
-    getAnnouncementList(){
+    getAnnouncementList() {
         const db = firebase.database();
-        db.ref("Courses/"+this.props.courseId+"/announcements").once("value" )
-            .then(snapshot =>{
+        db.ref("Courses/" + this.props.courseId + "/announcements").once("value")
+            .then(snapshot => {
 
                 const announcements = snapshot.val();
                 console.log(announcements)
                 const announcementId = []
-                for (var key in announcements){
+                for (var key in announcements) {
                     announcementId.push(key)
                 }
 
@@ -48,12 +48,14 @@ class Announcement extends Component {
 
                                 </Row>
                             </Card.Header>
-                            <Card.Body className="a_description">{announcements[announcementId]["description"]}</Card.Body>
-                            <Card.Footer><a href={"https://"+announcements[announcementId]["link"]} target="#">{announcements[announcementId]["link"]}</a></Card.Footer>
+                            <Card.Body
+                                className="a_description">{announcements[announcementId]["description"]}</Card.Body>
+                            <Card.Footer><a href={"https://" + announcements[announcementId]["link"]}
+                                            target="#">{announcements[announcementId]["link"]}</a></Card.Footer>
                         </Card>
                     )
                 })
-                this.setState({announcementView:view, loading:false})
+                this.setState({announcementView: view, loading: false})
             })
     }
 
@@ -62,34 +64,34 @@ class Announcement extends Component {
             return <div class="loader"></div>
     }
 
-    postAnnouncement(){
+    postAnnouncement() {
         const db = firebase.database();
         const time = new Date().getTime();
-       if(this.validation()){
-           db.ref("Courses/"+this.props.courseId+"/announcements/"+time)
-               .update(
-                   {
-                       "authorId":auth.currentUser.uid,
-                       "description":document.getElementById("des").value,
-                       "link":document.getElementById("link").value,
-                       "postTime":time,
-                       "postedBy":auth.currentUser.displayName,
-                       "title":document.getElementById("header").value,
-                   },
-                   function (error){
-                       if(error)
-                           alert("failed")
-                       else
-                           alert("success")
-                   })
-       }
+        if (this.validation()) {
+            db.ref("Courses/" + this.props.courseId + "/announcements/" + time)
+                .update(
+                    {
+                        "authorId": auth.currentUser.uid,
+                        "description": document.getElementById("des").value,
+                        "link": document.getElementById("link").value,
+                        "postTime": time,
+                        "postedBy": auth.currentUser.displayName,
+                        "title": document.getElementById("header").value,
+                    },
+                    function (error) {
+                        if (error)
+                            alert("failed")
+                        else
+                            alert("success")
+                    })
+        }
     }
 
-    validation(){
-        if(document.getElementById("header").value.length <1){
+    validation() {
+        if (document.getElementById("header").value.length < 1) {
             alert("Title can not be empty!")
             return false
-        }else
+        } else
             return true
     }
 
@@ -101,16 +103,17 @@ class Announcement extends Component {
                     <Row>
                         <Col lg={12} md={12} sm={12}>
                             <Card className="topCardDesign">
-                                <Card.Title style={{textAlign:"center", fontWeight:600, fontSize:32}}>Announcement Section</Card.Title>
+                                <Card.Title style={{textAlign: "center", fontWeight: 600, fontSize: 32}}>Announcement
+                                    Section</Card.Title>
                                 <Form>
                                     <Form.Group>
-                                        <Form.Control id="header" type="text" placeholder="Header" />
+                                        <Form.Control id="header" type="text" placeholder="Header"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Description" />
+                                        <Form.Control id="des" type="text" placeholder="Description"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="link" type="text" placeholder="Link (Optional)" />
+                                        <Form.Control id="link" type="text" placeholder="Link (Optional)"/>
                                     </Form.Group>
                                 </Form>
                                 <Button onClick={() => this.postAnnouncement()} variant="primary">
@@ -120,7 +123,7 @@ class Announcement extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={12} md={12} sm={12} style={{alignContent:"center"}}>
+                        <Col lg={12} md={12} sm={12} style={{alignContent: "center"}}>
                             {this.loadingAnimation()}
                         </Col>
                         <Col lg={12} md={12} sm={12}>

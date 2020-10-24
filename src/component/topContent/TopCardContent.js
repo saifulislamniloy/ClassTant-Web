@@ -1,8 +1,11 @@
 import React, {Component} from 'react'
 import {Fragment} from 'react'
-import {Card, Container, Row, Col, Dropdown, Button, Form} from 'react-bootstrap'
+import {Card, Container, Row, Col, Dropdown, Button, Form, Image} from 'react-bootstrap'
+import "../../asset/css/text.css"
 import {Link} from 'react-router-dom';
 import firebase from "firebase";
+import happyEmoji from "../../asset/icon/happy.svg";
+import edit from "../../asset/icon/edit.svg";
 
 export default class TopCardContent extends Component {
     constructor(props) {
@@ -96,9 +99,9 @@ export default class TopCardContent extends Component {
                                 <Card className="topCardDesign">
                                     <Row>
                                         <Col sm={12} md={6} lg={6}>
+                                            <p className="moto">Bring Your Academics in One App </p>
                                             <Dropdown>
-                                                <Dropdown.Toggle variant="primary" id="dropdown-basic"
-                                                                 style={{background: "#4396F8"}}>
+                                                <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                                     {this.state.selectedCourse}
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
@@ -106,56 +109,62 @@ export default class TopCardContent extends Component {
                                                 </Dropdown.Menu>
                                             </Dropdown>
 
-                                            <Card.Text>{this.state.selectedCourseName}</Card.Text>
+                                            {/*<Card.Text>{this.state.selectedCourseName}</Card.Text>*/}
                                         </Col>
                                         <Col sm={12} md={6} lg={6}>
-                                            <Button style={{background: "#4396F8"}}><Link to="create-course"
-                                                                                          style={{color: "white"}}>Create
-                                                Course</Link></Button>
+                                           <Card>
+                                               <Card.Header>
+                                                   <Card.Title className="courseName">{this.state.selectedCourseName}</Card.Title>
+                                                   <Card.Title className="courseCode">{this.state.selectedCourseCode}</Card.Title>
+                                               </Card.Header>
+                                               <Card.Body>
+                                                   {
+                                                       this.state.editMode ?
+                                                           <Row className="classLink">
+                                                               <Col sm={10} md={10} lg={10}>
+                                                                   <Form>
+                                                                       <Form.Group>
+                                                                           <Form.Control id="classLink" type="text"
+                                                                                         placeholder="Enter Class link"/>
+                                                                       </Form.Group>
+                                                                   </Form>
+                                                               </Col>
+                                                               <Col sm={2} md={2} lg={2}>
+                                                                   <Button onClick={() => {
+                                                                       this.postClassLink();
+                                                                       this.getClassLink(this.state.selectedCourseId)
+                                                                       this.setState({editMode:false})
+                                                                   }}>
+                                                                       Save
+                                                                   </Button>
+                                                               </Col>
+                                                           </Row>
 
-                                            <Card.Text>{this.state.selectedCourseCode}</Card.Text>
+                                                           :
+                                                           this.state.isCourseSelected ?
+                                                               <Row>
+                                                                   <Col sm={10} md={10} lg={10}>
+                                                                       <Card.Title className="classLink">Class Link: {this.state.classLink}</Card.Title>
+                                                                   </Col>
+                                                                   <Col  sm={2} md={2} lg={2}>
+                                                                       <Image src={edit}
+                                                                              height="20"
+                                                                              onClick={()=> {
+                                                                                  this.setState({editMode: true})
+                                                                              }}/>
+                                                                   </Col>
+                                                               </Row>
+                                                               :
+                                                               <h1></h1>
+                                                   }
+                                               </Card.Body>
+                                           </Card>
+                                            {/*<Card.Text>{this.state.selectedCourseCode}</Card.Text>*/}
                                         </Col>
                                     </Row>
                                     <br/>
                                     <Row className="justify-content-center">
 
-                                        {
-                                            this.state.editMode ?
-                                                <Row >
-                                                    <Col sm={2} md={3} lg={4}>
-                                                        <Card.Title>Class Link</Card.Title>
-                                                    </Col>
-                                                    <Col sm={8} md={7} lg={6}>
-                                                        <Form>
-                                                            <Form.Group>
-                                                                <Form.Control id="classLink" type="text"
-                                                                              placeholder="Enter Class link"/>
-                                                            </Form.Group>
-                                                        </Form>
-                                                    </Col>
-                                                    <Col sm={2} md={2} lg={2}>
-                                                        <Button onClick={() => {
-                                                            this.postClassLink();
-                                                            this.setState({editMode:false})
-                                                        }} variant="primary"  style={{background: "#4396F8"}}>
-                                                            Save
-                                                        </Button>
-                                                    </Col>
-                                                </Row>
-
-                                                :
-                                                this.state.isCourseSelected ?
-                                                    <Row className="">
-                                                        <Col>
-                                                            <p>{this.state.classLink}</p>
-                                                        </Col>
-                                                        <Col>
-                                                            <Button onClick={()=> this.setState({editMode:true})}>Edit</Button>
-                                                        </Col>
-                                                    </Row>
-                                                    :
-                                                    <h1></h1>
-                                        }
                                     </Row>
                                 </Card>
                             </div>
@@ -206,7 +215,7 @@ export default class TopCardContent extends Component {
                                         </Card.Title>
                                     </Card.Header>
                                     <Card.Body className="primaryCardBody">
-                                        SChedule your whole course or edit your class time
+                                        Schedule your whole course or edit your class time
                                     </Card.Body>
                                 </Card>
                             </div>
@@ -258,7 +267,18 @@ export default class TopCardContent extends Component {
                                 </Card>
                             </div>
                         </Col>
-                    </Row> : <h1></h1>}
+                    </Row>
+                        :
+                     <Row className="text-center">
+                         <Col sm={12} lg={12} md={12}>
+                             <p className="emptyScreenText">Welcome to Classtant</p>
+                             <p className="emptyScreenText">Select or create a new course</p>
+                         </Col>
+                         <Col sm={12} lg={12} md={12}>
+                             <Image src={happyEmoji} height="150"/>
+                         </Col>
+                    </Row>
+                    }
 
                 </Container>
             </Fragment>

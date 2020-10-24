@@ -70,52 +70,13 @@
     color: #ffffff;
 }
 
-
-.login-form{
-    padding-left: 5rem;
-    padding-right: 5rem;
-    padding-top: 10rem;
+.profileText{
     text-align: center;
+    font-family: "Montserrat", sans-serif;
 }
 
-.topContentMargin{
-    margin-top: 8rem;
+.emptyScreenText{
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 20px;
 }
-.title{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 700;
-    color: #ffffff;
-    font-size: 38px;
-}
-.subTitle{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
-    color: #ffffff;
-    font-size: 28px;
-}
-.cardTitle{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 500;
-    color: #292929;
-    font-size: 32px;
-}
-.cardSubTitle{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    color: #292929;
-    font-size: 18px;
-}
-.sideMenuTitle{
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 400;
-    color: #292929;
-    font-size: 18px;
-    padding: 5px;
-}
-
-.noticeCard{
-    height: auto;
-    padding: 1rem;
-    margin: 1rem;
-}
-

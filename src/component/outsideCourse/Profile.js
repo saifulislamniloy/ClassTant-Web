@@ -40,8 +40,8 @@ export default class Profile extends Component {
                             <Card className="noticeCard">
                                 <Card.Img src={this.state.photoUrl} height="150" width="150"/>
                                 <Card.Header>
-                                    <Card.Title className="cardTitle text-center">{this.state.name}</Card.Title>
-                                    <Card.Title className="cardTitle text-center">{this.state.email}</Card.Title>
+                                    <Card.Title className="profileText">{this.state.name}</Card.Title>
+                                    <Card.Title className="profileText">{this.state.email}</Card.Title>
                                 </Card.Header>
                             </Card>
                         </Col>

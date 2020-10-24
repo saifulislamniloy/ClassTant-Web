@@ -23,8 +23,9 @@ export default class TopNavigation2 extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/profile"> <Image src={profile} height="40"/>  </NavLink>
-                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/" ><Button onClick={()=>{this.logout()}}>Log Out </Button>  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/profile"> <Image src={profile} height="40"/>  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/create-course" ><Button> Create Course </Button>  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/" ><Button onClick={()=>{this.logout()}}>Log Out </Button>  </NavLink>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

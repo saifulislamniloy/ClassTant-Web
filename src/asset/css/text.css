@@ -1,0 +1,25 @@
+.moto{
+    text-align: center;
+    font-family: "Montserrat", sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    padding-top: 1rem;
+}
+
+.courseName{
+    font-family: 'Raleway', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.courseCode{
+    font-family: 'Raleway', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.classLink{
+    font-family: 'Raleway', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+}

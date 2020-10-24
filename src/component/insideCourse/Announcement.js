@@ -4,6 +4,7 @@ import firebase from "firebase";
 import deleteIcon from "../../asset/icon/delete.svg"
 import editIcon from "../../asset/icon/edit.svg"
 import '../../asset/css/announcement.css';
+import {auth} from "../../firebase";
 
 class Announcement extends Component {
     constructor({}) {
@@ -61,6 +62,38 @@ class Announcement extends Component {
             return <div class="loader"></div>
     }
 
+    postAnnouncement(){
+        const db = firebase.database();
+        const time = new Date().getTime();
+       if(this.validation()){
+           db.ref("Courses/"+this.props.courseId+"/announcements/"+time)
+               .update(
+                   {
+                       "authorId":auth.currentUser.uid,
+                       "description":document.getElementById("des").value,
+                       "link":document.getElementById("link").value,
+                       "postTime":time,
+                       "postedBy":auth.currentUser.displayName,
+                       "title":document.getElementById("header").value,
+                   },
+                   function (error){
+                       if(error)
+                           alert("failed")
+                       else
+                           alert("success")
+                   })
+       }
+    }
+
+    validation(){
+        if(document.getElementById("header").value.length <1){
+            alert("Title can not be empty!")
+            return false
+        }else
+            return true
+    }
+
+
     render() {
         return (
             <Fragment>
@@ -80,7 +113,7 @@ class Announcement extends Component {
                                         <Form.Control id="link" type="text" placeholder="Link (Optional)" />
                                     </Form.Group>
                                 </Form>
-                                <Button onClick={() => this.postAssignment()} variant="primary">
+                                <Button onClick={() => this.postAnnouncement()} variant="primary">
                                     Post
                                 </Button>
                             </Card>

@@ -6,7 +6,9 @@ export default class AnnouncementPage extends Component {
     constructor({match}) {
         super();
         this.state={
-            courseId:match.params.courseId
+            courseId:match.params.courseId,
+            uid:match.params.uid,
+            name:match.params.name,
         }
     }
 
@@ -15,7 +17,9 @@ export default class AnnouncementPage extends Component {
             <Fragment>
                 <TopNavigation2 />
                 <br/> <br/> <br/>
-                <Announcement courseId={this.state.courseId}/>
+                <Announcement courseId={this.state.courseId}
+                              uid={this.state.uid}
+                              name={this.state.name} />
             </Fragment>
         )
     }

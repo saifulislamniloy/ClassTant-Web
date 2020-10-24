@@ -33,7 +33,7 @@ class Announcement extends Component {
 
                 const view = announcementId.map(announcementId => {
                     return (
-                        <Card>
+                        <Card className="topCardDesign">
                             <Card.Header>
                                 <Row>
                                     <Col sm={10} md={10} lg={10} className="a_title">
@@ -100,7 +100,7 @@ class Announcement extends Component {
                 <Container>
                     <Row>
                         <Col lg={12} md={12} sm={12}>
-                            <Card className="noticeCard">
+                            <Card className="topCardDesign">
                                 <Card.Title style={{textAlign:"center", fontWeight:600, fontSize:32}}>Announcement Section</Card.Title>
                                 <Form>
                                     <Form.Group>

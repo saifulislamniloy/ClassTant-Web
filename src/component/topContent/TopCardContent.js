@@ -125,7 +125,7 @@ export default class TopCardContent extends Component {
                                                                    <Form>
                                                                        <Form.Group>
                                                                            <Form.Control id="classLink" type="text"
-                                                                                         placeholder="Enter Class link"/>
+                                                                                         placeholder="Enter Class link (Complete URL)"/>
                                                                        </Form.Group>
                                                                    </Form>
                                                                </Col>
@@ -144,7 +144,10 @@ export default class TopCardContent extends Component {
                                                            this.state.isCourseSelected ?
                                                                <Row>
                                                                    <Col sm={10} md={10} lg={10}>
-                                                                       <Card.Title className="classLink">Class Link: {this.state.classLink}</Card.Title>
+                                                                       <Card.Title
+                                                                           className="classLink">
+                                                                            Class Link: <a href={this.state.classLink} target="#">{this.state.classLink}</a>
+                                                                       </Card.Title>
                                                                    </Col>
                                                                    <Col  sm={2} md={2} lg={2}>
                                                                        <Image src={edit}

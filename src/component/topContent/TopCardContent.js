@@ -95,7 +95,7 @@ export default class TopCardContent extends Component {
                 <Container>
                     <Row>
                         <Col sm={12} md={12} lg={12}>
-                            <div >
+                            <div>
                                 <Card className="topCardDesign">
                                     <Row>
                                         <Col sm={12} md={6} lg={6}>
@@ -112,56 +112,59 @@ export default class TopCardContent extends Component {
                                             {/*<Card.Text>{this.state.selectedCourseName}</Card.Text>*/}
                                         </Col>
                                         <Col sm={12} md={6} lg={6}>
-                                           <Card>
-                                               <Card.Header>
-                                                   <Card.Title className="courseName">{this.state.selectedCourseName}</Card.Title>
-                                                   <Card.Title className="courseCode">{this.state.selectedCourseCode}</Card.Title>
-                                               </Card.Header>
-                                               <Card.Body>
-                                                   {
-                                                       this.state.editMode ?
-                                                           <Row className="classLink">
-                                                               <Col sm={10} md={10} lg={10}>
-                                                                   <Form>
-                                                                       <Form.Group>
-                                                                           <Form.Control id="classLink" type="text"
-                                                                                         placeholder="Enter Class link (Complete URL)"/>
-                                                                       </Form.Group>
-                                                                   </Form>
-                                                               </Col>
-                                                               <Col sm={2} md={2} lg={2}>
-                                                                   <Button onClick={() => {
-                                                                       this.postClassLink();
-                                                                       this.getClassLink(this.state.selectedCourseId)
-                                                                       this.setState({editMode:false})
-                                                                   }}>
-                                                                       Save
-                                                                   </Button>
-                                                               </Col>
-                                                           </Row>
+                                            <Card>
+                                                <Card.Header>
+                                                    <Card.Title
+                                                        className="courseName">{this.state.selectedCourseName}</Card.Title>
+                                                    <Card.Title
+                                                        className="courseCode">{this.state.selectedCourseCode}</Card.Title>
+                                                </Card.Header>
+                                                <Card.Body>
+                                                    {
+                                                        this.state.editMode ?
+                                                            <Row className="classLink">
+                                                                <Col sm={10} md={10} lg={10}>
+                                                                    <Form>
+                                                                        <Form.Group>
+                                                                            <Form.Control id="classLink" type="text"
+                                                                                          placeholder="Enter Class link (Complete URL)"/>
+                                                                        </Form.Group>
+                                                                    </Form>
+                                                                </Col>
+                                                                <Col sm={2} md={2} lg={2}>
+                                                                    <Button onClick={() => {
+                                                                        this.postClassLink();
+                                                                        this.getClassLink(this.state.selectedCourseId)
+                                                                        this.setState({editMode: false})
+                                                                    }}>
+                                                                        Save
+                                                                    </Button>
+                                                                </Col>
+                                                            </Row>
 
-                                                           :
-                                                           this.state.isCourseSelected ?
-                                                               <Row>
-                                                                   <Col sm={10} md={10} lg={10}>
-                                                                       <Card.Title
-                                                                           className="classLink">
-                                                                            Class Link: <a href={this.state.classLink} target="#">{this.state.classLink}</a>
-                                                                       </Card.Title>
-                                                                   </Col>
-                                                                   <Col  sm={2} md={2} lg={2}>
-                                                                       <Image src={edit}
-                                                                              height="20"
-                                                                              onClick={()=> {
-                                                                                  this.setState({editMode: true})
-                                                                              }}/>
-                                                                   </Col>
-                                                               </Row>
-                                                               :
-                                                               <h1></h1>
-                                                   }
-                                               </Card.Body>
-                                           </Card>
+                                                            :
+                                                            this.state.isCourseSelected ?
+                                                                <Row>
+                                                                    <Col sm={10} md={10} lg={10}>
+                                                                        <Card.Title
+                                                                            className="classLink">
+                                                                            Class Link: <a href={this.state.classLink}
+                                                                                           target="#">{this.state.classLink}</a>
+                                                                        </Card.Title>
+                                                                    </Col>
+                                                                    <Col sm={2} md={2} lg={2}>
+                                                                        <Image src={edit}
+                                                                               height="20"
+                                                                               onClick={() => {
+                                                                                   this.setState({editMode: true})
+                                                                               }}/>
+                                                                    </Col>
+                                                                </Row>
+                                                                :
+                                                                <h1></h1>
+                                                    }
+                                                </Card.Body>
+                                            </Card>
                                             {/*<Card.Text>{this.state.selectedCourseCode}</Card.Text>*/}
                                         </Col>
                                     </Row>
@@ -176,111 +179,111 @@ export default class TopCardContent extends Component {
 
                     </Row>
                     {this.state.isCourseSelected ? <Row>
-                        {/* Annoucnement */}
-                        <Col sm={6} md={6} lg={4}>
-                            <div>
-                                <Link to={"/announcement/" + this.state.selectedCourseId} className="link">
+                            {/* Annoucnement */}
+                            <Col sm={6} md={6} lg={4}>
+                                <div>
+                                    <Link to={"/announcement/" + this.state.selectedCourseId} className="link">
+                                        <Card className="primaryCardDesign">
+                                            <Card.Header className="primaryCardHeader">
+                                                <Card.Title>
+                                                    Announcement
+                                                </Card.Title>
+                                            </Card.Header>
+                                            <Card.Body className="primaryCardBody">
+                                                A declaration you want to share among the class
+                                            </Card.Body>
+                                        </Card>
+                                    </Link>
+                                </div>
+                            </Col>
+                            {/* Assignments */}
+                            <Col sm={6} md={6} lg={4}>
+                                <div>
+                                    <Link to="/assignment" className="link">
+                                        <Card className="primaryCardDesign">
+                                            <Card.Header className="primaryCardHeader">
+                                                <Card.Title>
+                                                    Assignments
+                                                </Card.Title>
+                                            </Card.Header>
+                                            <Card.Body className="primaryCardBody">
+                                                A declaration you want to share among the class
+                                            </Card.Body>
+                                        </Card>
+                                    </Link>
+                                </div>
+                            </Col>
+                            {/* DIscussion */}
+                            <Col sm={6} md={6} lg={4}>
+                                <div onClick={()=> alert("Coming Soon :)")}>
                                     <Card className="primaryCardDesign">
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
-                                                Announcement
+                                                Discussion
                                             </Card.Title>
                                         </Card.Header>
                                         <Card.Body className="primaryCardBody">
-                                            A declaration you want to share among the class
+                                            A conversion or a debate about specific topic
                                         </Card.Body>
                                     </Card>
-                                </Link>
-                            </div>
-                        </Col>
-                        {/* DIscussion */}
-                        <Col sm={6} md={6} lg={4}>
-                            <div>
-                                <Card className="primaryCardDesign">
-                                    <Card.Header className="primaryCardHeader">
-                                        <Card.Title>
-                                            Discussion
-                                        </Card.Title>
-                                    </Card.Header>
-                                    <Card.Body className="primaryCardBody">
-                                        A conversion or a debate about specific topic
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </Col>
-                        {/* Class Schedule */}
-                        <Col sm={6} md={6} lg={4}>
-                            <div>
-                                <Card className="primaryCardDesign">
-                                    <Card.Header className="primaryCardHeader">
-                                        <Card.Title>
-                                            Class Schedule
-                                        </Card.Title>
-                                    </Card.Header>
-                                    <Card.Body className="primaryCardBody">
-                                        Schedule your whole course or edit your class time
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </Col>
-                        {/* Assignments */}
-                        <Col sm={6} md={6} lg={4}>
-                            <div>
-                                <Link to="/assignment" className="link">
+                                </div>
+                            </Col>
+                            {/* Class Schedule */}
+                            <Col sm={6} md={6} lg={4}>
+                                <div  onClick={()=> alert("Coming Soon :)")}>
                                     <Card className="primaryCardDesign">
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
-                                                Assignments
+                                                Class Schedule
                                             </Card.Title>
                                         </Card.Header>
                                         <Card.Body className="primaryCardBody">
-                                            A declaration you want to share among the class
+                                            Schedule your whole course or edit your class time
                                         </Card.Body>
                                     </Card>
-                                </Link>
-                            </div>
-                        </Col>
-                        {/* Marks */}
-                        <Col sm={6} md={6} lg={4}>
-                            <div>
-                                <Card className="primaryCardDesign">
-                                    <Card.Header className="primaryCardHeader">
-                                        <Card.Title>
-                                            Marks
-                                        </Card.Title>
-                                    </Card.Header>
-                                    <Card.Body className="primaryCardBody">
-                                        Let your student know about their performance
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </Col>
-                        {/* Appointments */}
-                        <Col sm={6} md={6} lg={4}>
-                            <div>
-                                <Card className="primaryCardDesign">
-                                    <Card.Header className="primaryCardHeader">
-                                        <Card.Title>
-                                            Appointments
-                                        </Card.Title>
-                                    </Card.Header>
-                                    <Card.Body className="primaryCardBody">
-                                        Student may get stuck, they want to talk to you personally.
-                                    </Card.Body>
-                                </Card>
-                            </div>
-                        </Col>
-                    </Row>
+                                </div>
+                            </Col>
+                            {/* Marks */}
+                            <Col sm={6} md={6} lg={4}>
+                                <div  onClick={()=> alert("Coming Soon :)")}>
+                                    <Card className="primaryCardDesign">
+                                        <Card.Header className="primaryCardHeader">
+                                            <Card.Title>
+                                                Marks
+                                            </Card.Title>
+                                        </Card.Header>
+                                        <Card.Body className="primaryCardBody">
+                                            Let your student know about their performance
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            </Col>
+                            {/* Appointments */}
+                            <Col sm={6} md={6} lg={4}>
+                                <div  onClick={()=> alert("Coming Soon :)")}>
+                                    <Card className="primaryCardDesign">
+                                        <Card.Header className="primaryCardHeader">
+                                            <Card.Title>
+                                                Appointments
+                                            </Card.Title>
+                                        </Card.Header>
+                                        <Card.Body className="primaryCardBody">
+                                            Student may get stuck, they want to talk to you personally.
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            </Col>
+                        </Row>
                         :
-                     <Row className="text-center">
-                         <Col sm={12} lg={12} md={12}>
-                             <p className="emptyScreenText">Welcome to Classtant</p>
-                             <p className="emptyScreenText">Select or create a new course</p>
-                         </Col>
-                         <Col sm={12} lg={12} md={12}>
-                             <Image src={happyEmoji} height="150"/>
-                         </Col>
-                    </Row>
+                        <Row className="text-center">
+                            <Col sm={12} lg={12} md={12}>
+                                <p className="emptyScreenText">Welcome to Classtant</p>
+                                <p className="emptyScreenText">Select or create a new course</p>
+                            </Col>
+                            <Col sm={12} lg={12} md={12}>
+                                <Image src={happyEmoji} height="150"/>
+                            </Col>
+                        </Row>
                     }
 
                 </Container>

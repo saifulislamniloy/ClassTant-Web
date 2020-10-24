@@ -32,10 +32,45 @@
         transform: rotate(360deg);
     }
 }
-/*button #4396F8  #3871E1*/
-.cardDesign{
-    background: #4396F8
+
+.topCardDesign{
+    border-radius: 2px;
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    align-content: center;
+    text-align: center;
+    box-shadow: 0 0 8px 0 rgba(110, 114, 118, 0.2);
 }
+
+
+.primaryCardDesign{
+    border-radius: 2px;
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 1rem 1rem 1rem 1rem;
+    align-content: center;
+    text-align: center;
+    box-shadow: 0 0 8px 0 rgba(110, 114, 118, 0.2);
+}
+
+.primaryCardHeader{
+    font-family: 'Montserrat', sans-serif;
+    color: #292929;
+}
+
+.primaryCardBody{
+    font-family: 'Raleway', sans-serif;
+    color: #7F7E7E;
+}
+
+.primaryCardDesign:hover{
+    box-shadow: 0 0 16px 0 rgba(110, 114, 118, 0.2);
+}
+
+.link:hover{
+    color: #ffffff;
+}
+
+
 .login-form{
     padding-left: 5rem;
     padding-right: 5rem;
@@ -84,8 +119,3 @@
     margin: 1rem;
 }
 
-.topContentCard{
-    color:"white";
-    background-color: "blue";
-    margin: 2rem;
-}

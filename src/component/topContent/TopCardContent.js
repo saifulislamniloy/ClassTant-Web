@@ -92,8 +92,8 @@ export default class TopCardContent extends Component {
                 <Container>
                     <Row>
                         <Col sm={12} md={12} lg={12}>
-                            <div style={{margin: 20}}>
-                                <Card style={{padding: 10, textAlign: "center", boxShadow: 10}}>
+                            <div >
+                                <Card className="topCardDesign">
                                     <Row>
                                         <Col sm={12} md={6} lg={6}>
                                             <Dropdown>
@@ -166,13 +166,15 @@ export default class TopCardContent extends Component {
                     {this.state.isCourseSelected ? <Row>
                         {/* Annoucnement */}
                         <Col sm={6} md={6} lg={4}>
-                            <div style={{margin: 20}}>
-                                <Link to={"/announcement/" + this.state.selectedCourseId}>
-                                    <Card style={{padding: 10, textAlign: "center"}}>
-                                        <Card.Title>
-                                            Announcement
-                                        </Card.Title>
-                                        <Card.Body>
+                            <div>
+                                <Link to={"/announcement/" + this.state.selectedCourseId} className="link">
+                                    <Card className="primaryCardDesign">
+                                        <Card.Header className="primaryCardHeader">
+                                            <Card.Title>
+                                                Announcement
+                                            </Card.Title>
+                                        </Card.Header>
+                                        <Card.Body className="primaryCardBody">
                                             A declaration you want to share among the class
                                         </Card.Body>
                                     </Card>
@@ -181,12 +183,14 @@ export default class TopCardContent extends Component {
                         </Col>
                         {/* DIscussion */}
                         <Col sm={6} md={6} lg={4}>
-                            <div style={{margin: 20}}>
-                                <Card style={{padding: 10, textAlign: "center"}}>
-                                    <Card.Title>
-                                        DIscussion
-                                    </Card.Title>
-                                    <Card.Body>
+                            <div>
+                                <Card className="primaryCardDesign">
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Discussion
+                                        </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
                                         A conversion or a debate about specific topic
                                     </Card.Body>
                                 </Card>
@@ -194,12 +198,14 @@ export default class TopCardContent extends Component {
                         </Col>
                         {/* Class Schedule */}
                         <Col sm={6} md={6} lg={4}>
-                            <div style={{margin: 20}}>
-                                <Card style={{padding: 10, textAlign: "center"}}>
-                                    <Card.Title>
-                                        Class Schedule
-                                    </Card.Title>
-                                    <Card.Body>
+                            <div>
+                                <Card className="primaryCardDesign">
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Class Schedule
+                                        </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
                                         SChedule your whole course or edit your class time
                                     </Card.Body>
                                 </Card>
@@ -207,13 +213,15 @@ export default class TopCardContent extends Component {
                         </Col>
                         {/* Assignments */}
                         <Col sm={6} md={6} lg={4}>
-                            <div style={{margin: 20}}>
-                                <Link to="/assignment">
-                                    <Card style={{padding: 10, textAlign: "center"}}>
-                                        <Card.Title>
-                                            Assignments
-                                        </Card.Title>
-                                        <Card.Body>
+                            <div>
+                                <Link to="/assignment" className="link">
+                                    <Card className="primaryCardDesign">
+                                        <Card.Header className="primaryCardHeader">
+                                            <Card.Title>
+                                                Assignments
+                                            </Card.Title>
+                                        </Card.Header>
+                                        <Card.Body className="primaryCardBody">
                                             A declaration you want to share among the class
                                         </Card.Body>
                                     </Card>
@@ -222,12 +230,14 @@ export default class TopCardContent extends Component {
                         </Col>
                         {/* Marks */}
                         <Col sm={6} md={6} lg={4}>
-                            <div style={{margin: 20}}>
-                                <Card style={{padding: 10, textAlign: "center"}}>
-                                    <Card.Title>
-                                        Marks
-                                    </Card.Title>
-                                    <Card.Body>
+                            <div>
+                                <Card className="primaryCardDesign">
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Marks
+                                        </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
                                         Let your student know about their performance
                                     </Card.Body>
                                 </Card>
@@ -235,12 +245,14 @@ export default class TopCardContent extends Component {
                         </Col>
                         {/* Appointments */}
                         <Col sm={6} md={6} lg={4}>
-                            <div style={{margin: 20}}>
-                                <Card style={{padding: 10, textAlign: "center"}}>
-                                    <Card.Title>
-                                        Appointments
-                                    </Card.Title>
-                                    <Card.Body>
+                            <div>
+                                <Card className="primaryCardDesign">
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Appointments
+                                        </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
                                         Student may get stuck, they want to talk to you personally.
                                     </Card.Body>
                                 </Card>

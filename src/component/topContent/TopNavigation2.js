@@ -5,6 +5,8 @@ import {Container, Navbar, Nav, Button} from 'react-bootstrap'
 import {NavLink} from "react-router-dom";
 import {auth} from "../../firebase";
 import icon from "../../asset/image/home-icon.png";
+import profile from"../../asset/icon/profile.svg";
+import Image from "react-bootstrap/Image";
 
 export default class TopNavigation2 extends Component {
     logout(){
@@ -21,7 +23,7 @@ export default class TopNavigation2 extends Component {
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/profile"> Profile  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/profile"> <Image src={profile} height="40"/>  </NavLink>
                                 <NavLink exact activeStyle={{color: '#03d3fc'}} className="sideMenuTitle" to="/" ><Button onClick={()=>{this.logout()}}>Log Out </Button>  </NavLink>
                             </Nav>
                         </Navbar.Collapse>

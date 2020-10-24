@@ -29,7 +29,7 @@ class CreateCourse extends Component {
 
     getCourseList() {
         const db = firebase.database();
-        db.ref("Courses/" + this.state.uid + "/courseList").once("value")
+        db.ref("Teachers/" + this.state.uid + "/courseList").once("value")
             .then(snapshot => {
 
                 const courses = snapshot.val();

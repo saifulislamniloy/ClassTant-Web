@@ -19,7 +19,7 @@ export default class Assignment extends Component {
     }
 
     async componentDidMount() {
-        let user = JSON.parse(await sessionStorage.getItem("classTantUser"))
+        let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
         if (user !== null) {
             this.setState({uid: user.uid, name: user.name})
         }
@@ -76,7 +76,7 @@ export default class Assignment extends Component {
         let assignmentId = time
         let assignmentName = document.getElementById("header").value
         let authorId = this.state.uid
-        let creationTime = time
+        let creationTime = new Date().getTime().toString()
         let deadline = this.state.deadline
         let postedBy = this.state.name
         let url = document.getElementById("link").value

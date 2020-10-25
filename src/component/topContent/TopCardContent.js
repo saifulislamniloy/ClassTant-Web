@@ -225,8 +225,8 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* Assignments */}
                             <Col sm={6} md={6} lg={4}>
-                                <div  onClick={()=> alert("Comming soon :)")}>
-                                    {/*<Link to="/assignment" className="link">*/}
+                                <div>
+                                    <Link to={"/assignment/"+this.state.selectedCourseId} className="link">
                                         <Card className="primaryCardDesign">
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
@@ -237,7 +237,7 @@ export default class TopCardContent extends Component {
                                                 A declaration you want to share among the class
                                             </Card.Body>
                                         </Card>
-                                    {/*</Link>*/}
+                                    </Link>
                                 </div>
                             </Col>
                             {/* DIscussion */}

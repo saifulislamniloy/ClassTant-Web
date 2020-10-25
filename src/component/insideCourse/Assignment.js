@@ -1,34 +1,40 @@
-import React, { Component, Fragment } from 'react'
+import React, {Component, Fragment} from 'react'
 import {Container, Row, Col, Form, Card, Button, Image} from 'react-bootstrap'
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import firebase from "firebase";
 import editIcon from "../../asset/icon/edit.svg";
 import deleteIcon from "../../asset/icon/delete.svg";
-import {auth} from "../../firebase";
 
 export default class Assignment extends Component {
     constructor() {
         super();
         this.state = {
-            loading:true,
-            assignmentView: ""
+            loading: true,
+            assignmentView: "",
+            uid: "",
+            name: "",
+            deadline:""
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        let user = JSON.parse(await sessionStorage.getItem("classTantUser"))
+        if (user !== null) {
+            this.setState({uid: user.uid, name: user.name})
+        }
         this.getAssignmentList();
     }
 
-    getAssignmentList(){
+    getAssignmentList() {
         const db = firebase.database();
-        db.ref("Courses/"+this.props.courseId+"/assignments").once("value" )
-            .then(snapshot =>{
+        db.ref("Courses/" + this.props.courseId + "/assignments").once("value")
+            .then(snapshot => {
 
                 const assignments = snapshot.val();
                 console.log(assignments)
                 const assignmentId = []
-                for (var key in assignments){
+                for (var key in assignments) {
                     assignmentId.push(key)
                 }
 
@@ -49,37 +55,62 @@ export default class Assignment extends Component {
 
                                 </Row>
                             </Card.Header>
-                            <Card.Body className="a_description">{assignments[assignmentId]["assignmentDescription"]}</Card.Body>
+                            <Card.Body className="a_description">
+                                {assignments[assignmentId]["assignmentDescription"]}
+                            </Card.Body>
+                            <Card.Footer>
+                                {assignments[assignmentId]["url"]}
+                            </Card.Footer>
                         </Card>
                     )
                 })
-                this.setState({assignmentView:view, loading:false})
+                this.setState({assignmentView: view, loading: false})
             })
     }
 
-    postAssignment(){
+    postAssignment() {
         const db = firebase.database();
-        const time = new Date().getTime();
-        if (this.validation()) {
+        const time = new Date().getTime().toString();
+
+        let assignmentDescription = document.getElementById("des").value
+        let assignmentId = time
+        let assignmentName = document.getElementById("header").value
+        let authorId = this.state.uid
+        let creationTime = time
+        let deadline = this.state.deadline
+        let postedBy = this.state.name
+        let url = document.getElementById("link").value
+
+        let jsonObject = {assignmentDescription,assignmentId,assignmentName,authorId,creationTime,deadline,postedBy,url}
+        let validationResult = this.validation(assignmentName,authorId,postedBy)
+        if (validationResult) {
             db.ref("Courses/" + this.props.courseId + "/assignments/" + time)
                 .update(
-                    {
-                        "assignmentDescription": document.getElementById("des").value,
-                        "assignmentId": time,
-                        "assignmentName": document.getElementById("header").value,
-                        "creationTime": time,
-                        "authorId": auth.currentUser.uid,
-                        "deadline": "Thu Oct 01 14:47:20 GMT+06:00 2020",
-                        "postedBy": auth.currentUser.displayName,
-                        "link": document.getElementById("link").value,
-                    },
+                    jsonObject,
                     function (error) {
                         if (error)
                             alert("failed")
                         else
-                            alert("success")
+                            alert("Success")
                     })
         }
+    }
+
+    validation(assignmentName,authorId,postedBy) {
+        let result = true;
+        if(assignmentName.length <1){
+            alert("Header can not be empty!")
+            result = false
+        }
+        if(authorId == null){
+            alert("Something went wrong! Pleas sign in again.")
+            result = false
+        }
+        if(postedBy == null){
+            result = false
+            alert("Something went wrong! Pleas sign in again.")
+        }
+        return result
     }
 
     render() {
@@ -89,22 +120,31 @@ export default class Assignment extends Component {
                     <Row>
                         <Col lg={12} md={12} sm={12}>
                             <Card className="topCardDesign">
-                                <Card.Title style={{textAlign:"center", fontWeight:600, fontSize:32}}>Assignment Section</Card.Title>
+                                <Card.Title style={{textAlign: "center", fontWeight: 600, fontSize: 32}}>Assignment
+                                    Section</Card.Title>
                                 <Form>
                                     <Form.Group>
-                                        <Form.Control id="header" type="text" placeholder="Header" />
+                                        <Form.Control id="header" type="text" placeholder="Header"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Description" />
+                                        <Form.Control id="des" type="text" placeholder="Description"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="link" type="text" placeholder="Link (Optional)" />
+                                        <Form.Control id="link" type="text" placeholder="Link (Optional)"/>
                                     </Form.Group>
                                 </Form>
-                                <Datetime
-                                    locale="bn"
-                                    dateFormat="DD-MM-YYYY"
-                                />
+                                <Row>
+                                    <Col sm={3} md={3} lg={3}>
+                                        <Form.Label>Deadline</Form.Label>
+                                    </Col>
+                                    <Col sm={9} md={9} lg={9}>
+                                        <Datetime
+                                            dateFormat="MMMM DD, YYYY"
+                                            id="date"
+                                            onChange={(date)=>this.setState({deadline:date._d})}
+                                        />
+                                    </Col>
+                                </Row>
                                 <br/>
                                 <Button onClick={() => this.postAssignment()} variant="primary">
                                     Post

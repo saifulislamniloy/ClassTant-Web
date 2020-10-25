@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {Container, Row, Col, Card, Dropdown} from 'react-bootstrap'
+import {Container, Row, Col, Card, Dropdown, Image} from 'react-bootstrap'
 import firebase from "firebase";
 
 export default class Profile extends Component {
@@ -37,9 +37,11 @@ export default class Profile extends Component {
             <Fragment>
                 <Container>
                     <Row>
-                        <Col>
-                            <Card className="noticeCard">
-                                <Card.Img src={this.state.photoUrl} height="150" width="150"/>
+                        <Col className="text-center p-3">
+                            <Image src={this.state.photoUrl} alt="Profile Picture" height="150"/>
+                        </Col>
+                        <Col sm={12} md={12} lg={12}>
+                            <Card>
                                 <Card.Header>
                                     <Card.Title className="profileText">{this.state.name}</Card.Title>
                                     <Card.Title className="profileText">{this.state.email}</Card.Title>

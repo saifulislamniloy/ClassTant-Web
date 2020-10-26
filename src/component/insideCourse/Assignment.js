@@ -45,10 +45,10 @@ export default class Assignment extends Component {
                                         {assignments[assignmentId]["assignmentName"]}
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Button>Edit</Button>
+                                        <Button disabled={true}>Edit</Button>
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Button>Delete</Button>
+                                        <Button disabled={true}>Delete</Button>
                                     </Col>
 
                                 </Row>

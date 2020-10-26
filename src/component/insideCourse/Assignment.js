@@ -3,8 +3,6 @@ import {Container, Row, Col, Form, Card, Button, Image} from 'react-bootstrap'
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import firebase from "firebase";
-import editIcon from "../../asset/icon/edit.svg";
-import deleteIcon from "../../asset/icon/delete.svg";
 
 export default class Assignment extends Component {
     constructor() {
@@ -47,10 +45,10 @@ export default class Assignment extends Component {
                                         {assignments[assignmentId]["assignmentName"]}
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Image src={editIcon} height="40" width="40"/>
+                                        <Button>Edit</Button>
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Image src={deleteIcon} height="40" width="40"/>
+                                        <Button>Delete</Button>
                                     </Col>
 
                                 </Row>

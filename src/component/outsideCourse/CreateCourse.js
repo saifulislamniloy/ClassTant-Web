@@ -1,9 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Button, Container, Row, Col, Form, Card, Image} from "react-bootstrap";
 import firebase from "firebase";
-import {auth} from "../../firebase";
-import editIcon from "../../asset/icon/edit.svg";
-import deleteIcon from "../../asset/icon/delete.svg";
 
 class CreateCourse extends Component {
     constructor() {
@@ -47,10 +44,10 @@ class CreateCourse extends Component {
                                         {courses[courseId]["courseName"]}
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Image src={editIcon} height="40" width="40"/>
+                                        <Button>Edit</Button>
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
-                                        <Image src={deleteIcon} height="40" width="40"/>
+                                        <Button>Delete</Button>
                                     </Col>
 
                                 </Row>

@@ -1,8 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import {Button, Card, Col, Container, Image, Form, Row} from "react-bootstrap";
 import firebase from "firebase";
-import deleteIcon from "../../asset/icon/delete.svg"
-import editIcon from "../../asset/icon/edit.svg"
 import '../../asset/css/announcement.css';
 import {auth} from "../../firebase";
 

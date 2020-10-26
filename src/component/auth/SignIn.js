@@ -3,7 +3,7 @@ import {Redirect} from "react-router-dom";
 
 import StyledFirebaseAuth from "react-firebaseui/StyledFirebaseAuth";
 import firebase, {auth} from "../../firebase";
-import {Col, Image, Row} from "react-bootstrap";
+import {Card, Col, Image, Row} from "react-bootstrap";
 
 import banner from "../../asset/image/play_store_badge.png"
 
@@ -151,8 +151,17 @@ class SignIn extends Component {
                     <Col sm={6} md={6} lg={6}>
                         <h4 className="pt-5 pl-5 pr-5 text-center">! ATTENTION !</h4>
                         <p className="pb-5 pl-5 pr-5 text-justify">
-                            This is Incomplete till now. For urgent demand, we are providing some feature for teachers
-                            only.
+                            <Card style={{color:"white", background:"red", padding:10, margin:2, textAlign:"center"}}>
+                                Web of Classtant is under development.
+                            </Card>
+                            <Card style={{color:"white", background:"red", padding:10, margin:2, textAlign:"center"}}>
+                                To use all the feature download it from Play Store.
+                            </Card>
+                            <Card style={{color:"white", background:"red", padding:10, margin:2, textAlign:"center"}}>
+                                Both teacher and student version is available in android platfrom
+                            </Card>
+                            <p>This is Incomplete till now. For urgent demand, we are providing some feature for teachers
+                                only. </p>
                         </p>
                     </Col>
                 </Row>

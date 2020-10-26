@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import TopNavigation2 from '../component/topContent/TopNavigation2';
-import Announcement from "../component/insideCourse/Announcement";
+import Announcement from "../component/announcement/Announcement";
 
 export default class AnnouncementPage extends Component {
     constructor({match}) {

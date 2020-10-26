@@ -3,7 +3,7 @@ import {Button, Card, Col, Container, Image, Form, Row} from "react-bootstrap";
 import firebase from "firebase";
 import '../../asset/css/announcement.css';
 import {auth} from "../../firebase";
-import {getDateTime} from "../../functions/UnixToDateTime";
+import SingleAnnouncement from "./SingleAnnouncement";
 
 class Announcement extends Component {
     constructor({}) {
@@ -32,37 +32,14 @@ class Announcement extends Component {
 
                 const view = announcementId.map(announcementId => {
                     return (
-                        <Card className="topCardDesign">
-                            <Card.Header>
-                                <Row>
-                                    <Col sm={10} md={10} lg={10} className="cardTitle">
-                                        {announcements[announcementId]["title"]}
-                                    </Col>
-                                    <Col sm={1} md={1} lg={1}>
-                                        <Button disabled={true}>Edit</Button>
-                                    </Col>
-                                    <Col sm={1} md={1} lg={1}>
-                                        <Button disabled={true}>Delete</Button>
-                                    </Col>
-                                </Row>
-                            </Card.Header>
-                            <Card.Body>
-                                <p className="cardBody text-justify">{announcements[announcementId]["description"]}</p>
-
-                                <a href={"https://" + announcements[announcementId]["link"]}
-                                   target="#">{announcements[announcementId]["link"]}</a>
-                            </Card.Body>
-                            <Card.Footer>
-                                <Row>
-                                    <Col sm={6} md={6} lg={6}>
-                                        <p className="cardFooter">~Author: {announcements[announcementId]["postedBy"]}</p>
-                                    </Col>
-                                    <Col sm={6} md={6} lg={6}>
-                                        <p className="cardFooter">{getDateTime(announcements[announcementId]["postTime"])}</p>
-                                    </Col>
-                                </Row>
-                            </Card.Footer>
-                        </Card>
+                        <SingleAnnouncement
+                            id={announcementId}
+                            title ={announcements[announcementId]["title"]}
+                            description={announcements[announcementId]["description"]}
+                            link={announcements[announcementId]["link"]}
+                            postedBy={announcements[announcementId]["postedBy"]}
+                            postTime={announcements[announcementId]["postTime"]}
+                        />
                     )
                 })
                 this.setState({announcementView: view, loading: false})
@@ -120,7 +97,7 @@ class Announcement extends Component {
                                         <Form.Control id="header" type="text" placeholder="Title"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Description"/>
+                                        <Form.Control id="des" type="text" placeholder="Description" style={{height:"auto"}}/>
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Control id="link" type="text" placeholder="Link (Optional)"/>

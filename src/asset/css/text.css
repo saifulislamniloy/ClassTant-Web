@@ -30,23 +30,4 @@
     font-weight: 300;
 }
 
-.cardTitle{
-    font-family: "Montserrat", sans-serif;
-    font-size: 24px;
-    font-weight: 500;
-    color: #1d1f1f;
-}
 
-.cardBody{
-    font-family: 'Raleway', sans-serif;
-    font-size: 18px;
-    font-weight: 400;
-    color: #333838;
-}
-
-.cardFooter{
-    font-family: 'Raleway', sans-serif;
-    font-size: 15px;
-    font-weight: 300;
-    color: #5a6268;
-}

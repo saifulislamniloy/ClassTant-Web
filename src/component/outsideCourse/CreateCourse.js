@@ -53,8 +53,8 @@ class CreateCourse extends Component {
                                 </Row>
                             </Card.Header>
                             <Card.Body>
-                                {courses[courseId]["courseCode"]}
-                                {courses[courseId]["department"]}
+                                <p>{courses[courseId]["courseCode"]}</p>
+                                <p>{courses[courseId]["department"]}</p>
                             </Card.Body>
                         </Card>
                     )

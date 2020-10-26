@@ -70,21 +70,21 @@ export default class Assignment extends Component {
 
     postAssignment() {
         const db = firebase.database();
-        const time = new Date().getTime().toString();
+        const deadlineTime = new Date(this.state.deadline).getTime().toString();
 
         let assignmentDescription = document.getElementById("des").value
-        let assignmentId = time
+        let assignmentId = deadlineTime
         let assignmentName = document.getElementById("header").value
         let authorId = this.state.uid
         let creationTime = new Date().getTime().toString()
-        let deadline = this.state.deadline
+        let deadline = this.state.deadline + ""
         let postedBy = this.state.name
         let url = document.getElementById("link").value
 
         let jsonObject = {assignmentDescription,assignmentId,assignmentName,authorId,creationTime,deadline,postedBy,url}
-        let validationResult = this.validation(assignmentName,authorId,postedBy)
+        let validationResult = this.validation(assignmentName,authorId,postedBy, deadline)
         if (validationResult) {
-            db.ref("Courses/" + this.props.courseId + "/assignments/" + time)
+            db.ref("Courses/" + this.props.courseId + "/assignments/" + deadlineTime)
                 .update(
                     jsonObject,
                     function (error) {
@@ -96,7 +96,7 @@ export default class Assignment extends Component {
         }
     }
 
-    validation(assignmentName,authorId,postedBy) {
+    validation(assignmentName,authorId,postedBy, deadline) {
         let result = true;
         if(assignmentName.length <1){
             alert("Header can not be empty!")
@@ -109,6 +109,10 @@ export default class Assignment extends Component {
         if(postedBy == null){
             result = false
             alert("Something went wrong! Pleas sign in again.")
+        }
+        if(deadline.length <12){
+            alert("Please Set Deadline.")
+            result = false
         }
         return result
     }

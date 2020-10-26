@@ -127,6 +127,10 @@ export default class TopCardContent extends Component {
                                                                 className="courseName">{this.state.selectedCourseName}</Card.Title>
                                                             <Card.Title
                                                                 className="courseCode">{this.state.selectedCourseCode}</Card.Title>
+
+                                                            <Card.Title className="courseSecret">
+                                                               Course Secret:  <p style={{color:"#007BFF"}}>{this.state.selectedCourseId}</p>
+                                                            </Card.Title>
                                                         </Card.Header>
                                                         <Card.Body>
                                                             {
@@ -194,10 +198,6 @@ export default class TopCardContent extends Component {
                                                     <h1></h1>
                                             }
                                         </Col>
-                                    </Row>
-                                    <br/>
-                                    <Row className="justify-content-center">
-
                                     </Row>
                                 </Card>
                             </div>

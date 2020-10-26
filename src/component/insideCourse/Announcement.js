@@ -3,6 +3,7 @@ import {Button, Card, Col, Container, Image, Form, Row} from "react-bootstrap";
 import firebase from "firebase";
 import '../../asset/css/announcement.css';
 import {auth} from "../../firebase";
+import {getDateTime} from "../../functions/UnixToDateTime";
 
 class Announcement extends Component {
     constructor({}) {
@@ -34,7 +35,7 @@ class Announcement extends Component {
                         <Card className="topCardDesign">
                             <Card.Header>
                                 <Row>
-                                    <Col sm={10} md={10} lg={10} className="a_title">
+                                    <Col sm={10} md={10} lg={10} className="cardTitle">
                                         {announcements[announcementId]["title"]}
                                     </Col>
                                     <Col sm={1} md={1} lg={1}>
@@ -43,13 +44,24 @@ class Announcement extends Component {
                                     <Col sm={1} md={1} lg={1}>
                                         <Button disabled={true}>Delete</Button>
                                     </Col>
-
                                 </Row>
                             </Card.Header>
-                            <Card.Body
-                                className="a_description">{announcements[announcementId]["description"]}</Card.Body>
-                            <Card.Footer><a href={"https://" + announcements[announcementId]["link"]}
-                                            target="#">{announcements[announcementId]["link"]}</a></Card.Footer>
+                            <Card.Body>
+                                <p className="cardBody text-justify">{announcements[announcementId]["description"]}</p>
+
+                                <a href={"https://" + announcements[announcementId]["link"]}
+                                   target="#">{announcements[announcementId]["link"]}</a>
+                            </Card.Body>
+                            <Card.Footer>
+                                <Row>
+                                    <Col sm={6} md={6} lg={6}>
+                                        <p className="cardFooter">~Author: {announcements[announcementId]["postedBy"]}</p>
+                                    </Col>
+                                    <Col sm={6} md={6} lg={6}>
+                                        <p className="cardFooter">{getDateTime(announcements[announcementId]["postTime"])}</p>
+                                    </Col>
+                                </Row>
+                            </Card.Footer>
                         </Card>
                     )
                 })

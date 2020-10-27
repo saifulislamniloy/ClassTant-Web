@@ -18,10 +18,10 @@ class SingleAnnouncement extends Component {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item className="disabled">
-                                            Edit (Disabled)
+                                            Edit (Coming Soon)
                                         </Dropdown.Item>
                                         <Dropdown.Item className="disabled">
-                                            Delete (Disabled)
+                                            Delete (Coming Soon)
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
@@ -29,7 +29,7 @@ class SingleAnnouncement extends Component {
                         </Row>
                     </Card.Header>
                     <Card.Body>
-                        <p className="cardBody text-justify">{this.props.description}</p>
+                        <pre className="cardBody text-justify">{this.props.description}</pre>
 
                         <a href={"https://" + this.props.link}
                            target="#">{this.props.link}</a>

@@ -19,10 +19,10 @@ class SingleAssignment extends Component {
                                     </Dropdown.Toggle>
                                     <Dropdown.Menu>
                                         <Dropdown.Item className="disabled">
-                                            Edit (Disabled)
+                                            Edit (Coming Soon)
                                         </Dropdown.Item>
                                         <Dropdown.Item className="disabled">
-                                            Delete (Disabled)
+                                            Delete (Coming Soon)
                                         </Dropdown.Item>
                                     </Dropdown.Menu>
                                 </Dropdown>
@@ -30,7 +30,7 @@ class SingleAssignment extends Component {
                         </Row>
                     </Card.Header>
                     <Card.Body>
-                        <p className="cardBody text-justify">{this.props.description}</p>
+                        <p className="cardBody text-justify ">{this.props.description}</p>
 
                         <a href={"https://" + this.props.link}
                            target="#">{this.props.link}</a>

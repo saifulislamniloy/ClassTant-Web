@@ -1,8 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Card, Col, Dropdown, Row} from "react-bootstrap";
+import {Card, Col, Dropdown, Row} from "react-bootstrap";
 import {getDateTime} from "../../functions/UnixToDateTime";
 
-class SingleAnnouncement extends Component {
+class SingleAssignment extends Component {
     render() {
         return (
             <Fragment>
@@ -10,7 +10,8 @@ class SingleAnnouncement extends Component {
                     <Card.Header>
                         <Row>
                             <Col sm={6} md={10} lg={10} className="cardTitle">
-                                {this.props.title}
+                                <p className="cardTitle">{this.props.title}</p>
+                                <p className="cardFooter">{"~Deadline: "+this.props.deadline}</p>
                             </Col>
                             <Col sm={6} md={2} lg={2}>
                                 <Dropdown>
@@ -50,4 +51,4 @@ class SingleAnnouncement extends Component {
     }
 }
 
-export default SingleAnnouncement;
+export default SingleAssignment;

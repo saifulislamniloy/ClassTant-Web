@@ -3,6 +3,7 @@ import {Container, Row, Col, Form, Card, Button, Image} from 'react-bootstrap'
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import firebase from "firebase";
+import SingleAssignment from "./SingleAssignment";
 
 export default class Assignment extends Component {
     constructor() {
@@ -36,30 +37,17 @@ export default class Assignment extends Component {
                     assignmentId.push(key)
                 }
 
-                const view = assignmentId.map(assignmentId => {
+                const view = assignmentId.slice(0).reverse().map(assignmentId => {
                     return (
-                        <Card className="topCardDesign">
-                            <Card.Header>
-                                <Row>
-                                    <Col sm={10} md={10} lg={10} className="a_title">
-                                        {assignments[assignmentId]["assignmentName"]}
-                                    </Col>
-                                    <Col sm={1} md={1} lg={1}>
-                                        <Button disabled={true}>Edit</Button>
-                                    </Col>
-                                    <Col sm={1} md={1} lg={1}>
-                                        <Button disabled={true}>Delete</Button>
-                                    </Col>
-
-                                </Row>
-                            </Card.Header>
-                            <Card.Body className="a_description">
-                                {assignments[assignmentId]["assignmentDescription"]}
-                            </Card.Body>
-                            <Card.Footer>
-                                {assignments[assignmentId]["url"]}
-                            </Card.Footer>
-                        </Card>
+                        <SingleAssignment
+                            id={assignments[assignmentId]["assignmentId"]}
+                            title={assignments[assignmentId]["assignmentName"]}
+                            description={assignments[assignmentId]["assignmentDescription"]}
+                            link={assignments[assignmentId]["url"]}
+                            postedBy={assignments[assignmentId]["postedBy"]}
+                            postTime={assignments[assignmentId]["creationTime"]}
+                            deadline={assignments[assignmentId]["deadline"]}
+                            />
                     )
                 })
                 this.setState({assignmentView: view, loading: false})
@@ -129,7 +117,7 @@ export default class Assignment extends Component {
                                         <Form.Control id="header" type="text" placeholder="Header"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Description"/>
+                                        <Form.Control id="des" as="textarea" row={3} placeholder="Description"/>
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Control id="link" type="text" placeholder="Link (Optional)"/>

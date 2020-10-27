@@ -34,6 +34,7 @@ class Announcement extends Component {
                     return (
                         <SingleAnnouncement
                             id={announcementId}
+                            courseId={this.props.courseId}
                             title ={announcements[announcementId]["title"]}
                             description={announcements[announcementId]["description"]}
                             link={announcements[announcementId]["link"]}

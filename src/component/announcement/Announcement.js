@@ -30,7 +30,7 @@ class Announcement extends Component {
                     announcementId.push(key)
                 }
 
-                const view = announcementId.map(announcementId => {
+                const view = announcementId.slice(0).reverse().map(announcementId => {
                     return (
                         <SingleAnnouncement
                             id={announcementId}
@@ -97,7 +97,7 @@ class Announcement extends Component {
                                         <Form.Control id="header" type="text" placeholder="Title"/>
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" type="text" placeholder="Description" style={{height:"auto"}}/>
+                                        <Form.Control id="des" as="textarea" rows={3} placeholder="Description"/>
                                     </Form.Group>
                                     <Form.Group>
                                         <Form.Control id="link" type="text" placeholder="Link (Optional)"/>

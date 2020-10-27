@@ -18,3 +18,8 @@
     font-weight: 300;
     color: #5a6268;
 }
+
+.alignLeft{
+    text-align: left !important;
+    white-space: pre-line;
+}

@@ -29,7 +29,7 @@ class SingleAnnouncement extends Component {
                         </Row>
                     </Card.Header>
                     <Card.Body>
-                        <pre className="cardBody text-justify">{this.props.description}</pre>
+                        <p className="cardBody alignLeft">{this.props.description}</p>
 
                         <a href={"https://" + this.props.link}
                            target="#">{this.props.link}</a>

@@ -50,8 +50,6 @@ class SingleAnnouncement extends Component {
                     function (error) {
                         if (error)
                             alert("failed")
-                        else
-                            alert("success")
                     })
         }
     }
@@ -133,7 +131,7 @@ class SingleAnnouncement extends Component {
                         {
                             this.state.editMode
                             ?
-                                <Row style={{alignmentBaseline:"center"}}>
+                                <Row>
                                     <Col>
                                         <Button
                                             onClick={()=>{

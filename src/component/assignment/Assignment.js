@@ -41,6 +41,8 @@ export default class Assignment extends Component {
                     return (
                         <SingleAssignment
                             id={assignments[assignmentId]["assignmentId"]}
+                            courseId={this.props.courseId}
+                            authorId={this.state.uid}
                             title={assignments[assignmentId]["assignmentName"]}
                             description={assignments[assignmentId]["assignmentDescription"]}
                             link={assignments[assignmentId]["url"]}

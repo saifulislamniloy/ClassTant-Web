@@ -1,8 +1,9 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Container, Row, Col, Form, Card, Image} from "react-bootstrap";
+import {Button, Container, Row, Col, Form, Card} from "react-bootstrap";
 import firebase from "firebase";
+import SingleCourse from "./SingleCourse";
 
-class CreateCourse extends Component {
+class Course extends Component {
     constructor() {
         super();
         this.state = {
@@ -37,26 +38,12 @@ class CreateCourse extends Component {
 
                 const view = courseId.map(courseId => {
                     return (
-                        <Card className="topCardDesign">
-                            <Card.Header>
-                                <Row>
-                                    <Col sm={10} md={10} lg={10} className="a_title">
-                                        {courses[courseId]["courseName"]}
-                                    </Col>
-                                    <Col sm={1} md={1} lg={1}>
-                                        <Button disabled={true}>Edit</Button>
-                                    </Col>
-                                    <Col sm={1} md={1} lg={1}>
-                                        <Button disabled={true}>Delete</Button>
-                                    </Col>
-
-                                </Row>
-                            </Card.Header>
-                            <Card.Body>
-                                <p>{courses[courseId]["courseCode"]}</p>
-                                <p>{courses[courseId]["department"]}</p>
-                            </Card.Body>
-                        </Card>
+                        <SingleCourse
+                            courseName={courses[courseId]["courseName"]}
+                            courseCode={courses[courseId]["courseCode"]}
+                            department={courses[courseId]["department"]}
+                            courseSecret={courses[courseId]["courseID"]}
+                            />
                     )
                 })
                 this.setState({courseView: view, loading: false})
@@ -159,4 +146,4 @@ class CreateCourse extends Component {
     }
 }
 
-export default CreateCourse;
+export default Course;

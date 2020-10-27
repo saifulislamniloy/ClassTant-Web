@@ -30,7 +30,7 @@ export default class TopNavigation2 extends Component {
             <Fragment>
                 <Container>
                     <Navbar fixed="top" bg="light" variant="light" collapseOnSelect expand="lg">
-                        <Navbar.Brand className="title" href="/" ><img src={icon} height="32" width="32" alt="Smiley face"/>  Classtant</Navbar.Brand>
+                        <Navbar.Brand className="title" href="/homepage" ><img src={icon} height="32" width="32" alt="Smiley face"/>  Classtant</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav" >
                             <Nav className="mr-auto">

@@ -123,21 +123,31 @@ class SingleAnnouncement extends Component {
                             </Card.Body>
                             :
                             <Card.Body>
-                                <p className="cardBody alignLeft">{this.props.description}</p>
+                                <p className="cardBody alignLeft">{this.state.description}</p>
 
-                                <a href={"https://" + this.props.link}
-                                   target="#">{this.props.link}</a>
+                                <a href={"https://" + this.state.link}
+                                   target="#">{this.state.link}</a>
                             </Card.Body>
                     }
                     <Card.Footer>
                         {
                             this.state.editMode
                             ?
-                                <Button
-                                    onClick={()=>{
-                                        this.setState({editMode:false})
-                                        this.updateSingleAnnouncement()
-                                        this.getSingleAnnouncement()}}>Update</Button>
+                                <Row style={{alignmentBaseline:"center"}}>
+                                    <Col>
+                                        <Button
+                                            onClick={()=>{
+                                                this.setState({editMode:false})
+                                                this.getSingleAnnouncement()}}>Cancel</Button>
+                                    </Col>
+                                    <Col>
+                                        <Button
+                                            onClick={()=>{
+                                                this.setState({editMode:false})
+                                                this.updateSingleAnnouncement()
+                                                this.getSingleAnnouncement()}}>Update</Button>
+                                    </Col>
+                                </Row>
                                 :
                                 <Row>
                                     <Col sm={6} md={6} lg={6}>

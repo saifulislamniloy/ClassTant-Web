@@ -5,7 +5,6 @@ import "../../asset/css/text.css"
 import {Link} from 'react-router-dom';
 import firebase from "firebase";
 import happyEmoji from "../../asset/icon/happy.svg";
-import edit from "../../asset/icon/edit.svg";
 
 export default class TopCardContent extends Component {
     constructor(props) {

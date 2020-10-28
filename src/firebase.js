@@ -1,13 +1,13 @@
 import firebase from "firebase"
 const firebaseConfig = {
-    apiKey: "AIzaSyAIovGMSbEc29QLHIP8Cmr2rAUrAwYBePU",
-    authDomain: "spl2-4b5b7.firebaseapp.com",
-    databaseURL: "https://spl2-4b5b7.firebaseio.com",
-    projectId: "spl2-4b5b7",
-    storageBucket: "spl2-4b5b7.appspot.com",
-    messagingSenderId: "788693166408",
-    appId: "1:788693166408:web:dc9d6e564c7b66ac652b7d",
-    measurementId: "G-5VVH8QPP08"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 if (!firebase.apps.length) {

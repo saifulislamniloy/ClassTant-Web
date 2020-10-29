@@ -111,16 +111,18 @@ class SingleAssignment extends Component {
     }
 
     deleteSingleAssignment() {
-        const db = firebase.database();
-        db.ref("Courses/" + this.props.courseId + "/assignments/" + this.props.id)
-            .remove(onerror => {
-                if (onerror)
-                    alert("Something Went Wrong!")
-                else {
-                    this.setState({isDeleted:true})
-                }
-            })
-
+        let isConfirmed = window.confirm("Do you confirm to delete: " + this.state.title + "?");
+        if (isConfirmed) {
+            const db = firebase.database();
+            db.ref("Courses/" + this.props.courseId + "/assignments/" + this.props.id)
+                .remove(onerror => {
+                    if (onerror)
+                        alert("Something Went Wrong!")
+                    else {
+                        this.setState({isDeleted: true})
+                    }
+                })
+        }
     }
 
     render() {

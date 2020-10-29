@@ -64,17 +64,20 @@ class SingleAnnouncement extends Component {
     }
 
     deleteSingleAnnouncement(){
-        const db = firebase.database();
-        const time = new Date().getTime().toString();
-        if (this.validation()) {
-            db.ref("Courses/" + this.props.courseId + "/announcements/" + this.props.id)
-                .remove(onerror=>{
-                    if(onerror){
-                        alert("Failed!")
-                    }else {
-                        this.setState({isDeleted:true})
-                    }
-                })
+        let isConfirmed = window.confirm("Do you confirm to delete: " + this.state.title + "?");
+        if(isConfirmed){
+            const db = firebase.database();
+            const time = new Date().getTime().toString();
+            if (this.validation()) {
+                db.ref("Courses/" + this.props.courseId + "/announcements/" + this.props.id)
+                    .remove(onerror=>{
+                        if(onerror){
+                            alert("Failed!")
+                        }else {
+                            this.setState({isDeleted:true})
+                        }
+                    })
+            }
         }
     }
 

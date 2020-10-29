@@ -20,13 +20,13 @@ export default class TopCardContent extends Component {
             classLink: "",
             editMode: false,
 
-            uid:""
+            uid: ""
         }
     }
 
     async componentDidMount() {
         let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
-        if(user !== null){
+        if (user !== null) {
             this.setState({uid: user.uid})
             this.getCourseList()
         }
@@ -74,7 +74,7 @@ export default class TopCardContent extends Component {
             .then(snapshot => {
                 let link = snapshot.val().classLink
                 console.log(snapshot.val())
-                if(link !== undefined)
+                if (link !== undefined)
                     this.setState({classLink: link})
             })
     }
@@ -103,7 +103,7 @@ export default class TopCardContent extends Component {
                         <Col sm={12} md={12} lg={12}>
                             <div>
                                 <Card className="topCardDesign">
-                                    <Row >
+                                    <Row>
                                         <Col sm={12} md={12} lg={12} className="mb-5">
                                             <p className="moto">Bring Your Academics in One App </p>
                                             <Dropdown>
@@ -128,7 +128,8 @@ export default class TopCardContent extends Component {
                                                                 className="courseCode">{this.state.selectedCourseCode}</Card.Title>
 
                                                             <Card.Title className="courseSecret">
-                                                               Course Secret:  <p style={{color:"#007BFF"}}>{this.state.selectedCourseId}</p>
+                                                                Course Secret: <p
+                                                                style={{color: "#007BFF"}}>{this.state.selectedCourseId}</p>
                                                             </Card.Title>
                                                         </Card.Header>
                                                         <Card.Body>
@@ -140,12 +141,14 @@ export default class TopCardContent extends Component {
                                                                                 <Form.Group>
                                                                                     {
                                                                                         this.state.classLink.length > 0 ?
-                                                                                            <Form.Control id="classLink" type="text"
+                                                                                            <Form.Control id="classLink"
+                                                                                                          type="text"
                                                                                                           value={this.state.classLink}
-                                                                                                          onChange={(text)=>
-                                                                                                              this.setState({classLink:text})}/>
+                                                                                                          onChange={(text) =>
+                                                                                                              this.setState({classLink: text})}/>
                                                                                             :
-                                                                                            <Form.Control id="classLink" type="text"
+                                                                                            <Form.Control id="classLink"
+                                                                                                          type="text"
                                                                                                           placeholder="Enter Class link (Complete URL)"/>
                                                                                     }
                                                                                 </Form.Group>
@@ -153,7 +156,10 @@ export default class TopCardContent extends Component {
                                                                         </Col>
                                                                         <Col sm={2} md={2} lg={2}>
                                                                             <Button onClick={() => {
-                                                                                this.setState({editMode: false, classLink:""})
+                                                                                this.setState({
+                                                                                    editMode: false,
+                                                                                    classLink: ""
+                                                                                })
                                                                                 this.getClassLink(this.state.selectedCourseId)
                                                                             }}>
                                                                                 Cancel
@@ -162,7 +168,10 @@ export default class TopCardContent extends Component {
                                                                         <Col sm={2} md={2} lg={2}>
                                                                             <Button onClick={() => {
                                                                                 this.postClassLink();
-                                                                                this.setState({editMode: false, classLink:""})
+                                                                                this.setState({
+                                                                                    editMode: false,
+                                                                                    classLink: ""
+                                                                                })
                                                                                 this.getClassLink(this.state.selectedCourseId)
                                                                             }}>
                                                                                 Save
@@ -176,14 +185,15 @@ export default class TopCardContent extends Component {
                                                                             <Col sm={10} md={10} lg={10}>
                                                                                 <Card.Title
                                                                                     className="classLink pt-2">
-                                                                                    Class Link: <a href={this.state.classLink}
-                                                                                                   target="#">{this.state.classLink}</a>
+                                                                                    Class Link: <a
+                                                                                    href={this.state.classLink}
+                                                                                    target="#">{this.state.classLink}</a>
                                                                                 </Card.Title>
                                                                             </Col>
                                                                             <Col sm={2} md={2} lg={2}>
                                                                                 <Button onClick={() => {
-                                                                                           this.setState({editMode: true})
-                                                                                       }}>
+                                                                                    this.setState({editMode: true})
+                                                                                }}>
                                                                                     Edit
                                                                                 </Button>
                                                                             </Col>
@@ -208,7 +218,11 @@ export default class TopCardContent extends Component {
                             {/* Annoucnement */}
                             <Col sm={6} md={6} lg={4}>
                                 <div>
-                                    <Link to={"/announcement/" + this.state.selectedCourseId} className="link">
+                                    <Link to={{
+                                        pathname: "/announcement",
+                                        state: {courseId: this.state.selectedCourseId}
+                                    }}
+                                          className="link">
                                         <Card className="primaryCardDesign">
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
@@ -225,7 +239,7 @@ export default class TopCardContent extends Component {
                             {/* Assignments */}
                             <Col sm={6} md={6} lg={4}>
                                 <div>
-                                    <Link to={"/assignment/"+this.state.selectedCourseId} className="link">
+                                    <Link to={"/assignment/" + this.state.selectedCourseId} className="link">
                                         <Card className="primaryCardDesign">
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
@@ -241,7 +255,7 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* DIscussion */}
                             <Col sm={6} md={6} lg={4}>
-                                <div onClick={()=> alert("Coming Soon :)")}>
+                                <div onClick={() => alert("Coming Soon :)")}>
                                     <Card className="primaryCardDesign">
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
@@ -256,7 +270,7 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* Class Schedule */}
                             <Col sm={6} md={6} lg={4}>
-                                <div  onClick={()=> alert("Coming Soon :)")}>
+                                <div onClick={() => alert("Coming Soon :)")}>
                                     <Card className="primaryCardDesign">
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
@@ -271,7 +285,7 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* Marks */}
                             <Col sm={6} md={6} lg={4}>
-                                <div  onClick={()=> alert("Coming Soon :)")}>
+                                <div onClick={() => alert("Coming Soon :)")}>
                                     <Card className="primaryCardDesign">
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
@@ -286,7 +300,7 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* Appointments */}
                             <Col sm={6} md={6} lg={4}>
-                                <div  onClick={()=> alert("Coming Soon :)")}>
+                                <div onClick={() => alert("Coming Soon :)")}>
                                     <Card className="primaryCardDesign">
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>

@@ -21,7 +21,7 @@ class AppRoute extends Component {
                     <Route exact path="/student" component={StudentPage}/>
                     <Route exact path="/assignment/:courseId" component={AssignmentPage}/>
                     <Route exact path="/resource" component={ResourcePage}/>
-                    <Route exact path="/announcement/:courseId" component={AnnouncementPage}/>
+                    <Route exact path="/announcement" component={AnnouncementPage}/>
                 </Switch>
             </Fragment>
         );

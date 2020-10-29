@@ -9,13 +9,16 @@ export default class AnnouncementPage extends Component {
             courseId:match.params.courseId
         }
     }
+    componentDidMount() {
+        // alert(this.props.location.state.courseId)
+    }
 
     render() {
         return (
             <Fragment>
                 <TopNavigation2 />
                 <br/> <br/> <br/>
-                <Announcement courseId={this.state.courseId}/>
+                <Announcement courseId={this.props.location.state.courseId}/>
             </Fragment>
         )
     }

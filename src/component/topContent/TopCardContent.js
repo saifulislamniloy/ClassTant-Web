@@ -239,7 +239,10 @@ export default class TopCardContent extends Component {
                             {/* Assignments */}
                             <Col sm={6} md={6} lg={4}>
                                 <div>
-                                    <Link to={"/assignment/" + this.state.selectedCourseId} className="link">
+                                    <Link to={{
+                                        pathname:"/assignment",
+                                        state:{courseId: this.state.selectedCourseId}
+                                    }} className="link">
                                         <Card className="primaryCardDesign">
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>

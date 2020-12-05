@@ -8,11 +8,11 @@ class SingleClassSchedule extends Component {
                 <Container className="class-schedule-card">
                     <Row>
                         <Col sm={12} md={12} lg={12}>
-                            <Card className="over-all">
+                            <Card className="over-all m-1">
                                 <Card.Header>
                                     <Row>
                                         <Col lg={10} md={10} sm={10}>
-                                            <p>{this.props.postTime}</p>
+                                            <p>{this.props.classTime}</p>
                                         </Col>
                                         <Col lg={2} md={2} sm={2}>
                                             <Dropdown>

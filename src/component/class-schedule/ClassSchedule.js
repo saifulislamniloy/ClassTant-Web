@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Datetime from "react-datetime";
 import firebase from "firebase";
-import SingleAssignment from "../assignment/SingleAssignment";
 import SingleClassSchedule from "./SingleClassSchedule";
 
 class ClassSchedule extends Component {
@@ -47,7 +46,7 @@ class ClassSchedule extends Component {
                             description={classSchedules[classScheduleId]["description"]}
                             postedBy={classSchedules[classScheduleId]["postedBy"]}
                             postTime={classSchedules[classScheduleId]["placeTime"]}
-                            deadline={classSchedules[classScheduleId]["time"]}
+                            classTime={classSchedules[classScheduleId]["time"]}
                         />
                     )
                 })
@@ -62,7 +61,7 @@ class ClassSchedule extends Component {
         let authorId = this.state.uid
         let classId = deadlineTime
         let description = document.getElementById("des").value
-        let placeTime = new Date().getTime().toString()
+        let placeTime = new Date().toString()
         let postedBy = this.state.name
         let deadline = this.state.deadline + ""
 

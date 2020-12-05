@@ -8,6 +8,7 @@ import AssignmentPage from '../page/AssignmentPage';
 import ResourcePage from '../page/ResourcePage';
 import ProfilePage from '../page/ProfilePage';
 import AnnouncementPage from "../page/AnnouncementPage";
+import ClassSchedulePage from "../page/ClassSchedulePage";
 
 class AppRoute extends Component {
     render() {
@@ -22,6 +23,7 @@ class AppRoute extends Component {
                     <Route exact path="/assignment" component={AssignmentPage}/>
                     <Route exact path="/resource" component={ResourcePage}/>
                     <Route exact path="/announcement" component={AnnouncementPage}/>
+                    <Route exact path="/class-schedule" component={ClassSchedulePage}/>
                 </Switch>
             </Fragment>
         );

@@ -240,8 +240,8 @@ export default class TopCardContent extends Component {
                             <Col sm={6} md={6} lg={4}>
                                 <div>
                                     <Link to={{
-                                        pathname:"/assignment",
-                                        state:{courseId: this.state.selectedCourseId}
+                                        pathname: "/assignment",
+                                        state: {courseId: this.state.selectedCourseId}
                                     }} className="link">
                                         <Card className="primaryCardDesign">
                                             <Card.Header className="primaryCardHeader">
@@ -273,17 +273,22 @@ export default class TopCardContent extends Component {
                             </Col>
                             {/* Class Schedule */}
                             <Col sm={6} md={6} lg={4}>
-                                <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign">
-                                        <Card.Header className="primaryCardHeader">
-                                            <Card.Title>
-                                                Class Schedule
-                                            </Card.Title>
-                                        </Card.Header>
-                                        <Card.Body className="primaryCardBody">
-                                            Schedule your whole course or edit your class time
-                                        </Card.Body>
-                                    </Card>
+                                <div>
+                                    <Link to={{
+                                        pathname: "/class-schedule",
+                                        state: {courseId: this.state.selectedCourseId}
+                                    }} className="link">
+                                        <Card className="primaryCardDesign">
+                                            <Card.Header className="primaryCardHeader">
+                                                <Card.Title>
+                                                    Class Schedule
+                                                </Card.Title>
+                                            </Card.Header>
+                                            <Card.Body className="primaryCardBody">
+                                                Schedule your whole course or edit your class time
+                                            </Card.Body>
+                                        </Card>
+                                    </Link>
                                 </div>
                             </Col>
                             {/* Marks */}

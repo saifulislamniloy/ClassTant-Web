@@ -3,6 +3,7 @@ import {Button, Card, Col, Dropdown, Form, Row} from "react-bootstrap";
 import {getDateTime} from "../../functions/UnixToDateTime";
 import Datetime from "react-datetime";
 import firebase from "firebase";
+import DeleteCard from "../common/DeleteCard";
 
 
 class SingleAssignment extends Component {
@@ -130,9 +131,7 @@ class SingleAssignment extends Component {
             <Fragment>
                 {
                     this.state.isDeleted ?
-                        <Card className="deletedCard">
-                            <Card.Title>Deleted</Card.Title>
-                        </Card>
+                        <DeleteCard/>
                         :
                         <Card className="topCardDesign">
                             <Card.Header>

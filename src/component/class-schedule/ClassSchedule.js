@@ -2,6 +2,8 @@ import React, {Component, Fragment} from 'react';
 import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
 import Datetime from "react-datetime";
 import firebase from "firebase";
+import SingleAssignment from "../assignment/SingleAssignment";
+import SingleClassSchedule from "./SingleClassSchedule";
 
 class ClassSchedule extends Component {
     constructor() {
@@ -20,6 +22,37 @@ class ClassSchedule extends Component {
         if (user !== null) {
             this.setState({uid: user.uid, name: user.name})
         }
+        this.getClassScheduleList()
+    }
+
+
+    getClassScheduleList() {
+        const db = firebase.database();
+        db.ref("Courses/" + this.props.courseId + "/classSchedules").once("value")
+            .then(snapshot => {
+
+                const classSchedules = snapshot.val();
+                console.log(classSchedules)
+                const classScheduleId = []
+                for (let key in classSchedules) {
+                    classScheduleId.push(key)
+                }
+
+                const view = classScheduleId.slice(0).reverse().map(classScheduleId => {
+                    return (
+                        <SingleClassSchedule
+                            id={classSchedules[classScheduleId]["classId"]}
+                            courseId={this.props.courseId}
+                            authorId={this.state.uid}
+                            description={classSchedules[classScheduleId]["description"]}
+                            postedBy={classSchedules[classScheduleId]["postedBy"]}
+                            postTime={classSchedules[classScheduleId]["placeTime"]}
+                            deadline={classSchedules[classScheduleId]["time"]}
+                        />
+                    )
+                })
+                this.setState({classScheduleView: view, loading: false})
+            })
     }
 
     postClassSchedule() {

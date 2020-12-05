@@ -91,7 +91,7 @@ class ClassSchedule extends Component {
             alert("Something went wrong! Pleas sign in again.")
         }
         if(deadline.length <12){
-            alert("Please Set Deadline.")
+            alert("Please Set Class Time.")
             result = false
         }
         return result
@@ -112,7 +112,7 @@ class ClassSchedule extends Component {
                                 </Form>
                                 <Row>
                                     <Col sm={3} md={3} lg={3}>
-                                        <Form.Label>Deadline</Form.Label>
+                                        <Form.Label>Class Time</Form.Label>
                                     </Col>
                                     <Col sm={9} md={9} lg={9}>
                                         <Datetime

@@ -223,7 +223,7 @@ export default class TopCardContent extends Component {
                                         state: {courseId: this.state.selectedCourseId}
                                     }}
                                           className="link">
-                                        <Card className="primaryCardDesign">
+                                        <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
                                                     Announcement
@@ -243,7 +243,7 @@ export default class TopCardContent extends Component {
                                         pathname: "/assignment",
                                         state: {courseId: this.state.selectedCourseId}
                                     }} className="link">
-                                        <Card className="primaryCardDesign">
+                                        <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
                                                     Assignments
@@ -259,7 +259,7 @@ export default class TopCardContent extends Component {
                             {/* DIscussion */}
                             <Col sm={6} md={6} lg={4}>
                                 <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign">
+                                    <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
                                                 Discussion
@@ -278,7 +278,7 @@ export default class TopCardContent extends Component {
                                         pathname: "/class-schedule",
                                         state: {courseId: this.state.selectedCourseId}
                                     }} className="link">
-                                        <Card className="primaryCardDesign">
+                                        <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
                                             <Card.Header className="primaryCardHeader">
                                                 <Card.Title>
                                                     Class Schedule
@@ -294,7 +294,7 @@ export default class TopCardContent extends Component {
                             {/* Marks */}
                             <Col sm={6} md={6} lg={4}>
                                 <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign">
+                                    <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
                                                 Marks
@@ -309,7 +309,7 @@ export default class TopCardContent extends Component {
                             {/* Appointments */}
                             <Col sm={6} md={6} lg={4}>
                                 <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign">
+                                    <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
                                                 Appointments

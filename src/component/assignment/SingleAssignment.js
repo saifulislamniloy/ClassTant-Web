@@ -5,11 +5,15 @@ import Datetime from "react-datetime";
 import firebase from "firebase";
 import DeleteCard from "../common/DeleteCard";
 import EmptySpace from "../common/EmptySpace";
+import CardOptions from "../common/CardOptions";
 
 
 class SingleAssignment extends Component {
     constructor() {
         super();
+        this.handleEditClick = this.handleEditClick.bind(this);
+        this.handleDeleteClick = this.handleDeleteClick.bind(this);
+
         this.state = {
             editMode: false,
             isDeleted: false,
@@ -112,7 +116,7 @@ class SingleAssignment extends Component {
         return result
     }
 
-    deleteSingleAssignment() {
+    handleDeleteClick() {
         let isConfirmed = window.confirm("Do you confirm to delete: " + this.state.title + "?");
         if (isConfirmed) {
             const db = firebase.database();
@@ -125,6 +129,10 @@ class SingleAssignment extends Component {
                     }
                 })
         }
+    }
+
+    handleEditClick() {
+        this.setState({editMode: true})
     }
 
     render() {
@@ -174,22 +182,9 @@ class SingleAssignment extends Component {
                                             this.state.editMode ?
                                                 <EmptySpace/>
                                                 :
-                                                <Dropdown>
-                                                    <Dropdown.Toggle variant="primary">
-                                                    </Dropdown.Toggle>
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item onClick={() => {
-                                                            this.setState({editMode: true})
-                                                        }}>
-                                                            Edit
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item onClick={() => {
-                                                            this.deleteSingleAssignment()
-                                                        }}>
-                                                            Delete
-                                                        </Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
+                                                <CardOptions
+                                                    onEditModeChange={this.handleEditClick}
+                                                    onDelete={this.handleDeleteClick}/>
                                         }
                                     </Col>
                                 </Row>
@@ -261,5 +256,6 @@ class SingleAssignment extends Component {
         );
     }
 }
+
 
 export default SingleAssignment;

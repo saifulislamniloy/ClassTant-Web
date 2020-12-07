@@ -6,6 +6,7 @@ import firebase from "firebase";
 import DeleteCard from "../common/DeleteCard";
 import EmptySpace from "../common/EmptySpace";
 import CardOptions from "../common/CardOptions";
+import AssignmentCardHeader from "./AssignmentCardHeader";
 
 
 class SingleAssignment extends Component {
@@ -172,10 +173,9 @@ class SingleAssignment extends Component {
                                                 </Row>
                                             </Col>
                                             :
-                                            <Col sm={6} md={10} lg={10} className="cardTitle">
-                                                <p className="cardTitle">{this.state.title}</p>
-                                                <p className="cardFooter">{"~Deadline: " + this.state.deadline}</p>
-                                            </Col>
+                                            <AssignmentCardHeader
+                                                title={this.state.title}
+                                                deadline={this.state.deadline}/>
                                     }
                                     <Col sm={6} md={2} lg={2}>
                                         {

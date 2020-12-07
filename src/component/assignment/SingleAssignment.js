@@ -8,6 +8,7 @@ import EmptySpace from "../common/EmptySpace";
 import CardOptions from "../common/CardOptions";
 import AssignmentCardHeader from "./AssignmentCardHeader";
 import AssignmentCardHeaderEditMode from "./AssignmentCardHeaderEditMode";
+import AssignmentCardFooter from "./AssignmentCardFooter";
 
 
 class SingleAssignment extends Component {
@@ -235,14 +236,9 @@ class SingleAssignment extends Component {
                                             </Col>
                                         </Row>
                                         :
-                                        <Row>
-                                            <Col sm={6} md={6} lg={6}>
-                                                <p className="cardFooter">~Author: {this.props.postedBy}</p>
-                                            </Col>
-                                            <Col sm={6} md={6} lg={6}>
-                                                <p className="cardFooter">{"~Posted on: " + getDateTime(this.props.postTime)}</p>
-                                            </Col>
-                                        </Row>
+                                        <AssignmentCardFooter
+                                            postedBy={this.props.postedBy}
+                                            postTime={this.props.postTime}/>
                                 }
                             </Card.Footer>
                         </Card>

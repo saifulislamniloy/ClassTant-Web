@@ -9,6 +9,7 @@ import CardOptions from "../common/CardOptions";
 import AssignmentCardHeader from "./AssignmentCardHeader";
 import AssignmentCardHeaderEditMode from "./AssignmentCardHeaderEditMode";
 import AssignmentCardFooter from "./AssignmentCardFooter";
+import AssignmentCardFooterEditMode from "./AssignmentCardFooterEditMode";
 
 
 class SingleAssignment extends Component {
@@ -19,6 +20,9 @@ class SingleAssignment extends Component {
 
         this.handleHeaderChange = this.handleHeaderChange.bind(this);
         this.handleDeadlineChange = this.handleDeadlineChange.bind(this);
+
+        this.handleCancelClick = this.handleCancelClick.bind(this);
+        this.handleUpdateClick = this.handleUpdateClick.bind(this);
 
         this.state = {
             editMode: false,
@@ -152,6 +156,16 @@ class SingleAssignment extends Component {
         })
     }
 
+    handleCancelClick(){
+        this.setState({editMode: false})
+        this.getSingleAssignment()
+    }
+
+    handleUpdateClick(){
+        this.setState({editMode: false})
+        this.updateSingleAssignment()
+    }
+
     render() {
         return (
             <Fragment>
@@ -216,25 +230,10 @@ class SingleAssignment extends Component {
                             }
                             <Card.Footer>
                                 {
-                                    this.state.editMode
-                                        ?
-                                        <Row>
-                                            <Col>
-                                                <Button
-                                                    onClick={() => {
-                                                        this.setState({editMode: false})
-                                                        this.getSingleAssignment()
-                                                    }}>Cancel</Button>
-                                            </Col>
-                                            <Col>
-                                                <Button
-                                                    onClick={() => {
-                                                        this.setState({editMode: false})
-                                                        this.updateSingleAssignment()
-                                                        // this.getSingleAssignment()
-                                                    }}>Update</Button>
-                                            </Col>
-                                        </Row>
+                                    this.state.editMode ?
+                                        <AssignmentCardFooterEditMode
+                                            onCancel={this.handleCancelClick}
+                                            onUpdate={this.handleUpdateClick}/>
                                         :
                                         <AssignmentCardFooter
                                             postedBy={this.props.postedBy}

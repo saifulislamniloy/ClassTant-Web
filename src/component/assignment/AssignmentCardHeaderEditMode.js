@@ -19,7 +19,7 @@ class AssignmentCardHeaderEditMode extends Component {
 
     render() {
         return (
-            <Col sm={6} md={10} lg={10}>
+            <div>
                 <Form.Group className="cardTitle">
                     <Form.Control id="header" type="text" placeholder="Header"
                                   value={this.props.title}
@@ -37,7 +37,7 @@ class AssignmentCardHeaderEditMode extends Component {
                         />
                     </Col>
                 </Row>
-            </Col>
+            </div>
         );
     }
 }

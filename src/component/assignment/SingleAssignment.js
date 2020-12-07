@@ -173,29 +173,33 @@ class SingleAssignment extends Component {
                         :
                         <Card className="topCardDesign">
                             <Card.Header>
-                                <Row>
-                                    {
-                                        this.state.editMode ?
-                                            <AssignmentCardHeaderEditMode
-                                                title={this.state.title}
-                                                onHeaderChange={this.handleHeaderChange}
-                                                onDeadlineChange={this.handleDeadlineChange}/>
-                                            :
-                                            <AssignmentCardHeader
-                                                title={this.state.title}
-                                                deadline={this.state.deadline}/>
-                                    }
-                                    <Col sm={6} md={2} lg={2}>
-                                        {
-                                            this.state.editMode ?
+                                {
+                                    this.state.editMode ?
+                                        <Row>
+                                            <Col sm={6} md={10} lg={10}>
+                                                <AssignmentCardHeaderEditMode
+                                                    title={this.state.title}
+                                                    onHeaderChange={this.handleHeaderChange}
+                                                    onDeadlineChange={this.handleDeadlineChange}/>
+                                            </Col>
+                                            <Col sm={6} md={2} lg={2}>
                                                 <EmptySpace/>
-                                                :
+                                            </Col>
+                                        </Row>
+                                        :
+                                        <Row>
+                                            <Col sm={6} md={10} lg={10}>
+                                                <AssignmentCardHeader
+                                                    title={this.state.title}
+                                                    deadline={this.state.deadline}/>
+                                            </Col>
+                                            <Col sm={6} md={2} lg={2}>
                                                 <CardOptions
                                                     onEditModeChange={this.handleEditClick}
                                                     onDelete={this.handleDeleteClick}/>
-                                        }
-                                    </Col>
-                                </Row>
+                                            </Col>
+                                        </Row>
+                                }
                             </Card.Header>
                             {
                                 this.state.editMode

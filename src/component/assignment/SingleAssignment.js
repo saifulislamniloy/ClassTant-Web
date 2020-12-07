@@ -8,6 +8,7 @@ import AssignmentCardHeader from "./AssignmentCardHeader";
 import AssignmentCardHeaderEditMode from "./AssignmentCardHeaderEditMode";
 import AssignmentCardFooter from "./AssignmentCardFooter";
 import AssignmentCardFooterEditMode from "./AssignmentCardFooterEditMode";
+import AssignmentCardBody from "./AssignmentCardBody";
 
 
 class SingleAssignment extends Component {
@@ -143,23 +144,23 @@ class SingleAssignment extends Component {
         this.setState({editMode: true})
     }
 
-    handleHeaderChange(text){
+    handleHeaderChange(text) {
         this.setState({title: text.target.value})
     }
 
-    handleDeadlineChange(date){
+    handleDeadlineChange(date) {
         this.setState({
             isDeadlineChanged: true,
             deadline: date._d
         })
     }
 
-    handleCancelClick(){
+    handleCancelClick() {
         this.setState({editMode: false})
         this.getSingleAssignment()
     }
 
-    handleUpdateClick(){
+    handleUpdateClick() {
         this.setState({editMode: false})
         this.updateSingleAssignment()
     }
@@ -224,10 +225,9 @@ class SingleAssignment extends Component {
                                     </Card.Body>
                                     :
                                     <Card.Body>
-                                        <p className="cardBody alignLeft">{this.state.description}</p>
-
-                                        <a href={"https://" + this.state.link}
-                                           target="#">{this.state.link}</a>
+                                        <AssignmentCardBody
+                                            description={this.state.description}
+                                            link={this.state.link}/>
                                     </Card.Body>
                             }
                             <Card.Footer>

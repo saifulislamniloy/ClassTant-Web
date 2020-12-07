@@ -9,6 +9,7 @@ import AssignmentCardHeaderEditMode from "./AssignmentCardHeaderEditMode";
 import AssignmentCardFooter from "./AssignmentCardFooter";
 import AssignmentCardFooterEditMode from "./AssignmentCardFooterEditMode";
 import AssignmentCardBody from "./AssignmentCardBody";
+import AssignmentCardBodyEditMode from "./AssignmentCardBodyEditMode";
 
 
 class SingleAssignment extends Component {
@@ -19,6 +20,9 @@ class SingleAssignment extends Component {
 
         this.handleHeaderChange = this.handleHeaderChange.bind(this);
         this.handleDeadlineChange = this.handleDeadlineChange.bind(this);
+
+        this.handleDescriptionChange = this.handleDescriptionChange.bind(this);
+        this.handleLinkChange = this.handleLinkChange.bind(this);
 
         this.handleCancelClick = this.handleCancelClick.bind(this);
         this.handleUpdateClick = this.handleUpdateClick.bind(this);
@@ -155,6 +159,14 @@ class SingleAssignment extends Component {
         })
     }
 
+    handleDescriptionChange(des){
+        this.setState({description: des.target.value})
+    }
+
+    handleLinkChange(link){
+        this.setState({link: link.target.value})
+    }
+
     handleCancelClick() {
         this.setState({editMode: false})
         this.getSingleAssignment()
@@ -206,22 +218,11 @@ class SingleAssignment extends Component {
                                 this.state.editMode
                                     ?
                                     <Card.Body>
-                                        <Form>
-                                            <Form.Group>
-                                                <Form.Control id="des" as="textarea" rows={3} placeholder="Description"
-                                                              value={this.state.description}
-                                                              onChange={(des) => {
-                                                                  this.setState({description: des.target.value})
-                                                              }}/>
-                                            </Form.Group>
-                                            <Form.Group>
-                                                <Form.Control id="link" type="text" placeholder="Link (Optional)"
-                                                              value={this.state.link}
-                                                              onChange={(link) => {
-                                                                  this.setState({link: link.target.value})
-                                                              }}/>
-                                            </Form.Group>
-                                        </Form>
+                                        <AssignmentCardBodyEditMode
+                                            description={this.state.description}
+                                            link={this.state.link}
+                                            onDescriptionChange={this.handleDescriptionChange}
+                                            onLinkChange={this.handleLinkChange}/>
                                     </Card.Body>
                                     :
                                     <Card.Body>

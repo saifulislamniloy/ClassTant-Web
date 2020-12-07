@@ -4,6 +4,7 @@ import {getDateTime} from "../../functions/UnixToDateTime";
 import Datetime from "react-datetime";
 import firebase from "firebase";
 import DeleteCard from "../common/DeleteCard";
+import EmptySpace from "../common/EmptySpace";
 
 
 class SingleAssignment extends Component {
@@ -171,7 +172,7 @@ class SingleAssignment extends Component {
                                     <Col sm={6} md={2} lg={2}>
                                         {
                                             this.state.editMode ?
-                                                <h1></h1>
+                                                <EmptySpace/>
                                                 :
                                                 <Dropdown>
                                                     <Dropdown.Toggle variant="primary">

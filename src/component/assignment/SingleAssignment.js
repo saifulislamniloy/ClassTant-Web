@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Card, Col, Form, Row} from "react-bootstrap";
+import {Card, Col, Row} from "react-bootstrap";
 import firebase from "firebase";
 import DeleteCard from "../common/DeleteCard";
 import EmptySpace from "../common/EmptySpace";
@@ -159,11 +159,11 @@ class SingleAssignment extends Component {
         })
     }
 
-    handleDescriptionChange(des){
+    handleDescriptionChange(des) {
         this.setState({description: des.target.value})
     }
 
-    handleLinkChange(link){
+    handleLinkChange(link) {
         this.setState({link: link.target.value})
     }
 
@@ -214,23 +214,21 @@ class SingleAssignment extends Component {
                                         </Row>
                                 }
                             </Card.Header>
-                            {
-                                this.state.editMode
-                                    ?
-                                    <Card.Body>
+                            <Card.Body>
+                                {
+                                    this.state.editMode
+                                        ?
                                         <AssignmentCardBodyEditMode
                                             description={this.state.description}
                                             link={this.state.link}
                                             onDescriptionChange={this.handleDescriptionChange}
                                             onLinkChange={this.handleLinkChange}/>
-                                    </Card.Body>
-                                    :
-                                    <Card.Body>
+                                        :
                                         <AssignmentCardBody
                                             description={this.state.description}
                                             link={this.state.link}/>
-                                    </Card.Body>
-                            }
+                                }
+                            </Card.Body>
                             <Card.Footer>
                                 {
                                     this.state.editMode ?

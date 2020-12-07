@@ -7,6 +7,7 @@ import DeleteCard from "../common/DeleteCard";
 import EmptySpace from "../common/EmptySpace";
 import CardOptions from "../common/CardOptions";
 import AssignmentCardHeader from "./AssignmentCardHeader";
+import AssignmentCardHeaderEditMode from "./AssignmentCardHeaderEditMode";
 
 
 class SingleAssignment extends Component {
@@ -14,6 +15,9 @@ class SingleAssignment extends Component {
         super();
         this.handleEditClick = this.handleEditClick.bind(this);
         this.handleDeleteClick = this.handleDeleteClick.bind(this);
+
+        this.handleHeaderChange = this.handleHeaderChange.bind(this);
+        this.handleDeadlineChange = this.handleDeadlineChange.bind(this);
 
         this.state = {
             editMode: false,
@@ -136,6 +140,17 @@ class SingleAssignment extends Component {
         this.setState({editMode: true})
     }
 
+    handleHeaderChange(text){
+        this.setState({title: text.target.value})
+    }
+
+    handleDeadlineChange(date){
+        this.setState({
+            isDeadlineChanged: true,
+            deadline: date._d
+        })
+    }
+
     render() {
         return (
             <Fragment>
@@ -148,30 +163,10 @@ class SingleAssignment extends Component {
                                 <Row>
                                     {
                                         this.state.editMode ?
-                                            <Col sm={6} md={10} lg={10}>
-                                                <Form.Group className="cardTitle">
-                                                    <Form.Control id="header" type="text" placeholder="Header"
-                                                                  value={this.state.title}
-                                                                  onChange={(text) => {
-                                                                      this.setState({title: text.target.value})
-                                                                  }}/>
-                                                </Form.Group>
-                                                <Row>
-                                                    <Col sm={3} md={3} lg={3}>
-                                                        <Form.Label>Deadline</Form.Label>
-                                                    </Col>
-                                                    <Col sm={9} md={9} lg={9}>
-                                                        <Datetime
-                                                            dateFormat="MMMM DD, YYYY"
-                                                            id="date"
-                                                            onChange={(date) => this.setState({
-                                                                isDeadlineChanged: true,
-                                                                deadline: date._d
-                                                            })}
-                                                        />
-                                                    </Col>
-                                                </Row>
-                                            </Col>
+                                            <AssignmentCardHeaderEditMode
+                                                title={this.state.title}
+                                                onHeaderChange={this.handleHeaderChange}
+                                                onDeadlineChange={this.handleDeadlineChange}/>
                                             :
                                             <AssignmentCardHeader
                                                 title={this.state.title}

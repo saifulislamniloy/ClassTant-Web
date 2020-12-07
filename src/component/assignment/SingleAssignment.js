@@ -1,7 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Button, Card, Col, Dropdown, Form, Row} from "react-bootstrap";
-import {getDateTime} from "../../functions/UnixToDateTime";
-import Datetime from "react-datetime";
+import {Card, Col, Form, Row} from "react-bootstrap";
 import firebase from "firebase";
 import DeleteCard from "../common/DeleteCard";
 import EmptySpace from "../common/EmptySpace";

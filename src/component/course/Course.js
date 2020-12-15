@@ -27,7 +27,7 @@ class Course extends Component {
 
     getCourseList() {
         const db = firebase.database();
-        db.ref("Teachers/" + this.state.uid + "/courseList").once("value")
+        db.ref("Users/" + this.state.uid + "/courseList").once("value")
             .then(snapshot => {
 
                 const courses = snapshot.val();
@@ -78,7 +78,7 @@ class Course extends Component {
 
         if(validationResult){
             firebase.database().ref("Courses").child(courseKey).child("courseInfo").update(JsonObject);
-            firebase.database().ref("Teachers").child(teacherID).child("courseList").child(courseKey).update(JsonObject).then(onerror=>{
+            firebase.database().ref("Users").child(teacherID).child("courseList").child(courseKey).update(JsonObject).then(onerror=>{
                 if(onerror)
                     alert("Course Creation Failed!")
                 else

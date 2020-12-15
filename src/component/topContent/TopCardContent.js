@@ -34,7 +34,7 @@ export default class TopCardContent extends Component {
 
     getCourseList() {
         const db = firebase.database();
-        db.ref("Teachers/" + this.state.uid + "/courseList").once("value")
+        db.ref("Users/" + this.state.uid + "/courseList").once("value")
             .then(snapshot => {
 
                 const courses = snapshot.val();

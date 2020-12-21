@@ -1,10 +1,12 @@
-import React, {Component} from 'react'
-import {Fragment} from 'react'
-import {Card, Container, Row, Col, Dropdown, Button, Form, Image} from 'react-bootstrap'
+import React, { Component } from 'react'
+import { Fragment } from 'react'
+import { Card, Container, Row, Col, Dropdown, Button, Form, Image } from 'react-bootstrap'
 import "../../asset/css/text.css"
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import firebase from "firebase";
 import happyEmoji from "../../asset/icon/happy.svg";
+import CourseList from './CourseList';
+import { CourseProvider, CourseContext } from '../../providers/CourseProvider'
 
 export default class TopCardContent extends Component {
     constructor(props) {
@@ -27,8 +29,7 @@ export default class TopCardContent extends Component {
     async componentDidMount() {
         let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
         if (user !== null) {
-            this.setState({uid: user.uid})
-            this.getCourseList()
+            this.setState({ uid: user.uid })
         }
     }
 
@@ -64,7 +65,7 @@ export default class TopCardContent extends Component {
                         </Dropdown.Item>
                     )
                 })
-                this.setState({courseListView: view})
+                this.setState({ courseListView: view })
             })
     }
 
@@ -75,7 +76,7 @@ export default class TopCardContent extends Component {
                 let link = snapshot.val().classLink
                 console.log(snapshot.val())
                 if (link !== undefined)
-                    this.setState({classLink: link})
+                    this.setState({ classLink: link })
             })
     }
 
@@ -83,7 +84,7 @@ export default class TopCardContent extends Component {
         const db = firebase.database();
         if (this.state.selectedCourseId !== "")
             db.ref("Courses/" + this.state.selectedCourseId + "/courseInfo")
-                .update({"classLink": document.getElementById("classLink").value},
+                .update({ "classLink": document.getElementById("classLink").value },
                     function (error) {
                         if (error)
                             alert("failed")
@@ -106,15 +107,22 @@ export default class TopCardContent extends Component {
                                     <Row>
                                         <Col sm={12} md={12} lg={12} className="mb-5">
                                             <p className="moto">Bring Your Academics in One App </p>
-                                            <Dropdown>
+                                            {/* <Dropdown>
                                                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
                                                     {this.state.selectedCourse}
                                                 </Dropdown.Toggle>
                                                 <Dropdown.Menu>
                                                     {this.state.courseListView}
                                                 </Dropdown.Menu>
-                                            </Dropdown>
-
+                                            </Dropdown> */}
+                                            <CourseProvider>
+                                                <CourseList uid={this.state.uid}/>
+                                                <CourseContext.Consumer>
+                                                    {(course) => (
+                                                        <h1>{"hello " + course.isCourseSelected}</h1>
+                                                    )}
+                                                </CourseContext.Consumer>
+                                            </CourseProvider>
                                         </Col>
                                         <Col sm={12} md={12} lg={12}>
                                             {
@@ -129,7 +137,7 @@ export default class TopCardContent extends Component {
 
                                                             <Card.Title className="courseSecret">
                                                                 Course Secret: <p
-                                                                style={{color: "#007BFF"}}>{this.state.selectedCourseId}</p>
+                                                                    style={{ color: "#007BFF" }}>{this.state.selectedCourseId}</p>
                                                             </Card.Title>
                                                         </Card.Header>
                                                         <Card.Body>
@@ -142,14 +150,14 @@ export default class TopCardContent extends Component {
                                                                                     {
                                                                                         this.state.classLink.length > 0 ?
                                                                                             <Form.Control id="classLink"
-                                                                                                          type="text"
-                                                                                                          value={this.state.classLink}
-                                                                                                          onChange={(text) =>
-                                                                                                              this.setState({classLink: text})}/>
+                                                                                                type="text"
+                                                                                                value={this.state.classLink}
+                                                                                                onChange={(text) =>
+                                                                                                    this.setState({ classLink: text })} />
                                                                                             :
                                                                                             <Form.Control id="classLink"
-                                                                                                          type="text"
-                                                                                                          placeholder="Enter Class link (Complete URL)"/>
+                                                                                                type="text"
+                                                                                                placeholder="Enter Class link (Complete URL)" />
                                                                                     }
                                                                                 </Form.Group>
                                                                             </Form>
@@ -186,13 +194,13 @@ export default class TopCardContent extends Component {
                                                                                 <Card.Title
                                                                                     className="classLink pt-2">
                                                                                     Class Link: <a
-                                                                                    href={this.state.classLink}
-                                                                                    target="#">{this.state.classLink}</a>
+                                                                                        href={this.state.classLink}
+                                                                                        target="#">{this.state.classLink}</a>
                                                                                 </Card.Title>
                                                                             </Col>
                                                                             <Col sm={2} md={2} lg={2}>
                                                                                 <Button onClick={() => {
-                                                                                    this.setState({editMode: true})
+                                                                                    this.setState({ editMode: true })
                                                                                 }}>
                                                                                     Edit
                                                                                 </Button>
@@ -215,113 +223,113 @@ export default class TopCardContent extends Component {
 
                     </Row>
                     {this.state.isCourseSelected ? <Row>
-                            {/* Annoucnement */}
-                            <Col sm={6} md={6} lg={4}>
-                                <div>
-                                    <Link to={{
-                                        pathname: "/announcement",
-                                        state: {courseId: this.state.selectedCourseId}
-                                    }}
-                                          className="link">
-                                        <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
-                                            <Card.Header className="primaryCardHeader">
-                                                <Card.Title>
-                                                    Announcement
-                                                </Card.Title>
-                                            </Card.Header>
-                                            <Card.Body className="primaryCardBody">
-                                                A declaration you want to share among the class
-                                            </Card.Body>
-                                        </Card>
-                                    </Link>
-                                </div>
-                            </Col>
-                            {/* Assignments */}
-                            <Col sm={6} md={6} lg={4}>
-                                <div>
-                                    <Link to={{
-                                        pathname: "/assignment",
-                                        state: {courseId: this.state.selectedCourseId}
-                                    }} className="link">
-                                        <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
-                                            <Card.Header className="primaryCardHeader">
-                                                <Card.Title>
-                                                    Assignments
-                                                </Card.Title>
-                                            </Card.Header>
-                                            <Card.Body className="primaryCardBody">
-                                                A declaration you want to share among the class
-                                            </Card.Body>
-                                        </Card>
-                                    </Link>
-                                </div>
-                            </Col>
-                            {/* DIscussion */}
-                            <Col sm={6} md={6} lg={4}>
-                                <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
+                        {/* Annoucnement */}
+                        <Col sm={6} md={6} lg={4}>
+                            <div>
+                                <Link to={{
+                                    pathname: "/announcement",
+                                    state: { courseId: this.state.selectedCourseId }
+                                }}
+                                    className="link">
+                                    <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
-                                                Discussion
-                                            </Card.Title>
-                                        </Card.Header>
-                                        <Card.Body className="primaryCardBody">
-                                            A conversion or a debate about specific topic
-                                        </Card.Body>
-                                    </Card>
-                                </div>
-                            </Col>
-                            {/* Class Schedule */}
-                            <Col sm={6} md={6} lg={4}>
-                                <div>
-                                    <Link to={{
-                                        pathname: "/class-schedule",
-                                        state: {courseId: this.state.selectedCourseId}
-                                    }} className="link">
-                                        <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
-                                            <Card.Header className="primaryCardHeader">
-                                                <Card.Title>
-                                                    Class Schedule
+                                                Announcement
                                                 </Card.Title>
-                                            </Card.Header>
-                                            <Card.Body className="primaryCardBody">
-                                                Schedule your whole course or edit your class time
+                                        </Card.Header>
+                                        <Card.Body className="primaryCardBody">
+                                            A declaration you want to share among the class
                                             </Card.Body>
-                                        </Card>
-                                    </Link>
-                                </div>
-                            </Col>
-                            {/* Marks */}
-                            <Col sm={6} md={6} lg={4}>
-                                <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
+                                    </Card>
+                                </Link>
+                            </div>
+                        </Col>
+                        {/* Assignments */}
+                        <Col sm={6} md={6} lg={4}>
+                            <div>
+                                <Link to={{
+                                    pathname: "/assignment",
+                                    state: { courseId: this.state.selectedCourseId }
+                                }} className="link">
+                                    <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
-                                                Marks
-                                            </Card.Title>
+                                                Assignments
+                                                </Card.Title>
                                         </Card.Header>
                                         <Card.Body className="primaryCardBody">
-                                            Let your student know about their performance
-                                        </Card.Body>
+                                            A declaration you want to share among the class
+                                            </Card.Body>
                                     </Card>
-                                </div>
-                            </Col>
-                            {/* Appointments */}
-                            <Col sm={6} md={6} lg={4}>
-                                <div onClick={() => alert("Coming Soon :)")}>
-                                    <Card className="primaryCardDesign" onContextMenu={e=>e.preventDefault()}>
+                                </Link>
+                            </div>
+                        </Col>
+                        {/* DIscussion */}
+                        <Col sm={6} md={6} lg={4}>
+                            <div onClick={() => alert("Coming Soon :)")}>
+                                <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Discussion
+                                            </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
+                                        A conversion or a debate about specific topic
+                                        </Card.Body>
+                                </Card>
+                            </div>
+                        </Col>
+                        {/* Class Schedule */}
+                        <Col sm={6} md={6} lg={4}>
+                            <div>
+                                <Link to={{
+                                    pathname: "/class-schedule",
+                                    state: { courseId: this.state.selectedCourseId }
+                                }} className="link">
+                                    <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
                                         <Card.Header className="primaryCardHeader">
                                             <Card.Title>
-                                                Appointments
-                                            </Card.Title>
+                                                Class Schedule
+                                                </Card.Title>
                                         </Card.Header>
                                         <Card.Body className="primaryCardBody">
-                                            Student may get stuck, they want to talk to you personally.
-                                        </Card.Body>
+                                            Schedule your whole course or edit your class time
+                                            </Card.Body>
                                     </Card>
-                                </div>
-                            </Col>
-                        </Row>
+                                </Link>
+                            </div>
+                        </Col>
+                        {/* Marks */}
+                        <Col sm={6} md={6} lg={4}>
+                            <div onClick={() => alert("Coming Soon :)")}>
+                                <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Marks
+                                            </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
+                                        Let your student know about their performance
+                                        </Card.Body>
+                                </Card>
+                            </div>
+                        </Col>
+                        {/* Appointments */}
+                        <Col sm={6} md={6} lg={4}>
+                            <div onClick={() => alert("Coming Soon :)")}>
+                                <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
+                                    <Card.Header className="primaryCardHeader">
+                                        <Card.Title>
+                                            Appointments
+                                            </Card.Title>
+                                    </Card.Header>
+                                    <Card.Body className="primaryCardBody">
+                                        Student may get stuck, they want to talk to you personally.
+                                        </Card.Body>
+                                </Card>
+                            </div>
+                        </Col>
+                    </Row>
                         :
                         <Row className="text-center">
                             <Col sm={12} lg={12} md={12}>
@@ -329,7 +337,7 @@ export default class TopCardContent extends Component {
                                 <p className="emptyScreenText">Select or create a new course</p>
                             </Col>
                             <Col sm={12} lg={12} md={12}>
-                                <Image src={happyEmoji} height="150"/>
+                                <Image src={happyEmoji} height="150" />
                             </Col>
                         </Row>
                     }

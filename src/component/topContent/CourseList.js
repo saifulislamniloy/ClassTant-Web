@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
-import { CourseProvider, CourseContext } from '../../providers/CourseProvider'
+import { CourseContext } from '../../providers/CourseProvider'
 import firebase, { auth } from "../../firebase";
 
 export default class CourseList extends Component {
@@ -9,6 +9,7 @@ export default class CourseList extends Component {
         this.state = {
             selectedCourse: "Select Course",
             courseListView: "",
+            uid:"",
             loading: true
         };
     }
@@ -16,9 +17,8 @@ export default class CourseList extends Component {
     async componentDidMount() {
         let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
         if (user !== null) {
-            this.setState({ uid: user.uid, loading:false })
+            this.setState({ uid: user.uid })
             this.getCourseList()
-            console.log("UID: " +  this.props.uid)
         }
     }
 
@@ -35,6 +35,7 @@ export default class CourseList extends Component {
                     console.log(key + " " + courses[key]["courseName"])
                 }
                 console.log("Inside Child component+ " + this.props.uid)
+                this.setState({ loading: false })
 
                 const view = courseId.map(courseId => {
                     return (
@@ -55,7 +56,7 @@ export default class CourseList extends Component {
                                             this.setState({ selectedCourse: courses[courseId]["courseName"] })
 
                                         }}>
-                                        {courses[courseId]["courseName"] + " " + course.isCourseSelected}
+                                        {courses[courseId]["courseName"]}
                                     </Dropdown.Item>
                                 )
                             }
@@ -70,10 +71,10 @@ export default class CourseList extends Component {
         return (
             <Dropdown>
                 <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    {this.state.selectedCourse}
+                    {this.state.loading ? <div className="loader"></div> : this.state.selectedCourse}
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                    {this.state.loading ? <Dropdown.Item>Loading...</Dropdown.Item> : this.state.courseListView}
+                    {this.state.courseListView}
                 </Dropdown.Menu>
             </Dropdown>
         )

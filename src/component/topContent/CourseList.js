@@ -44,8 +44,8 @@ export default class CourseList extends Component {
                                 (course) => (
                                     <Dropdown.Item
                                         onClick={() => {
-                                            course.setIsCourseSelected(!course.isCourseSelected);
-                                            console.log("Course Clicked")
+                                            course.setIsCourseSelected(true);
+                                            course.setClassLink(courses[courseId]["classLink"])
                                             course.setCurrentCourse({
                                                 selectedCourse: courses[courseId]["courseName"],
                                                 courseName: courses[courseId]["courseName"],

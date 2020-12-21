@@ -4,6 +4,7 @@ const CourseContext = React.createContext();
 
 const CourseProvider = (props) => {
     const [currentCourse, setCurrentCourse] = useState({});
+    const [classLink, setClassLink] = useState("");
     const [isCourseSelected, setIsCourseSelected] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -12,6 +13,9 @@ const CourseProvider = (props) => {
             value={{
                 currentCourse: currentCourse,
                 setCurrentCourse: setCurrentCourse,
+
+                classLink:classLink,
+                setClassLink:setClassLink,
 
                 isCourseSelected: isCourseSelected,
                 setIsCourseSelected: setIsCourseSelected,

@@ -9,12 +9,12 @@ import ResourcePage from '../page/ResourcePage';
 import ProfilePage from '../page/ProfilePage';
 import AnnouncementPage from "../page/AnnouncementPage";
 import ClassSchedulePage from "../page/ClassSchedulePage";
-import { AuthProvider } from '../providers/AuthProvider';
+import { CourseProvider } from '../providers/CourseProvider';
 
 class AppRoute extends Component {
     render() {
         return (
-            <AuthProvider>
+            <CourseProvider>
                 <Fragment>
                     <Switch>
                         <Route exact path="/" component={AuthPage} />
@@ -28,7 +28,7 @@ class AppRoute extends Component {
                         <Route exact path="/class-schedule" component={ClassSchedulePage} />
                     </Switch>
                 </Fragment>
-            </AuthProvider>
+            </CourseProvider>
         );
     }
 }

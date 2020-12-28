@@ -4,6 +4,7 @@ import firebase from "firebase";
 import '../../asset/css/announcement.css';
 import { auth } from "../../firebase";
 import SingleAnnouncement from "./SingleAnnouncement";
+import Loader from '../common/Loader';
 
 class Announcement extends Component {
     constructor({ }) {
@@ -24,6 +25,7 @@ class Announcement extends Component {
     }
 
     getAnnouncementList() {
+        this.setState({ announcementView: "", loading: true })
         const db = firebase.database();
         db.ref("Courses/" + this.props.courseId + "/announcements").once("value")
             .then(snapshot => {
@@ -60,6 +62,7 @@ class Announcement extends Component {
     }
 
     postAnnouncement() {
+        this.setState({loading: true})
         const db = firebase.database();
         const time = new Date().getTime().toString();
         if (this.validation()) {
@@ -75,10 +78,8 @@ class Announcement extends Component {
                     },
                     function (error) {
                         if (error)
-                            alert("failed")
-                        else
-                            alert("success")
-                    })
+                            alert("failed")  
+                    }).then(()=>this.getAnnouncementList())
         }
     }
 
@@ -119,7 +120,7 @@ class Announcement extends Component {
                     </Row>
                     <Row>
                         <Col lg={12} md={12} sm={12} style={{ alignContent: "center" }}>
-                            {this.loadingAnimation()}
+                            {this.state.loading ? <Loader/> : <span></span>}
                         </Col>
                         <Col lg={12} md={12} sm={12}>
                             {this.state.announcementView}

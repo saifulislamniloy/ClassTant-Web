@@ -15,18 +15,20 @@ class SingleClassSchedule extends Component {
                                             <p>{this.props.classTime}</p>
                                         </Col>
                                         <Col lg={2} md={2} sm={2}>
+                                            {this.props.authorId === this.props.currentUserId ?
                                             <Dropdown>
-                                                <Dropdown.Toggle variant="primary">
-                                                </Dropdown.Toggle>
-                                                <Dropdown.Menu>
-                                                    <Dropdown.Item disabled>
-                                                        Edit
-                                                    </Dropdown.Item>
-                                                    <Dropdown.Item disabled>
-                                                        Delete
-                                                    </Dropdown.Item>
-                                                </Dropdown.Menu>
-                                            </Dropdown>
+                                            <Dropdown.Toggle variant="primary">
+                                            </Dropdown.Toggle>
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item disabled>
+                                                    Edit
+                                                </Dropdown.Item>
+                                                <Dropdown.Item disabled>
+                                                    Delete
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+                                        :<span></span>}
                                         </Col>
                                     </Row>
                                 </Card.Header>

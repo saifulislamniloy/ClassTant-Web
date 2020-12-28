@@ -43,7 +43,8 @@ class ClassSchedule extends Component {
                         <SingleClassSchedule
                             id={classSchedules[classScheduleId]["classId"]}
                             courseId={this.props.courseId}
-                            authorId={this.state.uid}
+                            authorId={classSchedules[classScheduleId]["authorId"]}
+                            currentUserId={this.state.uid}
                             description={classSchedules[classScheduleId]["description"]}
                             postedBy={classSchedules[classScheduleId]["postedBy"]}
                             postTime={classSchedules[classScheduleId]["placeTime"]}

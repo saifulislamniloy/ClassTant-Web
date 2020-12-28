@@ -15,7 +15,7 @@ export default class ClassLink extends Component {
                                 <Row>
                                     <Col sm={10} md={10} lg={10}>
                                         <Card.Title className="classLink mt-2">
-                                            Class Link: <a href={course.classLink} target="#">{course.classLink}</a>
+                                            Class Link: {course.classLink === undefined ? "No link given. Click Edit to  provide link." : <a href={course.classLink} target="#">{course.classLink}</a>}
                                         </Card.Title>
                                     </Col>
                                     <Col sm={2} md={2} lg={2}>

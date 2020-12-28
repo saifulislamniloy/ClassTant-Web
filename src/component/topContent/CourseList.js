@@ -9,7 +9,7 @@ export default class CourseList extends Component {
         this.state = {
             selectedCourse: "Select Course",
             courseListView: "",
-            uid:"",
+            uid: "",
             loading: true
         };
     }

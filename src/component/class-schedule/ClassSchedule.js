@@ -4,6 +4,7 @@ import Datetime from "react-datetime";
 import firebase from "firebase";
 import SingleClassSchedule from "./SingleClassSchedule";
 import { CourseContext } from '../../providers/CourseProvider'
+import Loader from '../common/Loader';
 
 class ClassSchedule extends Component {
     constructor() {
@@ -27,6 +28,7 @@ class ClassSchedule extends Component {
 
 
     getClassScheduleList() {
+        this.setState({ classScheduleView: "", loading: true })
         const db = firebase.database();
         db.ref("Courses/" + this.props.courseId + "/classSchedules").once("value")
             .then(snapshot => {
@@ -76,9 +78,7 @@ class ClassSchedule extends Component {
                     function (error) {
                         if (error)
                             alert("failed")
-                        else
-                            alert("Success")
-                    })
+                    }).then(()=>this.getClassScheduleList())
         }
     }
 
@@ -140,7 +140,7 @@ class ClassSchedule extends Component {
                     </Row>
                     <Row>
                         <Col lg={12} md={12} sm={12}>
-                            {this.state.classScheduleView}
+                            {this.state.loading ? <Loader/> : this.state.classScheduleView}
                         </Col>
                     </Row>
                 </Container>

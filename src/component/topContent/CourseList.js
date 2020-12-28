@@ -7,7 +7,6 @@ export default class CourseList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedCourse: "Select Course",
             courseListView: "",
             uid: "",
             loading: true
@@ -46,6 +45,7 @@ export default class CourseList extends Component {
                                         onClick={() => {
                                             course.setIsCourseSelected(true);
                                             course.setClassLink(courses[courseId]["classLink"])
+                                            course.setSelectedCourseName(courses[courseId]["courseName"])
                                             course.setCurrentCourse({
                                                 selectedCourse: courses[courseId]["courseName"],
                                                 courseName: courses[courseId]["courseName"],
@@ -53,8 +53,6 @@ export default class CourseList extends Component {
                                                 selectedCourseId: courses[courseId]["courseID"],
                                                 teacherId: courses[courseId]["teacherID"]
                                             })
-
-                                            this.setState({ selectedCourse: courses[courseId]["courseName"] })
 
                                         }}>
                                         {courses[courseId]["courseName"]}
@@ -70,14 +68,18 @@ export default class CourseList extends Component {
 
     render() {
         return (
-            <Dropdown>
-                <Dropdown.Toggle variant="primary" id="dropdown-basic">
-                    {this.state.loading ? <div className="loader"></div> : this.state.selectedCourse}
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                    {this.state.courseListView}
-                </Dropdown.Menu>
-            </Dropdown>
+            <CourseContext.Consumer>
+                {(course) => (
+                    <Dropdown>
+                        <Dropdown.Toggle variant="primary" id="dropdown-basic">
+                            {this.state.loading ? <div className="loader"></div> : course.selectedCourseName}
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                            {this.state.courseListView}
+                        </Dropdown.Menu>
+                    </Dropdown>
+                )}
+            </CourseContext.Consumer>
         )
     }
 }

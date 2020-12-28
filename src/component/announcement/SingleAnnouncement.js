@@ -106,25 +106,28 @@ class SingleAnnouncement extends Component {
                                                 this.state.title
                                         }
                                     </Col>
+                                    {this.props.authorId === this.props.currentUserId ?
                                     <Col sm={6} md={2} lg={2}>
-                                        {
-                                            this.state.editMode ?
-                                                <h1></h1>
-                                                :
-                                                <Dropdown>
-                                                    <Dropdown.Toggle variant="primary">
-                                                    </Dropdown.Toggle>
-                                                    <Dropdown.Menu>
-                                                        <Dropdown.Item onClick={()=>this.setState({editMode:true})}>
-                                                            Edit
-                                                        </Dropdown.Item>
-                                                        <Dropdown.Item onClick={()=>this.deleteSingleAnnouncement()}>
-                                                            Delete
-                                                        </Dropdown.Item>
-                                                    </Dropdown.Menu>
-                                                </Dropdown>
-                                        }
-                                    </Col>
+                                    {
+                                        this.state.editMode ?
+                                            <h1></h1>
+                                            :
+                                            <Dropdown>
+                                                <Dropdown.Toggle variant="primary">
+                                                </Dropdown.Toggle>
+                                                <Dropdown.Menu>
+                                                    <Dropdown.Item onClick={()=>this.setState({editMode:true})}>
+                                                        Edit
+                                                    </Dropdown.Item>
+                                                    <Dropdown.Item onClick={()=>this.deleteSingleAnnouncement()}>
+                                                        Delete
+                                                    </Dropdown.Item>
+                                                </Dropdown.Menu>
+                                            </Dropdown>
+                                    }
+                                </Col>
+                                :
+                                <span></span>}
                                 </Row>
                             </Card.Header>
                             {

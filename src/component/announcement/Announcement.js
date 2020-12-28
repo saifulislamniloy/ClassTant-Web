@@ -10,11 +10,16 @@ class Announcement extends Component {
         super();
         this.state = {
             loading: true,
-            announcementView: ""
+            announcementView: "",
+            uid:""
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
+        if (user !== null) {
+            this.setState({ uid: user.uid })
+        }
         this.getAnnouncementList()
     }
 
@@ -40,6 +45,8 @@ class Announcement extends Component {
                             link={announcements[announcementId]["link"]}
                             postedBy={announcements[announcementId]["postedBy"]}
                             postTime={announcements[announcementId]["postTime"]}
+                            authorId={announcements[announcementId]["authorId"]}
+                            currentUserId={this.state.uid}
                         />
                     )
                 })

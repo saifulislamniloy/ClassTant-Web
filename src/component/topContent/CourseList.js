@@ -50,7 +50,8 @@ export default class CourseList extends Component {
                                                 selectedCourse: courses[courseId]["courseName"],
                                                 courseName: courses[courseId]["courseName"],
                                                 selectedCourseCode: courses[courseId]["courseCode"],
-                                                selectedCourseId: courses[courseId]["courseID"]
+                                                selectedCourseId: courses[courseId]["courseID"],
+                                                teacherId: courses[courseId]["teacherID"]
                                             })
 
                                             this.setState({ selectedCourse: courses[courseId]["courseName"] })

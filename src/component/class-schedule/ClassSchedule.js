@@ -1,8 +1,9 @@
-import React, {Component, Fragment} from 'react';
-import {Button, Card, Col, Container, Form, Row} from "react-bootstrap";
+import React, { Component, Fragment } from 'react';
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import Datetime from "react-datetime";
 import firebase from "firebase";
 import SingleClassSchedule from "./SingleClassSchedule";
+import { CourseContext } from '../../providers/CourseProvider'
 
 class ClassSchedule extends Component {
     constructor() {
@@ -12,14 +13,14 @@ class ClassSchedule extends Component {
             classScheduleView: "",
             uid: "",
             name: "",
-            deadline:""
+            deadline: ""
         }
     }
 
     async componentDidMount() {
         let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
         if (user !== null) {
-            this.setState({uid: user.uid, name: user.name})
+            this.setState({ uid: user.uid, name: user.name })
         }
         this.getClassScheduleList()
     }
@@ -50,7 +51,7 @@ class ClassSchedule extends Component {
                         />
                     )
                 })
-                this.setState({classScheduleView: view, loading: false})
+                this.setState({ classScheduleView: view, loading: false })
             })
     }
 
@@ -65,8 +66,8 @@ class ClassSchedule extends Component {
         let postedBy = this.state.name
         let deadline = this.state.deadline + ""
 
-        let jsonObject = {authorId, classId, description, placeTime, postedBy, time:deadline}
-        let validationResult = this.validation(authorId,postedBy, deadline)
+        let jsonObject = { authorId, classId, description, placeTime, postedBy, time: deadline }
+        let validationResult = this.validation(authorId, postedBy, deadline)
         if (validationResult) {
             db.ref("Courses/" + this.props.courseId + "/classSchedules/" + deadlineTime)
                 .update(
@@ -80,17 +81,17 @@ class ClassSchedule extends Component {
         }
     }
 
-    validation(authorId,postedBy, deadline) {
+    validation(authorId, postedBy, deadline) {
         let result = true;
-        if(authorId == null){
+        if (authorId == null) {
             alert("Something went wrong! Pleas sign in again.")
             result = false
         }
-        if(postedBy == null){
+        if (postedBy == null) {
             result = false
             alert("Something went wrong! Pleas sign in again.")
         }
-        if(deadline.length <12){
+        if (deadline.length < 12) {
             alert("Please Set Class Time.")
             result = false
         }
@@ -103,30 +104,37 @@ class ClassSchedule extends Component {
                 <Container>
                     <Row>
                         <Col lg={12} md={12} sm={12}>
-                            <Card className="topCardDesign">
-                                <Card.Title style={{textAlign: "center", fontWeight: 600, fontSize: 32}}>Class Schedule</Card.Title>
-                                <Form>
-                                    <Form.Group>
-                                        <Form.Control id="des" as="textarea" row={3} placeholder="Description"/>
-                                    </Form.Group>
-                                </Form>
-                                <Row>
-                                    <Col sm={3} md={3} lg={3}>
-                                        <Form.Label>Class Time</Form.Label>
-                                    </Col>
-                                    <Col sm={9} md={9} lg={9}>
-                                        <Datetime
-                                            dateFormat="MMMM DD, YYYY"
-                                            id="date"
-                                            onChange={(date)=>this.setState({deadline:date._d})}
-                                        />
-                                    </Col>
-                                </Row>
-                                <br/>
-                                <Button onClick={() => this.postClassSchedule()} variant="primary">
-                                    Place Class
-                                </Button>
-                            </Card>
+                            <CourseContext.Consumer>
+                                {(course) => (
+                                    course.currentCourse.teacherId === this.state.uid ?
+                                        <Card className="topCardDesign">
+                                            <Card.Title style={{ textAlign: "center", fontWeight: 600, fontSize: 32 }}>Class Schedule</Card.Title>
+                                            <Form>
+                                                <Form.Group>
+                                                    <Form.Control id="des" as="textarea" row={3} placeholder="Description" />
+                                                </Form.Group>
+                                            </Form>
+                                            <Row>
+                                                <Col sm={3} md={3} lg={3}>
+                                                    <Form.Label>Class Time</Form.Label>
+                                                </Col>
+                                                <Col sm={9} md={9} lg={9}>
+                                                    <Datetime
+                                                        dateFormat="MMMM DD, YYYY"
+                                                        id="date"
+                                                        onChange={(date) => this.setState({ deadline: date._d })}
+                                                    />
+                                                </Col>
+                                            </Row>
+                                            <br />
+                                            <Button onClick={() => this.postClassSchedule()} variant="primary">
+                                                Place Class
+                                   </Button>
+                                        </Card>
+                                        :
+                                        <span></span>
+                                        )}
+                            </CourseContext.Consumer>
                         </Col>
                     </Row>
                     <Row>

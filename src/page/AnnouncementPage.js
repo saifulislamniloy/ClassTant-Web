@@ -3,22 +3,19 @@ import TopNavigation2 from '../component/topContent/TopNavigation2';
 import Announcement from "../component/announcement/Announcement";
 
 export default class AnnouncementPage extends Component {
-    constructor({match}) {
+    constructor({ match }) {
         super();
-        this.state={
-            courseId:match.params.courseId
+        this.state = {
+            courseId: match.params.courseId
         }
-    }
-    componentDidMount() {
-        // alert(this.props.location.state.courseId)
     }
 
     render() {
         return (
             <Fragment>
                 <TopNavigation2 />
-                <br/> <br/> <br/>
-                <Announcement courseId={this.props.location.state.courseId}/>
+                <br /> <br /> <br />
+                <Announcement courseId={this.props.location.state.courseId} />
             </Fragment>
         )
     }

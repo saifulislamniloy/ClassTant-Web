@@ -1,12 +1,12 @@
-import React, {Component, Fragment} from 'react';
-import {Button, Card, Col, Container, Image, Form, Row} from "react-bootstrap";
+import React, { Component, Fragment } from 'react';
+import { Button, Card, Col, Container, Image, Form, Row } from "react-bootstrap";
 import firebase from "firebase";
 import '../../asset/css/announcement.css';
-import {auth} from "../../firebase";
+import { auth } from "../../firebase";
 import SingleAnnouncement from "./SingleAnnouncement";
 
 class Announcement extends Component {
-    constructor({}) {
+    constructor({ }) {
         super();
         this.state = {
             loading: true,
@@ -35,7 +35,7 @@ class Announcement extends Component {
                         <SingleAnnouncement
                             id={announcementId}
                             courseId={this.props.courseId}
-                            title ={announcements[announcementId]["title"]}
+                            title={announcements[announcementId]["title"]}
                             description={announcements[announcementId]["description"]}
                             link={announcements[announcementId]["link"]}
                             postedBy={announcements[announcementId]["postedBy"]}
@@ -43,7 +43,7 @@ class Announcement extends Component {
                         />
                     )
                 })
-                this.setState({announcementView: view, loading: false})
+                this.setState({ announcementView: view, loading: false })
             })
     }
 
@@ -91,17 +91,17 @@ class Announcement extends Component {
                     <Row>
                         <Col lg={12} md={12} sm={12}>
                             <Card className="topCardDesign">
-                                <Card.Title style={{textAlign: "center", fontWeight: 600, fontSize: 32}}>Announcement
+                                <Card.Title style={{ textAlign: "center", fontWeight: 600, fontSize: 32 }}>Announcement
                                     Section</Card.Title>
                                 <Form>
                                     <Form.Group>
-                                        <Form.Control id="header" type="text" placeholder="Title"/>
+                                        <Form.Control id="header" type="text" placeholder="Title" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="des" as="textarea" rows={3} placeholder="Description"/>
+                                        <Form.Control id="des" as="textarea" rows={3} placeholder="Description" />
                                     </Form.Group>
                                     <Form.Group>
-                                        <Form.Control id="link" type="text" placeholder="Link (Optional)"/>
+                                        <Form.Control id="link" type="text" placeholder="Link (Optional)" />
                                     </Form.Group>
                                 </Form>
                                 <Button onClick={() => this.postAnnouncement()} variant="primary">
@@ -111,7 +111,7 @@ class Announcement extends Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col lg={12} md={12} sm={12} style={{alignContent: "center"}}>
+                        <Col lg={12} md={12} sm={12} style={{ alignContent: "center" }}>
                             {this.loadingAnimation()}
                         </Col>
                         <Col lg={12} md={12} sm={12}>

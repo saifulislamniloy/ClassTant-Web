@@ -43,7 +43,7 @@ export default class TopCardContent extends Component {
                                         <div>
                                             <Link to={{
                                                 pathname: "/announcement",
-                                                state: { courseId: course.selectedCourseId }
+                                                state: { courseId: course.currentCourse.selectedCourseId }
                                             }}
                                                 className="link">
                                                 <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
@@ -64,7 +64,7 @@ export default class TopCardContent extends Component {
                                         <div>
                                             <Link to={{
                                                 pathname: "/assignment",
-                                                state: { courseId: course.selectedCourseId }
+                                                state: { courseId: course.currentCourse.selectedCourseId }
                                             }} className="link">
                                                 <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
                                                     <Card.Header className="primaryCardHeader">
@@ -99,7 +99,7 @@ export default class TopCardContent extends Component {
                                         <div>
                                             <Link to={{
                                                 pathname: "/class-schedule",
-                                                state: { courseId: course.selectedCourseId }
+                                                state: { courseId: course.currentCourse.selectedCourseId }
                                             }} className="link">
                                                 <Card className="primaryCardDesign" onContextMenu={e => e.preventDefault()}>
                                                     <Card.Header className="primaryCardHeader">

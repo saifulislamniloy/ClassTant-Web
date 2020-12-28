@@ -5,6 +5,7 @@ import Datetime from "react-datetime";
 import firebase from "firebase";
 import SingleAssignment from "./SingleAssignment";
 import { CourseContext } from '../../providers/CourseProvider'
+import Loader from '../common/Loader';
 
 export default class Assignment extends Component {
     constructor() {
@@ -43,13 +44,14 @@ export default class Assignment extends Component {
                         <SingleAssignment
                             id={assignments[assignmentId]["assignmentId"]}
                             courseId={this.props.courseId}
-                            authorId={this.state.uid}
+                            authorId={assignments[assignmentId]["authorId"]}
                             title={assignments[assignmentId]["assignmentName"]}
                             description={assignments[assignmentId]["assignmentDescription"]}
                             link={assignments[assignmentId]["url"]}
                             postedBy={assignments[assignmentId]["postedBy"]}
                             postTime={assignments[assignmentId]["creationTime"]}
                             deadline={assignments[assignmentId]["deadline"]}
+                            currentUserId={this.state.uid}
                         />
                     )
                 })
@@ -58,6 +60,8 @@ export default class Assignment extends Component {
     }
 
     postAssignment() {
+        this.setState({loading: true})
+
         const db = firebase.database();
         const deadlineTime = new Date(this.state.deadline).getTime().toString();
 
@@ -79,9 +83,7 @@ export default class Assignment extends Component {
                     function (error) {
                         if (error)
                             alert("failed")
-                        else
-                            alert("Success")
-                    })
+                    }).then(() => { this.getAssignmentList() })
         }
     }
 
@@ -152,7 +154,7 @@ export default class Assignment extends Component {
                             )}
                         </CourseContext.Consumer>
                         <Col lg={12} md={12} sm={12}>
-                            {this.state.assignmentView}
+                            {this.state.loading ? <Loader /> : this.state.assignmentView}
                         </Col>
                     </Row>
                 </Container>

@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react';
-import {Card, Col, Row} from "react-bootstrap";
+import React, { Component, Fragment } from 'react';
+import { Card, Col, Row } from "react-bootstrap";
 import firebase from "firebase";
 import DeleteCard from "../common/DeleteCard";
 import EmptySpace from "../common/EmptySpace";
@@ -68,7 +68,7 @@ class SingleAssignment extends Component {
     async updateSingleAssignment() {
         const db = firebase.database();
         const deadlineTime = new Date(this.state.deadline).getTime().toString();
-        this.setState({assignmentId: deadlineTime})
+        this.setState({ assignmentId: deadlineTime })
 
         let assignmentDescription = this.state.description
         let assignmentId = deadlineTime
@@ -138,18 +138,18 @@ class SingleAssignment extends Component {
                     if (onerror)
                         alert("Something Went Wrong!")
                     else {
-                        this.setState({isDeleted: true})
+                        this.setState({ isDeleted: true })
                     }
                 })
         }
     }
 
     handleEditClick() {
-        this.setState({editMode: true})
+        this.setState({ editMode: true })
     }
 
     handleHeaderChange(text) {
-        this.setState({title: text.target.value})
+        this.setState({ title: text.target.value })
     }
 
     handleDeadlineChange(date) {
@@ -160,20 +160,20 @@ class SingleAssignment extends Component {
     }
 
     handleDescriptionChange(des) {
-        this.setState({description: des.target.value})
+        this.setState({ description: des.target.value })
     }
 
     handleLinkChange(link) {
-        this.setState({link: link.target.value})
+        this.setState({ link: link.target.value })
     }
 
     handleCancelClick() {
-        this.setState({editMode: false})
+        this.setState({ editMode: false })
         this.getSingleAssignment()
     }
 
     handleUpdateClick() {
-        this.setState({editMode: false})
+        this.setState({ editMode: false })
         this.updateSingleAssignment()
     }
 
@@ -182,7 +182,7 @@ class SingleAssignment extends Component {
             <Fragment>
                 {
                     this.state.isDeleted ?
-                        <DeleteCard/>
+                        <DeleteCard />
                         :
                         <Card className="topCardDesign">
                             <Card.Header>
@@ -193,10 +193,10 @@ class SingleAssignment extends Component {
                                                 <AssignmentCardHeaderEditMode
                                                     title={this.state.title}
                                                     onHeaderChange={this.handleHeaderChange}
-                                                    onDeadlineChange={this.handleDeadlineChange}/>
+                                                    onDeadlineChange={this.handleDeadlineChange} />
                                             </Col>
                                             <Col sm={6} md={2} lg={2}>
-                                                <EmptySpace/>
+                                                <EmptySpace />
                                             </Col>
                                         </Row>
                                         :
@@ -204,12 +204,18 @@ class SingleAssignment extends Component {
                                             <Col sm={6} md={10} lg={10}>
                                                 <AssignmentCardHeader
                                                     title={this.state.title}
-                                                    deadline={this.state.deadline}/>
+                                                    deadline={this.state.deadline} />
                                             </Col>
                                             <Col sm={6} md={2} lg={2}>
-                                                <CardOptions
-                                                    onEditModeChange={this.handleEditClick}
-                                                    onDelete={this.handleDeleteClick}/>
+                                                {this.props.authorId === this.props.currentUserId ?
+                                                    <CardOptions
+                                                        authorId={this.props.authorId}
+                                                        currentUserId={this.props.currentUserId}
+                                                        onEditModeChange={this.handleEditClick}
+                                                        onDelete={this.handleDeleteClick} />
+                                                    : <span></span>
+                                                }
+
                                             </Col>
                                         </Row>
                                 }
@@ -222,11 +228,11 @@ class SingleAssignment extends Component {
                                             description={this.state.description}
                                             link={this.state.link}
                                             onDescriptionChange={this.handleDescriptionChange}
-                                            onLinkChange={this.handleLinkChange}/>
+                                            onLinkChange={this.handleLinkChange} />
                                         :
                                         <AssignmentCardBody
                                             description={this.state.description}
-                                            link={this.state.link}/>
+                                            link={this.state.link} />
                                 }
                             </Card.Body>
                             <Card.Footer>
@@ -234,11 +240,11 @@ class SingleAssignment extends Component {
                                     this.state.editMode ?
                                         <AssignmentCardFooterEditMode
                                             onCancel={this.handleCancelClick}
-                                            onUpdate={this.handleUpdateClick}/>
+                                            onUpdate={this.handleUpdateClick} />
                                         :
                                         <AssignmentCardFooter
                                             postedBy={this.props.postedBy}
-                                            postTime={this.props.postTime}/>
+                                            postTime={this.props.postTime} />
                                 }
                             </Card.Footer>
                         </Card>

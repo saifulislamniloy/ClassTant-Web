@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Row, Col } from 'react-bootstrap/lib/Tab'
-import loading from "../../asset/image/loader.svg';
+import { Container, Row, Col } from 'react-bootstrap'
+import loading from "../../asset/image/loader.svg";
 
 export default class Loader extends Component {
     render() {

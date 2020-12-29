@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import TopNavigation2 from "../component/topContent/TopNavigation2";
+import TopNavigation from "../component/topContent/TopNavigation";
 import ClassSchedule from "../component/class-schedule/ClassSchedule";
 
 class ClassSchedulePage extends Component {
@@ -13,7 +13,7 @@ class ClassSchedulePage extends Component {
     render() {
         return (
             <Fragment>
-                <TopNavigation2 />
+                <TopNavigation />
                 <br/> <br/> <br/>
                 <ClassSchedule courseId={this.props.location.state.courseId}/>
             </Fragment>

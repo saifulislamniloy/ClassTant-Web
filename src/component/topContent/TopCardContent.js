@@ -5,7 +5,7 @@ import "../../asset/css/text.css"
 import { Link } from 'react-router-dom';
 import happyEmoji from "../../asset/icon/happy.svg";
 import CourseList from './CourseList';
-import { CourseProvider, CourseContext } from '../../providers/CourseProvider'
+import { CourseContext } from '../../providers/CourseProvider'
 import CourseInfo from '../../component/topContent/CourseInfo'
 import ClassLink from './ClassLink';
 import ClassLinkEditMode from './ClassLinkEditMode';

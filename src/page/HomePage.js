@@ -1,16 +1,12 @@
 import React, {Component, Fragment} from 'react'
-import TopNavigation2 from '../component/topContent/TopNavigation2'
+import TopNavigation from '../component/topContent/TopNavigation'
 import TopCardContent from '../component/topContent/TopCardContent'
 
 export default class HomePage extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         return (
             <Fragment>
-                <TopNavigation2/>
+                <TopNavigation/>
                 <br/><br/><br/><br/>
                 <TopCardContent/>
             </Fragment>

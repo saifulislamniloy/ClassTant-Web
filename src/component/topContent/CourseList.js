@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Dropdown } from 'react-bootstrap'
 import { CourseContext } from '../../providers/CourseProvider'
-import firebase, { auth } from "../../firebase";
+import firebase from "../../firebase";
 
 export default class CourseList extends Component {
     constructor(props) {

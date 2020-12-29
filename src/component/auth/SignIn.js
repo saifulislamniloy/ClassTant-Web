@@ -6,13 +6,8 @@ import firebase, { auth } from "../../firebase";
 import { Card, Col, Image, Row } from "react-bootstrap";
 
 import banner from "../../asset/image/play_store_badge.png"
-import { AuthContext } from "../../providers/AuthProvider";
 
 class SignIn extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = { isSignedIn: false };
     uiConfig = {
         signInFlow: "popup",
@@ -21,14 +16,8 @@ class SignIn extends Component {
             signInSuccess: result => {
                 auth.signInWithPopup(firebase.auth.GoogleAuthProvider.PROVIDER_ID)
                     .then(function (result) {
-                        const token = result.credential.accessToken;
-                        console.log(result.user)
                     })
                     .catch(function (error) {
-                        const errorCode = error.code;
-                        const errorMessage = error.message;
-                        const email = error.email;
-                        const credential = error.credential;
                     });
             }
         }

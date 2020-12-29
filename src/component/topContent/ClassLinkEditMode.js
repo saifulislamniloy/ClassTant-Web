@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import firebase from "firebase";
 import { CourseContext } from '../../providers/CourseProvider'
-import { Container, Row, Col, Button, Form, Card } from 'react-bootstrap';
+import { Row, Col, Button, Form, Card } from 'react-bootstrap';
 import EmptySpace from '../common/EmptySpace';
 
 export default class ClassLinkEditMode extends Component {

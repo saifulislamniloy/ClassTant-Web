@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {Button, Card, Col, Dropdown, Form, Row} from "react-bootstrap";
 import {getDateTime} from "../../functions/UnixToDateTime";
 import firebase from "firebase";
-import {auth} from "../../firebase";
 
 class SingleAnnouncement extends Component {
     constructor() {
@@ -39,7 +38,6 @@ class SingleAnnouncement extends Component {
 
     updateSingleAnnouncement(){
         const db = firebase.database();
-        const time = new Date().getTime().toString();
         if (this.validation()) {
             db.ref("Courses/" + this.props.courseId + "/announcements/" + this.props.id)
                 .update(
@@ -67,7 +65,6 @@ class SingleAnnouncement extends Component {
         let isConfirmed = window.confirm("Do you confirm to delete: " + this.state.title + "?");
         if(isConfirmed){
             const db = firebase.database();
-            const time = new Date().getTime().toString();
             if (this.validation()) {
                 db.ref("Courses/" + this.props.courseId + "/announcements/" + this.props.id)
                     .remove(onerror=>{
@@ -110,7 +107,7 @@ class SingleAnnouncement extends Component {
                                     <Col sm={6} md={2} lg={2}>
                                     {
                                         this.state.editMode ?
-                                            <h1></h1>
+                                            <span></span>
                                             :
                                             <Dropdown>
                                                 <Dropdown.Toggle variant="primary">

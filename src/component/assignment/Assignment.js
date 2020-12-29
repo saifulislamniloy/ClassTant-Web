@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Container, Row, Col, Form, Card, Button, Image } from 'react-bootstrap'
+import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap'
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import firebase from "firebase";
@@ -60,7 +60,7 @@ export default class Assignment extends Component {
     }
 
     postAssignment() {
-        this.setState({loading: true})
+        this.setState({ loading: true })
 
         const db = firebase.database();
         const deadlineTime = new Date(this.state.deadline).getTime().toString();

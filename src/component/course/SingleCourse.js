@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Card, Col, Container, Dropdown, Row} from "react-bootstrap";
+import {Card, Col, Dropdown, Row} from "react-bootstrap";
 
 class SingleCourse extends Component {
     render() {

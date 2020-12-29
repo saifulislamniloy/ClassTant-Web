@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import {Container, Row, Col, Card, Dropdown, Image} from 'react-bootstrap'
+import {Container, Row, Col, Card, Image} from 'react-bootstrap'
 import firebase from "firebase";
 
 export default class Profile extends Component {

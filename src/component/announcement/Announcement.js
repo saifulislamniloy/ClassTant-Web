@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Button, Card, Col, Container, Image, Form, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Row } from "react-bootstrap";
 import firebase from "firebase";
 import '../../asset/css/announcement.css';
 import { auth } from "../../firebase";
@@ -7,7 +7,7 @@ import SingleAnnouncement from "./SingleAnnouncement";
 import Loader from '../common/Loader';
 
 class Announcement extends Component {
-    constructor({ }) {
+    constructor() {
         super();
         this.state = {
             loading: true,

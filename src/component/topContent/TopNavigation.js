@@ -1,31 +1,43 @@
 import React, { Component, Fragment } from 'react'
 import '../../asset/css/custom.css';
 import '../../asset/css/bootstrap.min.css';
-import { Container, Navbar, Nav} from 'react-bootstrap'
+import {Container, Navbar, Nav, Button} from 'react-bootstrap'
 import {NavLink} from "react-router-dom";
-import dashBoard from "../../asset/icon/dashboard.svg"
-import profile from "../../asset/icon/profile.svg"
-import notification from "../../asset/icon/notification.svg"
-import createCourse from "../../asset/icon/create.svg"
-import logout from "../../asset/icon/exit.svg"
+import {auth} from "../../firebase";
+import icon from "../../asset/image/home-icon.png";
+import Image from "react-bootstrap/Image";
 
-export default class TopNavigation extends Component {
+export default class TopNavigation2 extends Component {
+    constructor() {
+        super();
+        this.state={
+            imageUrl:""
+        }
+    }
+    logout(){
+        sessionStorage.clear()
+        auth.signOut()
+    }
+    async componentDidMount() {
+        let user = JSON.parse(await sessionStorage.getItem("classtantUser"));
+        if (user !== null)
+            this.setState({imageUrl: user.photoUrl})
+    }
+
     render() {
         return (
             <Fragment>
                 <Container>
                     <Navbar fixed="top" bg="light" variant="light" collapseOnSelect expand="lg">
-                        <Navbar.Brand className="title" href="/" ><img src="https://s3.amazonaws.com/somewherein/assets/images/thumbs/iutbd_1363355287_2-IUT_1.209173425.jpg" height="32" width="32" alt="Smiley face"/>  Classtant</Navbar.Brand>
+                        <Navbar.Brand className="title" href="/homepage" ><img src={icon} height="32" width="32" alt="Smiley face"/>  Classtant</Navbar.Brand>
                         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                         <Navbar.Collapse id="responsive-navbar-nav" >
                             <Nav className="mr-auto">
                             </Nav>
                             <Nav >
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/"><img src={dashBoard} width="20px" height="20px" alt="Smiley face"/> DashBoard  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/profile"><img src={profile} width="20px" height="20px" alt="Smiley face"/> Profile  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/notification"><img src={notification} width="20px" height="20px" alt="Smiley face"/> Notification  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/create-course"><img src={createCourse} width="20px" height="20px" alt="Smiley face"/> Create Course  </NavLink>
-                                <NavLink exact activeStyle={{color: '#002C42'}} className="sideMenuTitle" to="/logout"><img src={logout} width="20px" height="20px" alt="Smiley face"/> Log Out  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/create-course" ><Button> Join or Create Course </Button>  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/" ><Button onClick={()=>{this.logout()}}>Log Out </Button>  </NavLink>
+                                <NavLink exact activeStyle={{color: '#03d3fc'}} className="m-2" to="/profile"> <Image src={this.state.imageUrl} height="40"/>  </NavLink>
                             </Nav>
                         </Navbar.Collapse>
                     </Navbar>

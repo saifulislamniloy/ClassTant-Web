@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Button, Container, Row, Col, Form, Card, Tabs, Tab } from "react-bootstrap";
 import firebase from "firebase";
 import SingleCourse from "./SingleCourse";
+import Loader from '../common/Loader';
 
 class Course extends Component {
     constructor() {
@@ -200,7 +201,7 @@ class Course extends Component {
                         </Col>
                         <br />
                         <Col lg={12} md={12} sm={12}>
-                            {this.state.courseView}
+                            {this.state.loading ? <Loader /> : this.state.courseView}
                         </Col>
                     </Row>
                 </Container>

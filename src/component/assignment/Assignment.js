@@ -2,11 +2,9 @@ import React, { Component, Fragment } from 'react'
 import { Container, Row, Col, Form, Card, Button } from 'react-bootstrap'
 import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
-import firebase from "firebase";
-import SingleAssignment from "./SingleAssignment";
 import { CourseContext } from '../../providers/CourseProvider'
 import Loader from '../common/Loader';
-import { getKeys } from '../../functions/JSON';
+import { getAssignmentList, postAssignment } from '../../network/AssignmentFunctions';
 
 export default class Assignment extends Component {
     constructor() {
@@ -16,94 +14,20 @@ export default class Assignment extends Component {
             assignmentView: "",
             uid: "",
             name: "",
+            title:"",
+            description: "",
+            link: "",
             deadline: ""
         }
     }
 
     async componentDidMount() {
+        console.log(document)
         let user = JSON.parse(await sessionStorage.getItem("classtantUser"))
         if (user !== null) {
             this.setState({ uid: user.uid, name: user.name })
         }
-        this.getAssignmentList();
-    }
-
-    getAssignmentList() {
-        const db = firebase.database();
-        db.ref("Courses/" + this.props.courseId + "/assignments").once("value")
-            .then(snapshot => {
-
-                const assignments = snapshot.val();
-                const assignmentId = getKeys(assignments)
-
-                const view = assignmentId.slice(0).reverse().map((assignmentId, index) => {
-                    return (
-                        <SingleAssignment
-                            key={index}
-                            id={assignments[assignmentId]["assignmentId"]}
-                            courseId={this.props.courseId}
-                            authorId={assignments[assignmentId]["authorId"]}
-                            title={assignments[assignmentId]["assignmentName"]}
-                            description={assignments[assignmentId]["assignmentDescription"]}
-                            link={assignments[assignmentId]["url"]}
-                            postedBy={assignments[assignmentId]["postedBy"]}
-                            postTime={assignments[assignmentId]["creationTime"]}
-                            deadline={assignments[assignmentId]["deadline"]}
-                            currentUserId={this.state.uid}
-                        />
-                    )
-                })
-                this.setState({ assignmentView: view, loading: false })
-            })
-    }
-
-    postAssignment() {
-        this.setState({ loading: true })
-
-        const db = firebase.database();
-        const deadlineTime = new Date(this.state.deadline).getTime().toString();
-
-        let assignmentDescription = document.getElementById("des").value
-        let assignmentId = deadlineTime
-        let assignmentName = document.getElementById("header").value
-        let authorId = this.state.uid
-        let creationTime = new Date().getTime().toString()
-        let deadline = this.state.deadline + ""
-        let postedBy = this.state.name
-        let url = document.getElementById("link").value
-
-        let jsonObject = { assignmentDescription, assignmentId, assignmentName, authorId, creationTime, deadline, postedBy, url }
-        let validationResult = this.validation(assignmentName, authorId, postedBy, deadline)
-        if (validationResult) {
-            db.ref("Courses/" + this.props.courseId + "/assignments/" + deadlineTime)
-                .update(
-                    jsonObject,
-                    function (error) {
-                        if (error)
-                            alert("failed")
-                    }).then(() => { this.getAssignmentList() })
-        }
-    }
-
-    validation(assignmentName, authorId, postedBy, deadline) {
-        let result = true;
-        if (assignmentName.length < 1) {
-            alert("Header can not be empty!")
-            result = false
-        }
-        if (authorId == null) {
-            alert("Something went wrong! Pleas sign in again.")
-            result = false
-        }
-        if (postedBy == null) {
-            result = false
-            alert("Something went wrong! Pleas sign in again.")
-        }
-        if (deadline.length < 12) {
-            alert("Please Set Deadline.")
-            result = false
-        }
-        return result
+        getAssignmentList(this)
     }
 
     render() {
@@ -120,13 +44,13 @@ export default class Assignment extends Component {
                                     Section</Card.Title>
                                             <Form>
                                                 <Form.Group>
-                                                    <Form.Control id="header" type="text" placeholder="Header" />
+                                                    <Form.Control id="header" type="text" placeholder="Header" onChange={(text) => this.setState({title:text.target.value})}/>
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Control id="des" as="textarea" row={3} placeholder="Description" />
+                                                    <Form.Control id="des" as="textarea" row={3} placeholder="Description" onChange={(text) => this.setState({description:text.target.value})} />
                                                 </Form.Group>
                                                 <Form.Group>
-                                                    <Form.Control id="link" type="text" placeholder="Link (Optional)" />
+                                                    <Form.Control id="link" type="text" placeholder="Link (Optional)" onChange={(text) => this.setState({link:text.target.value})} />
                                                 </Form.Group>
                                             </Form>
                                             <Row>
@@ -142,7 +66,7 @@ export default class Assignment extends Component {
                                                 </Col>
                                             </Row>
                                             <br />
-                                            <Button onClick={() => this.postAssignment()} variant="primary">
+                                            <Button onClick={() => postAssignment(this)} variant="primary">
                                                 Post
                                             </Button>
                                         </Card>

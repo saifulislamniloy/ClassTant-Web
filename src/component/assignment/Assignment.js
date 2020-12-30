@@ -4,7 +4,7 @@ import "react-datetime/css/react-datetime.css";
 import Datetime from "react-datetime";
 import { CourseContext } from '../../providers/CourseProvider'
 import Loader from '../common/Loader';
-import { getAssignmentList, postAssignment } from '../../network/AssignmentFunctions';
+import { getAssignmentList, postAssignment } from '../../network/AssignmentDB';
 
 export default class Assignment extends Component {
     constructor() {

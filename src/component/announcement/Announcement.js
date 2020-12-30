@@ -5,6 +5,7 @@ import '../../asset/css/announcement.css';
 import { auth } from "../../firebase";
 import SingleAnnouncement from "./SingleAnnouncement";
 import Loader from '../common/Loader';
+import { getKeys } from '../../functions/JSON';
 
 class Announcement extends Component {
     constructor() {
@@ -31,10 +32,7 @@ class Announcement extends Component {
             .then(snapshot => {
 
                 const announcements = snapshot.val();
-                const announcementId = []
-                for (var key in announcements) {
-                    announcementId.push(key)
-                }
+                const announcementId = getKeys(announcements)
 
                 const view = announcementId.slice(0).reverse().map((announcementId, index) => {
                     return (

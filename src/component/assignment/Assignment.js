@@ -6,6 +6,7 @@ import firebase from "firebase";
 import SingleAssignment from "./SingleAssignment";
 import { CourseContext } from '../../providers/CourseProvider'
 import Loader from '../common/Loader';
+import { getKeys } from '../../functions/JSON';
 
 export default class Assignment extends Component {
     constructor() {
@@ -33,10 +34,7 @@ export default class Assignment extends Component {
             .then(snapshot => {
 
                 const assignments = snapshot.val();
-                const assignmentId = []
-                for (var key in assignments) {
-                    assignmentId.push(key)
-                }
+                const assignmentId = getKeys(assignments)
 
                 const view = assignmentId.slice(0).reverse().map((assignmentId, index) => {
                     return (

@@ -5,6 +5,7 @@ import firebase from "firebase";
 import SingleClassSchedule from "./SingleClassSchedule";
 import { CourseContext } from '../../providers/CourseProvider'
 import Loader from '../common/Loader';
+import { getKeys } from '../../functions/JSON';
 
 class ClassSchedule extends Component {
     constructor() {
@@ -34,10 +35,7 @@ class ClassSchedule extends Component {
             .then(snapshot => {
 
                 const classSchedules = snapshot.val();
-                const classScheduleId = []
-                for (let key in classSchedules) {
-                    classScheduleId.push(key)
-                }
+                let classScheduleId = getKeys(classSchedules)
 
                 const view = classScheduleId.slice(0).reverse().map((classScheduleId, index) => {
                     return (

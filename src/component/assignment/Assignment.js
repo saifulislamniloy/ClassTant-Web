@@ -33,15 +33,15 @@ export default class Assignment extends Component {
             .then(snapshot => {
 
                 const assignments = snapshot.val();
-                console.log(assignments)
                 const assignmentId = []
                 for (var key in assignments) {
                     assignmentId.push(key)
                 }
 
-                const view = assignmentId.slice(0).reverse().map(assignmentId => {
+                const view = assignmentId.slice(0).reverse().map((assignmentId, index) => {
                     return (
                         <SingleAssignment
+                            key={index}
                             id={assignments[assignmentId]["assignmentId"]}
                             courseId={this.props.courseId}
                             authorId={assignments[assignmentId]["authorId"]}

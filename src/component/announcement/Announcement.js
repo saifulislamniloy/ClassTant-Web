@@ -31,15 +31,15 @@ class Announcement extends Component {
             .then(snapshot => {
 
                 const announcements = snapshot.val();
-                console.log(announcements)
                 const announcementId = []
                 for (var key in announcements) {
                     announcementId.push(key)
                 }
 
-                const view = announcementId.slice(0).reverse().map(announcementId => {
+                const view = announcementId.slice(0).reverse().map((announcementId, index) => {
                     return (
                         <SingleAnnouncement
+                            key={index}
                             id={announcementId}
                             courseId={this.props.courseId}
                             title={announcements[announcementId]["title"]}

@@ -34,15 +34,15 @@ class ClassSchedule extends Component {
             .then(snapshot => {
 
                 const classSchedules = snapshot.val();
-                console.log(classSchedules)
                 const classScheduleId = []
                 for (let key in classSchedules) {
                     classScheduleId.push(key)
                 }
 
-                const view = classScheduleId.slice(0).reverse().map(classScheduleId => {
+                const view = classScheduleId.slice(0).reverse().map((classScheduleId, index) => {
                     return (
                         <SingleClassSchedule
+                            key={index}
                             id={classSchedules[classScheduleId]["classId"]}
                             courseId={this.props.courseId}
                             authorId={classSchedules[classScheduleId]["authorId"]}
@@ -78,7 +78,7 @@ class ClassSchedule extends Component {
                     function (error) {
                         if (error)
                             alert("failed")
-                    }).then(()=>this.getClassScheduleList())
+                    }).then(() => this.getClassScheduleList())
         }
     }
 
@@ -134,13 +134,13 @@ class ClassSchedule extends Component {
                                         </Card>
                                         :
                                         <span></span>
-                                        )}
+                                )}
                             </CourseContext.Consumer>
                         </Col>
                     </Row>
                     <Row>
                         <Col lg={12} md={12} sm={12}>
-                            {this.state.loading ? <Loader/> : this.state.classScheduleView}
+                            {this.state.loading ? <Loader /> : this.state.classScheduleView}
                         </Col>
                     </Row>
                 </Container>

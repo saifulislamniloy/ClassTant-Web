@@ -40,9 +40,10 @@ class Course extends Component {
                 }
                 this.setState({ courseIds: courseId })
 
-                const view = courseId.map(courseId => {
+                const view = courseId.map((courseId, index) => {
                     return (
                         <SingleCourse
+                            key={index}
                             courseName={courses[courseId]["courseName"]}
                             courseCode={courses[courseId]["courseCode"]}
                             department={courses[courseId]["department"]}

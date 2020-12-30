@@ -27,18 +27,17 @@ export default class CourseList extends Component {
             .then(snapshot => {
 
                 const courses = snapshot.val();
-                console.log(courses)
+
                 const courseId = []
-                for (var key in courses) {
+
+                for (var key in courses) 
                     courseId.push(key)
-                    console.log(key + " " + courses[key]["courseName"])
-                }
-                console.log("Inside Child component+ " + this.props.uid)
+                
                 this.setState({ loading: false })
 
-                const view = courseId.map(courseId => {
+                const view = courseId.map((courseId, index) => {
                     return (
-                        <CourseContext.Consumer>
+                        <CourseContext.Consumer key={index}>
                             {
                                 (course) => (
                                     <Dropdown.Item

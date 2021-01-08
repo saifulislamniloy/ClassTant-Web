@@ -1,7 +1,8 @@
-import React, {Component, Fragment} from 'react';
-import {Button, Card, Col, Dropdown, Form, Row} from "react-bootstrap";
-import {getDateTime} from "../../functions/UnixToDateTime";
 import firebase from "firebase";
+import React, { Component, Fragment } from 'react';
+import { Button, Card, Col, Dropdown, Form, Row } from "react-bootstrap";
+import { getDateTime } from "../../functions/UnixToDateTime";
+import { removeUrlError } from "../../functions/Utility";
 
 class SingleAnnouncement extends Component {
     constructor() {
@@ -148,7 +149,7 @@ class SingleAnnouncement extends Component {
                                     <Card.Body>
                                         <p className="cardBody alignLeft">{this.state.description}</p>
 
-                                        <a href={"https://" + this.state.link}
+                                        <a href={removeUrlError(this.state.link)}
                                            target="#">{this.state.link}</a>
                                     </Card.Body>
                             }
